@@ -1,0 +1,16 @@
+.splash-main-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+
+}
+
+.greeting {
+    font-size: 56px;
+    line-height: 150%;
+}
+
+.greeting-subtitle {
+    font-size: 24px;
+}

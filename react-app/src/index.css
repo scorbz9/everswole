@@ -1,6 +1,7 @@
 /* TODO Add site wide styles */
 * {
     box-sizing: border-box;
+    font-family: 'Raleway';
 }
 
 a {
@@ -9,5 +10,5 @@ a {
 
 a:visited {
     text-decoration: none;
-    color: green;
+    color: #8b0000;
 }
