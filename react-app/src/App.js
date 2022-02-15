@@ -9,6 +9,9 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 
+// Component imports
+import SplashPage from "./components/SplashPage"
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -29,6 +32,9 @@ function App() {
     <BrowserRouter>
       <NavBar user={user} />
       <Switch>
+        <Route path="/" exact={true}>
+          <SplashPage />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
