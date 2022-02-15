@@ -8,32 +8,29 @@ import './NavBar.css'
 const NavBar = ({ user }) => {
   return (
     <nav className='nav-bar'>
-      <div className="logo">
-        <span className='logo-img'>❚█══█❚</span>
-        <span className='logo-text'>Everswole</span>
-      </div>
-      <ul className="nav-links">
-        <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
-        </li>
+      <NavLink className='logo-home-link' to='/' exact={true}>
+        <div className="logo">
+          <span className='logo-img'>❚█══█❚</span>
+          <span className='logo-text'>Everswole</span>
+        </div>
+      </NavLink>
+      <ul className="nav-links-container">
         {!user &&
           <>
-            <li>
-              <NavLink to='/login' exact={true} activeClassName='active'>
+            <li className="nav-link">
+              <NavLink to='/login' id="nav-login" exact={true} activeClassName='active'>
                 Login
               </NavLink>
             </li>
-            <li>
-              <NavLink to='/sign-up' exact={true} activeClassName='active'>
+            <li className="nav-link">
+              <NavLink to='/sign-up' id="nav-sign-up" exact={true} activeClassName='active'>
                 Sign Up
               </NavLink>
             </li>
           </>
         }
         {user &&
-        <li>
+        <li className="nav-link">
           <LogoutButton />
         </li>
         }

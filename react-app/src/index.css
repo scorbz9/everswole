@@ -1,1 +1,13 @@
 /* TODO Add site wide styles */
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color: green;
+}

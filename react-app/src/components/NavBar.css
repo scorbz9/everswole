@@ -11,6 +11,12 @@
     justify-content: space-between;
     color: rgba(59, 50, 50, 1);
     margin-left: 8px;
+    text-decoration: none;
+}
+
+.logo-home-link {
+    text-decoration: none;
+    display: flex;
 }
 
 .logo-text {
@@ -32,11 +38,64 @@
     padding-right: 15px;
 }
 
-.nav-links {
+.nav-links-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     width: 20%;
     align-items: center;
     list-style-type: none;
+    justify-content: flex-end;
+    margin-right: 8px;
+}
+
+.nav-link {
+    margin: 0px 10px;
+    font-family: 'Raleway';
+    font-weight: bold;
+}
+
+#nav-logout {
+    background-color: transparent;
+    border: 2px solid green;
+    border-radius: 3px;
+    padding: 10px 25px;
+    transition: 0.1s;
+    font-family: 'Raleway';
+    color: green;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+#nav-logout:hover {
+    color: white;
+    background-color: green;
+}
+
+#nav-login {
+    text-decoration: none;
+    color: green;
+    padding: 10px 20px;
+}
+
+#nav-login:hover {
+    color: rgb(1, 80, 1);
+}
+
+#nav-sign-up {
+    background-color: transparent;
+    border: 2px solid green;
+    border-radius: 3px;
+    padding: 10px 25px;
+    transition: 0.1s;
+    font-family: 'Raleway';
+    color: green;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+#nav-sign-up:hover {
+    color: white;
+    background-color: green;
 }
