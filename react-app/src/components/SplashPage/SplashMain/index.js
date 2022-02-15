@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './SplashMain.css'
 
 
@@ -13,8 +13,8 @@ const SplashMain = () => {
             <h2 className="greeting-subtitle">
                 Remember everything and tackle any workout with your exercises, notes, and weekly schedule all in one place
             </h2>
-            <button className='splash-main-sign-up'>Sign up for free</button>
-            <a href="/login" className="splash-main-login">Already have an account? Log in</a>
+            <Link to="/sign-up" className='splash-main-sign-up'>Sign up for free</Link>
+            <Link to="/login" className="splash-main-login">Already have an account? Log in</Link>
         </div>
     )
 }
