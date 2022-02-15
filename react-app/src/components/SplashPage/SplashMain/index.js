@@ -14,7 +14,7 @@ const SplashMain = () => {
                 Remember everything and tackle any workout with your exercises, notes, and weekly schedule all in one place
             </h2>
             <button className='splash-main-sign-up'>Sign up for free</button>
-            <a href="/login">Already have an account? Log in</a>
+            <a href="/login" className="splash-main-login">Already have an account? Log in</a>
         </div>
     )
 }
