@@ -9,4 +9,5 @@ class Split(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     start_date = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
-    user = db.relationship("User", back_populates="splits")
+    users = db.relationship("User", back_populates="splits")
+    days = db.relationship("Day", back_populates="splits")

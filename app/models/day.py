@@ -18,7 +18,7 @@ class Day(db.Model):
     name = db.Column(db.String(50), nullable=False)
     split_id = db.Column(db.Integer, db.ForeignKey("splits.id"))
 
-    split = db.relationship("Split", back_populates="days")
+    splits = db.relationship("Split", back_populates="days")
     exercises = db.relationship("Exercise", back_populates="days", secondary=days_exercises)
 
 class Exercise(db.Model):

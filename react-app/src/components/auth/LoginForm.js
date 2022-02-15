@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
+
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
@@ -31,6 +32,8 @@ const LoginForm = () => {
   }
 
   return (
+
+
     <form onSubmit={onLogin}>
       <div>
         {errors.map((error, ind) => (
@@ -59,6 +62,7 @@ const LoginForm = () => {
         <button type='submit'>Login</button>
       </div>
     </form>
+
   );
 };
 

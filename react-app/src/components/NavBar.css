@@ -1,0 +1,42 @@
+.nav-bar {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    color: rgba(59, 50, 50, 1);
+    margin-left: 8px;
+}
+
+.logo-text {
+    font-family: 'Raleway';
+    font-size: 40px;
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-left: 2px solid rgba(49, 47, 47, 1);
+    padding-left: 15px;
+}
+
+.logo-img {
+    font-size: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 20%;
+    align-items: center;
+    list-style-type: none;
+}
