@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css'
 
@@ -45,26 +45,37 @@ const LoginForm = () => {
           <h4>Please log in to Everswole</h4>
           <h6>By loggin in to Everswole, you hereby agree to not skip leg day.</h6>
         </div>
-        <div className="login-input">
+        <div className="login-input form-element">
           <input
+            className="form-element"
             name='email'
             type='text'
             placeholder='Email'
             value={email}
             onChange={updateEmail}
+            autoComplete="off"
           />
         </div>
-        <div className="login-input">
+        <div className="login-input form-element">
           <input
+            className="form-element"
             name='password'
             type='password'
             placeholder='Password'
             value={password}
             onChange={updatePassword}
+            autoComplete="off"
           />
         </div>
-        <button type='submit' className="login-submit">Login</button>
+        <button type='submit' className="login-submit form-element">Login</button>
+        <div className="login-form-sign-up-container form-element">
+              <p className="login-form-sign-up">New to Everswole? <Link to="/sign-up" className="login-form-sign-up-link">Sign up</Link></p>
+        </div>
+        <div className="login-form-demo-user-container form-element">
+            <button className="login-form-demo-user form-element" type='button'>Demo User</button>
+        </div>
       </form>
+
     </div>
 
   );
