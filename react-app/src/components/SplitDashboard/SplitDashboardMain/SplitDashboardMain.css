@@ -1,0 +1,20 @@
+.split-dashboard-main-container {
+    color: white;
+    background-color: #1a1a1a;
+    position: absolute;
+    z-index: 100;
+    width: 1200px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 340px;
+    padding: 20px;
+    height: 500px;
+    border-radius: 8px;
+}
+
+.split-dashboard-day {
+    background-color: #262626;
+    width: 171px;
+    height: 100%;
+}

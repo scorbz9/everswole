@@ -1,11 +1,9 @@
 .split-dashboard-hero-container {
     height: 460px;
-    width: 100%;
-    margin-left: 240px;
-    display: block;
+    display: flex;
 }
 
 .split-dashboard-hero-image {
     height: 460px;
-    width: 100%;
+    width: 644px;
 }

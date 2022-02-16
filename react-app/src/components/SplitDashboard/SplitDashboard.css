@@ -1,5 +1,11 @@
-.split-dashboard-container {
+
+.split-dashboard-right {
+    margin-left: 240px;
     display: flex;
+    flex-direction: column;
+    background-color: black;
+    height: 1000px;
+    position: relative;
 }
 
 ::-webkit-scrollbar {
