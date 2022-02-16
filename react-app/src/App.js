@@ -52,7 +52,6 @@ function App() {
 
     return (
       <BrowserRouter>
-        <NavBar user={user} />
         <Switch>
           <Route path="/" exact={true}>
             <SplitDashboard />

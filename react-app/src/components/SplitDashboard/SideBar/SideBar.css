@@ -1,0 +1,15 @@
+.sidebar-container {
+    background-color: black;
+    height: 100%;
+    width: 240px;
+    position: fixed;
+    left: 0;
+}
+
+.sidebar-user-info-container {
+    display: flex;
+}
+
+.sidebar-user-info-username {
+    color: white;
+}

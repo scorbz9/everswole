@@ -1,7 +1,24 @@
 import React from "react";
+import { useEffect } from "react";
+
+// Component imports
+import SideBar from "./SideBar";
+import SplitDashboardHero from "./SplitDashboardHero";
+
+import './SplitDashboard.css'
 
 const SplitDashboard = () => {
-    return <h1>YOOOOOOOOOO</h1>
+
+    useEffect(() => {
+        window.scroll(0, 170);
+    })
+
+    return (
+        <div className="split-dashboard-container">
+            <SideBar />
+            <SplitDashboardHero />
+        </div>
+    )
 }
 
 export default SplitDashboard
