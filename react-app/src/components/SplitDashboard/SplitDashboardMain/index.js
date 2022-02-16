@@ -9,6 +9,24 @@ const SplitDashboardMain = () => {
                 <div className="split-dashboard-day">
 
                 </div>
+                <div className="split-dashboard-day">
+
+                </div>
+                <div className="split-dashboard-day">
+
+                </div>
+                <div className="split-dashboard-day">
+
+                </div>
+                <div className="split-dashboard-day">
+
+                </div>
+                <div className="split-dashboard-day">
+
+                </div>
+                <div className="split-dashboard-day">
+
+                </div>
             </div>
     )
 }

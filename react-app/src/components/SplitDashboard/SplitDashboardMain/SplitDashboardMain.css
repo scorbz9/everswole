@@ -8,13 +8,21 @@
     right: 0;
     margin: auto;
     margin-top: 340px;
-    padding: 20px;
+    padding: 20px 10px;
     height: 500px;
     border-radius: 8px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: block;
+    white-space: nowrap;
 }
 
 .split-dashboard-day {
     background-color: #262626;
-    width: 171px;
+    width: 148px;
     height: 100%;
+    border-radius: 8px;
+    margin: 0 10px;
+    padding: 10px;
+    display: inline-block;
 }
