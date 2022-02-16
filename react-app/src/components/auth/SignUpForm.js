@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './SignUpForm.css'
+
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -43,51 +45,69 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
-    </form>
+    <div className="sign-up-form-container">
+      <form onSubmit={onSignUp} className="sign-up-form">
+        <div className="sign-up-form-header">
+          <h4>Sign up for Everswole</h4>
+          <h6>By creating an account for Everswole, you hereby agree to not skip leg day.</h6>
+        </div>
+        <div className="error-container">
+          {errors.map((error, ind) => (
+            <div key={ind} className="error">{error}</div>
+          ))}
+        </div>
+        <div className="sign-up-input form-element">
+          <input
+            className="form-element"
+            type='text'
+            name='username'
+            onChange={updateUsername}
+            value={username}
+            placeholder="Username"
+            autoComplete='off'
+          ></input>
+        </div>
+        <div className="sign-up-input form-element">
+          <input
+            className="form-element"
+            type='text'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+            placeholder="Email"
+            autoComplete='off'
+          ></input>
+        </div>
+        <div className="sign-up-input form-element">
+          <input
+            className="form-element"
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+            placeholder="Password"
+          ></input>
+        </div>
+        <div className="sign-up-input form-element">
+          <input
+            className="form-element"
+            type='password'
+            name='repeat_password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+            placeholder="Confirm Password"
+          ></input>
+        </div>
+        <button type='submit' className="sign-up-submit form-element">Sign Up</button>
+        <div className="sign-up-form-sign-up-container form-element">
+              <p className="sign-up-form-sign-up">Already have an account? <Link to="/login" className="sign-up-form-sign-up-link">Log in</Link></p>
+        </div>
+        <div className="sign-up-form-demo-user-container form-element">
+            <button className="sign-up-form-demo-user form-element" type='button'>Demo User</button>
+        </div>
+      </form>
+    </div>
   );
 };
 
