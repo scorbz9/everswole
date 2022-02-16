@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 0px 60px;
+    margin: 10px 60px;
 }
 
 .logo {
@@ -36,6 +36,7 @@
     display: flex;
     align-items: center;
     padding-right: 15px;
+    color: #8b0000;
 }
 
 .nav-links-container {

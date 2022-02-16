@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import './Footer.css'
+
 
 const Footer = () => {
     return (
-        <p>temp</p>
+        <div className="footer-container">
+            <p>Fake Copyright © 2022</p>
+        </div>
     )
 }
 
