@@ -4,12 +4,35 @@
     width: 240px;
     position: fixed;
     left: 0;
+    display: flex;
+    align-items: flex-start;
 }
 
 .sidebar-user-info-container {
     display: flex;
+    align-items: center;
+    margin-left: 10px;
+    width: 85%;
+    position: relative;
 }
 
 .sidebar-user-info-username {
     color: white;
+    margin: 0px 0px 0px 6px;
+}
+
+.sidebar-user-info-image {
+    font-size: 30px;
+    margin-bottom: 4px;
+}
+
+.sidebar-user-info-dropdown-container {
+    position: absolute;
+    right: 0;
+}
+
+.sidebar-user-info-dropdown-toggle:after {
+    content: "\25bc";
+    color: white;
+    font-size: 10px;
 }

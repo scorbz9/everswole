@@ -6,7 +6,6 @@ import './SideBar.css'
 
 const SideBar = () => {
     const user = useSelector(state => state.session.user)
-    console.log(user)
 
     return (
         <>
@@ -15,7 +14,10 @@ const SideBar = () => {
                 {/* placeholder for profile pic */}
                 <div className="sidebar-user-info-image">🔴</div>
                 <p className="sidebar-user-info-username">{user.username}</p>
-                <LogoutButton />
+                <div className="sidebar-user-info-dropdown-container">
+                    <div className="sidebar-user-info-dropdown-toggle"></div>
+
+                </div>
             </div>
         </div>
         </>

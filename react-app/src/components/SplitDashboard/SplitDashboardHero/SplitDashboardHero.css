@@ -9,6 +9,7 @@
     animation-name: blurIn;
     animation-timing-function: ease-in;
     animation-duration: 1.5s;
+    filter: blur(2px)
 }
 
 @keyframes blurIn {
@@ -17,7 +18,7 @@
     }
 
     100% {
-        filter: blur(0)
+        filter: blur(2px)
     }
 
 }
