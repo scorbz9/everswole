@@ -71,6 +71,7 @@
 #nav-logout:hover {
     color: white;
     background-color: #8b0000;
+    cursor: pointer;
 }
 
 #nav-login {
