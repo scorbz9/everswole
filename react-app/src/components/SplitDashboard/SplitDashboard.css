@@ -1,0 +1,22 @@
+
+.split-dashboard-right {
+    margin-left: 240px;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    height: 1000px;
+    position: relative;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000001;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #666666;
+    border-radius: 10px;
+}

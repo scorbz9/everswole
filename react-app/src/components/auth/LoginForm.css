@@ -43,6 +43,8 @@
 
 .login-form-header h6 {
     margin: 5px;
+    width: 95%;
+    text-align: center;
 }
 
 .login-input {
@@ -66,7 +68,7 @@
     border: 2px solid #8b0000;
     transition: 0.1s;
     cursor: pointer;
-    margin: 25px;
+    margin: 25px 0 15px 0;
 }
 
 .login-submit:hover {

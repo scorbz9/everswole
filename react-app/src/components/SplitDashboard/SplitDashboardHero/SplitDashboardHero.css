@@ -1,0 +1,24 @@
+.split-dashboard-hero-container {
+    height: 460px;
+    display: flex;
+}
+
+.split-dashboard-hero-image {
+    height: 460px;
+    width: 644px;
+    animation-name: blurIn;
+    animation-timing-function: ease-in;
+    animation-duration: 1.5s;
+    filter: blur(2px)
+}
+
+@keyframes blurIn {
+    0% {
+        filter: blur(15px)
+    }
+
+    100% {
+        filter: blur(2px)
+    }
+
+}

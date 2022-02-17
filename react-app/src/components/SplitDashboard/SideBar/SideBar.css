@@ -1,0 +1,70 @@
+.sidebar-container {
+    background-color: black;
+    height: 100%;
+    width: 240px;
+    position: fixed;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+}
+
+.sidebar-user-info-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.sidebar-user-info-container:hover .sidebar-user-info-username {
+    color: white;
+}
+
+.sidebar-user-info-username {
+    color: rgb(196, 195, 195);
+    margin: 0px 0px 0px 6px;
+    font-size: 12px;
+}
+
+.sidebar-user-info-image {
+    font-size: 30px;
+    margin-bottom: 4px;
+}
+
+.sidebar-user-info-dropdown-container {
+    margin-left: 10px;
+}
+
+.sidebar-user-info-dropdown-toggle:after {
+    content: "\25bc";
+    color: white;
+    font-size: 10px;
+    width: 5px;
+}
+
+.sidebar-dropdown {
+    display: flex;
+    align-items: center;
+    background: #333333;
+    position: absolute;
+    margin-top: 43px;
+    width: 90%;
+    height: 50px;
+    border-radius: 2px;
+}
+
+#sidebar-dropdown-logout {
+    background: transparent;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 15px;
+    width: 100%;
+    text-align: left;
+}
+
+#sidebar-dropdown-logout:hover {
+    background-color: #4d4d4d;
+}
