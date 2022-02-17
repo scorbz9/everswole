@@ -1,46 +1,24 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { logout } from '../../../store/session'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+
+
+import LogoutDropdown from './LogoutDropdown'
 
 import './SideBar.css'
 
 
 const SideBar = () => {
     const user = useSelector(state => state.session.user)
-    const dispatch = useDispatch();
 
-    const onLogout = async (e) => {
-        await dispatch(logout());
-      };
+    const [showLogout, setShowLogout] = useState(false)
 
-    // Dropdown helpers
-    const [showDropDown, setShowDropDown] = useState(false)
-
-    const toggleClick = () => {
-        setShowDropDown(!showDropDown)
+    const toggleLogoutDropdown = () => {
+        setShowLogout(!showLogout)
     }
-
-    const ref = useRef()
-
-    useEffect(() => {
-        const checkIfClickedOutside = e => {
-
-        if (showDropDown && ref.current && !ref.current.contains(e.target)) {
-            setShowDropDown(false)
-        }
-    }
-
-    document.addEventListener("click", checkIfClickedOutside)
-
-    return () => {
-      // Cleanup the event listener
-      document.removeEventListener("click", checkIfClickedOutside)
-    }
-  }, [showDropDown])
 
     return (
         <div className="sidebar-container">
-            <div className="sidebar-user-info-container" onClick={toggleClick}>
+            <div className="sidebar-user-info-container" onClick={toggleLogoutDropdown}>
                 {/* placeholder for profile pic */}
                 <div className="sidebar-user-info-image">🔴</div>
                 <p className="sidebar-user-info-username">{user.email}</p>
@@ -48,10 +26,7 @@ const SideBar = () => {
                     <div className="sidebar-user-info-dropdown-toggle"></div>
                 </div>
             </div>
-            {showDropDown ?
-                        <div className="sidebar-dropdown" ref={ref}>
-                            <button id="sidebar-dropdown-logout" onClick={onLogout}>Logout</button>
-                        </div> : <></>}
+            <LogoutDropdown showLogout={showLogout} setShowLogout={setShowLogout}/>
 
             <div className="create">
 
