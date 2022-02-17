@@ -1,10 +1,11 @@
 import React , { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import './AddDayForm.css'
 
 const AddDayForm = () => {
     const dispatch = useDispatch();
+    const exercises = useSelector(state => state.exerciseState.entries)
 
     const [name, setName] = useState("");
     const [workoutInputList, setWorkoutInputList] = useState([""])
@@ -45,13 +46,18 @@ const AddDayForm = () => {
                 {workoutInputList.map((input, index) => {
                     return (
                         <label htmlFor="workoutName" key={index}> {`Workout ${index + 1}`}
-                            <input
-                                type="text"
+                            <select
                                 name="workoutName"
                                 value={input}
                                 onChange={e => updateWorkoutInputList(e, index)}
                                 placeholder={`Workout #${index + 1}`}
-                            />
+                            >
+                                {exercises.map(exercise => {
+                                    return (
+                                        <option value={exercise.name}>{exercise.name}</option>
+                                    )
+                                })}
+                            </select>
                         </label>
                     )
                 })}

@@ -29,3 +29,9 @@ class Exercise(db.Model):
     name = db.Column(db.String(50), nullable=False, unique=True)
 
     days = db.relationship("Day", back_populates="exercises", secondary=days_exercises)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name
+        }

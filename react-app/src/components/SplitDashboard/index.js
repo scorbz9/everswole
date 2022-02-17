@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+
+// Store imports
+import { getAllExercises } from "../../store/exercise";
 
 // Component imports
 import SideBar from "./SideBar";
@@ -8,10 +12,15 @@ import SplitDashboardMain from "./SplitDashboardMain";
 import './SplitDashboard.css'
 
 const SplitDashboard = () => {
+    const dispatch = useDispatch();
 
     useEffect(() => {
         window.scroll(0, 240);
-    })
+
+        (async() => {
+            await dispatch(getAllExercises())
+        })();
+    }, [dispatch])
 
     const [showAddDayForm, setShowAddDayForm] = useState(false);
 
