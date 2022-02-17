@@ -14,3 +14,8 @@
     display: block;
     white-space: nowrap;
 }
+
+.add-day-form {
+    display: flex;
+    flex-direction: column;
+}
