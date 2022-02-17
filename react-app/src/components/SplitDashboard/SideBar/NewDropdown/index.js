@@ -4,7 +4,12 @@ import { faCalendar, faDumbbell } from '@fortawesome/free-solid-svg-icons'
 
 import './NewDropdown.css'
 
-const NewDropdown = ({ showNewDropdown, setShowNewDropdown}) => {
+const NewDropdown = ({ showNewDropdown, setShowNewDropdown, showAddDayForm, setShowAddDayForm }) => {
+
+
+    const toggleAddDayForm = () => {
+        setShowAddDayForm(!showAddDayForm)
+    }
 
     const ref = useRef()
 
@@ -29,7 +34,7 @@ const NewDropdown = ({ showNewDropdown, setShowNewDropdown}) => {
         <>
             {showNewDropdown ?
                 <div className="sidebar-new-dropdown-content" ref={ref}>
-                    <div className="sidebar-new-dropdown-add-day new-dropdown-element">
+                    <div className="sidebar-new-dropdown-add-day new-dropdown-element" onClick={toggleAddDayForm}>
                         <FontAwesomeIcon icon={faDumbbell} className="new-dropdown-element-icon"/><div>Day</div>
                     </div>
                     <div className="sidebar-new-dropdown-add-split new-dropdown-element">

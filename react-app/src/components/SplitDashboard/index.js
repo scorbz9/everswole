@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 // Component imports
 import SideBar from "./SideBar";
@@ -14,12 +13,14 @@ const SplitDashboard = () => {
         window.scroll(0, 240);
     })
 
+    const [showAddDayForm, setShowAddDayForm] = useState(false);
+
     return (
         <div className="split-dashboard-container">
-            <SideBar />
+            <SideBar showAddDayForm={showAddDayForm} setShowAddDayForm={setShowAddDayForm} />
             <div className="split-dashboard-right">
                 <SplitDashboardHero />
-                <SplitDashboardMain />
+                <SplitDashboardMain showAddDayForm={showAddDayForm} setShowAddDayForm={setShowAddDayForm} />
             </div>
         </div>
     )

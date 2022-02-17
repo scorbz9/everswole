@@ -9,7 +9,7 @@ import NewDropdown from './NewDropdown'
 import './SideBar.css'
 
 
-const SideBar = () => {
+const SideBar = ({ showAddDayForm, setShowAddDayForm }) => {
     const user = useSelector(state => state.session.user)
 
     const [showLogout, setShowLogout] = useState(false);
@@ -35,7 +35,7 @@ const SideBar = () => {
             <div className="sidebar-new-dropdown-container" onClick={toggleNewDropdown}>
                 <FontAwesomeIcon icon={faPlus}/> <p className="new-dropdown-text">New</p> <FontAwesomeIcon icon={faCaretDown} className="new-dropdown-caret"/>
             </div>
-            <NewDropdown showNewDropdown={showNewDropdown} setShowNewDropdown={setShowNewDropdown}/>
+            <NewDropdown showNewDropdown={showNewDropdown} setShowNewDropdown={setShowNewDropdown} showAddDayForm={showAddDayForm} setShowAddDayForm={setShowAddDayForm}/>
         </div>
     )
 }

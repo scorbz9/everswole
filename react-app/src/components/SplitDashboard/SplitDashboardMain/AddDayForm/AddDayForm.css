@@ -1,0 +1,16 @@
+.add-day-form-container {
+    color: white;
+    background-color: #1a1a1a;
+    position: absolute;
+    z-index: 100;
+    width: 1200px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 340px;
+    padding: 20px 10px;
+    height: 500px;
+    border-radius: 8px;
+    display: block;
+    white-space: nowrap;
+}
