@@ -16,12 +16,10 @@ def addOneExercise():
 
         new_day = Day(
             name = data['name']
+
         )
 
-        days_exercises.goal = '1'
-        # for exercise in data['workoutInputList']:
-        #     new_day.exercises
-
+        print(new_day.exercises)
 
         db.session.add(new_day)
         db.session.commit()

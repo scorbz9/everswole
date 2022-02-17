@@ -9,6 +9,17 @@ days_exercises = db.Table(
     db.Column("notes", db.String(500))
 )
 
+class DaysExercises(db.Model):
+    __tablename__ = 'DaysExercises'
+
+    day_id = db.Column(db.Integer, db.ForeignKey("days.id"), primary_key=True)
+    exercise_id = db.Column(db.Integer, db.ForeignKey("exercises.id"), primary_key=True)
+    goal = db.Column(db.String(30))
+    actual = db.Column(db.String(30))
+    notes = db.Column(db.String(500))
+
+    exercise = db.relationship("Exercise", back_populates="days")
+    day = db.relationship("Day", back_populates="exercises")
 
 class Day(db.Model):
     __tablename__ = "days"
@@ -19,7 +30,8 @@ class Day(db.Model):
     split_id = db.Column(db.Integer, db.ForeignKey("splits.id"))
 
     splits = db.relationship("Split", back_populates="days")
-    exercises = db.relationship("Exercise", back_populates="days", secondary=days_exercises)
+    exercises = db.relationship("DaysExercises", back_populates="day")
+    # exercises = db.relationship("Exercise", back_populates="days", secondary=days_exercises)
 
 class Exercise(db.Model):
     __tablename__ = "exercises"
@@ -28,7 +40,8 @@ class Exercise(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
 
-    days = db.relationship("Day", back_populates="exercises", secondary=days_exercises)
+    # days = db.relationship("Day", back_populates="exercises", secondary=days_exercises)
+    days = db.relationship("DaysExercises", back_populates="exercise")
 
     def to_dict(self):
         return {
