@@ -1,8 +1,12 @@
 import React , { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+// FontAwesome icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+
+// Store imports
+import { addOneDay } from "../../../../store/day";
 
 import './AddDayForm.css'
 
@@ -11,13 +15,26 @@ const AddDayForm = () => {
     const exercises = useSelector(state => state.exerciseState.entries)
 
     const [name, setName] = useState("");
-    const [workoutInputList, setWorkoutInputList] = useState(["Flat Bench"])
+    const [goal, setGoal] = useState("")
+    const [workoutInputList, setWorkoutInputList] = useState([{ name: '', goal: ''}])
 
-    const updateWorkoutInputList = (e, index) => {
-        const name = e.target.value;
+    const updateWorkoutInputListName = (e, index) => {
+        const value = e.target.value
         const list = [...workoutInputList]
-        list[index] = name
+
+        list[index].name = value
+
         setWorkoutInputList(list);
+    }
+
+    const updateWorkoutInputListGoal = (e, index) => {
+        const value = e.target.value
+        const list = [...workoutInputList]
+
+        list[index].goal = value
+
+        setWorkoutInputList(list);
+
     }
 
     const handleRemoveWorkoutInput = index => {
@@ -27,10 +44,10 @@ const AddDayForm = () => {
     }
 
     const handleAddWorkoutInput = () => {
-        setWorkoutInputList([...workoutInputList, "Flat Bench"])
+        setWorkoutInputList([...workoutInputList, { name: "Flat Bench", goal: "" }])
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
 
         const payload = {
@@ -40,8 +57,7 @@ const AddDayForm = () => {
 
         console.log(payload)
 
-        // temp thunk action until its written
-        // await dispatch(temp(payload))
+        await dispatch(addOneDay(payload))
     }
 
     return (
@@ -59,23 +75,25 @@ const AddDayForm = () => {
                 </label>
                 {workoutInputList.map((input, index) => {
                     return (
-                        <>
-                            <label htmlFor="workoutName" key={index}> {`Workout ${index + 1}`}
+                        <div key={index}>
+                            <label htmlFor="workoutName"> {`Workout ${index + 1}`}
                                 <select
                                     name="workoutName"
-                                    value={input}
-                                    onChange={e => updateWorkoutInputList(e, index)}
+                                    value={input.name}
+                                    onChange={e => updateWorkoutInputListName(e, index)}
                                     placeholder={`Workout #${index + 1}`}
                                 >
-                                    {exercises.map(exercise => {
+                                    {exercises.map((exercise, i) => {
                                         return (
-                                            <option value={exercise.name}>{exercise.name}</option>
+                                            <option key={i} value={exercise.name}>{exercise.name}</option>
                                         )
                                     })}
                                 </select>
                                 <label> Goal
                                     <input
                                         type="text"
+                                        value={input.goal}
+                                        onChange={e => updateWorkoutInputListGoal(e, index)}
                                         placeholder="sets x reps x weight"
                                     />
                                 </label>
@@ -83,7 +101,7 @@ const AddDayForm = () => {
                                     <FontAwesomeIcon onClick={() => handleRemoveWorkoutInput(index)} icon={faXmark} />
                                 }
                             </label>
-                        </>
+                        </div>
                     )
 
                 })}
