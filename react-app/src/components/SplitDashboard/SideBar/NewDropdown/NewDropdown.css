@@ -1,0 +1,45 @@
+.sidebar-new-dropdown-content {
+    color: white;
+    position: absolute;
+    margin-top: 63px;
+    width: 90%;
+    background-color: #333333;
+    border-radius: 8px;
+    z-index: 3;
+}
+
+.sidebar-new-dropdown-add-day {
+    background-color: #8b0000;
+}
+
+.sidebar-new-dropdown-add-day:hover {
+    background-color: #9b0303;
+}
+
+.sidebar-new-dropdown-add-split {
+    background-color: #b95ccc;
+    padding-left: 100px;
+}
+
+.sidebar-new-dropdown-add-split:hover {
+    background-color: #894597;
+}
+
+.new-dropdown-element {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+    height: 30px;
+    padding: 20px 5px;
+    font-size: 13px;
+}
+
+.new-dropdown-element-icon {
+    margin: 0 8px;
+}
+
+.new-dropdown-split-icon {
+    margin-left: 10.5px;
+}
