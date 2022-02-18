@@ -1,61 +1,41 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { logout } from '../../../store/session'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+
+import LogoutDropdown from './LogoutDropdown'
+import NewDropdown from './NewDropdown'
 
 import './SideBar.css'
 
 
-const SideBar = () => {
+const SideBar = ({ showAddDayForm, setShowAddDayForm }) => {
     const user = useSelector(state => state.session.user)
-    const dispatch = useDispatch();
 
-    const onLogout = async (e) => {
-        await dispatch(logout());
-      };
+    const [showLogout, setShowLogout] = useState(false);
+    const [showNewDropdown, setShowNewDropdown] = useState(false)
 
-    // Dropdown helpers
-    const [showDropDown, setShowDropDown] = useState(false)
-
-    const toggleClick = () => {
-        setShowDropDown(!showDropDown)
+    const toggleLogoutDropdown = () => {
+        setShowLogout(!showLogout)
     }
 
-    const ref = useRef()
-
-    useEffect(() => {
-        const checkIfClickedOutside = e => {
-
-        if (showDropDown && ref.current && !ref.current.contains(e.target)) {
-            setShowDropDown(false)
-        }
+    const toggleNewDropdown = () => {
+        setShowNewDropdown(!showNewDropdown)
     }
-
-    document.addEventListener("click", checkIfClickedOutside)
-
-    return () => {
-      // Cleanup the event listener
-      document.removeEventListener("click", checkIfClickedOutside)
-    }
-  }, [showDropDown])
 
     return (
         <div className="sidebar-container">
-            <div className="sidebar-user-info-container" onClick={toggleClick}>
+            <div className="sidebar-user-info-container" onClick={toggleLogoutDropdown}>
                 {/* placeholder for profile pic */}
                 <div className="sidebar-user-info-image">🔴</div>
                 <p className="sidebar-user-info-username">{user.email}</p>
-                <div className="sidebar-user-info-dropdown-container">
-                    <div className="sidebar-user-info-dropdown-toggle"></div>
-                </div>
+                <div className="sidebar-user-info-dropdown-toggle"><FontAwesomeIcon icon={faCaretDown} /></div>
             </div>
-            {showDropDown ?
-                        <div className="sidebar-dropdown" ref={ref}>
-                            <button id="sidebar-dropdown-logout" onClick={onLogout}>Logout</button>
-                        </div> : <></>}
-
-            <div className="create">
-
+            <LogoutDropdown showLogout={showLogout} setShowLogout={setShowLogout}/>
+            <div className="sidebar-new-dropdown-container" onClick={toggleNewDropdown}>
+                <FontAwesomeIcon icon={faPlus}/> <p className="new-dropdown-text">New</p> <FontAwesomeIcon icon={faCaretDown} className="new-dropdown-caret"/>
             </div>
+            <NewDropdown showNewDropdown={showNewDropdown} setShowNewDropdown={setShowNewDropdown} showAddDayForm={showAddDayForm} setShowAddDayForm={setShowAddDayForm}/>
         </div>
     )
 }

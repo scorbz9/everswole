@@ -1,9 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import dayReducer from './day';
+import exerciseReducer from './exercise';
 import session from './session'
 
 const rootReducer = combineReducers({
   session,
+  exerciseState: exerciseReducer,
+  dayState: dayReducer,
 });
 
 
