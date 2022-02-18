@@ -9,7 +9,7 @@ day_routes = Blueprint('day', __name__)
 
 @day_routes.route('/', methods=["GET"])
 def getDays(user_id):
-    print(user_id, 'do i make it here   ')
+
     days = Day.query \
             .join(DaysExercises) \
             .join(Exercise) \
@@ -24,7 +24,7 @@ def addOneDay(user_id):
     data = request.json
     form = DayForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(data)
+
     if form.validate_on_submit():
 
         new_day = Day(
@@ -46,12 +46,18 @@ def addOneDay(user_id):
                 exercise_id = current_exercise[0].id,
                 goal = exercise['goal']
             )
+            try:
+                db.session.add(new_association)
+                db.session.commit()
+            except:
+                return { "errors": ["Please enter each exercise only once."]}
 
-            db.session.add(new_association)
-            db.session.commit()
+        days = Day.query \
+            .join(DaysExercises) \
+            .join(Exercise) \
+            .filter(user_id == Day.user_id) \
+            .all()
 
-
-
-        return data
+        return { "days": [item.to_dict() for item in days] }
 
     return { "errors": validation_errors_to_error_messages(form.errors) }

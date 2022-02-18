@@ -53,9 +53,7 @@ const dayReducer = (state = initialState, action) => {
         case LOAD_DAYS:
             return { ...state, entries: [...action.payload.days] }
         case ADD_DAY:
-            newState = { ...state }
-            console.log('hereeee', action.payload)
-            return { ...newState, entries: [] }
+            return { ...state, entries: [...action.payload.days] }
         default:
             return state;
     }
