@@ -18,6 +18,7 @@ export const getAllDays = () => async dispatch => {
 
     if (response.ok) {
         const data = await response.json()
+        console.log(data)
         await dispatch(getDays(data))
         return data;
     }

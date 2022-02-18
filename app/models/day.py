@@ -12,6 +12,8 @@ class DaysExercises(db.Model):
     exercise = db.relationship("Exercise", back_populates="days")
     day = db.relationship("Day", back_populates="exercises")
 
+
+
 class Day(db.Model):
     __tablename__ = "days"
     __table_args__ = {'extend_existing': True}
@@ -22,6 +24,19 @@ class Day(db.Model):
 
     splits = db.relationship("Split", back_populates="days")
     exercises = db.relationship("DaysExercises", back_populates="day")
+
+    def to_dict(self):
+
+        return {
+            'id': self.id,
+            'name': self.name,
+            'exercises': [{
+                'id': exercise.exercise.id,
+                'name': exercise.exercise.name,
+                'goal': exercise.goal, 'actual': exercise.actual,
+                'notes': exercise.notes } for exercise in self.exercises],
+            'split_id': self.split_id
+        }
 
 class Exercise(db.Model):
     __tablename__ = "exercises"

@@ -9,13 +9,12 @@ day_routes = Blueprint('day', __name__)
 @day_routes.route('/', methods=["GET"])
 def getDays():
 
-    days_exercises = DaysExercises.query \
-                    .options(joinedload(DaysExercises.exercise)) \
-                    .options(joinedload(DaysExercises.day)) \
-                    .all()
+    days = Day.query \
+            .join(DaysExercises) \
+            .join(Exercise) \
+            .all()
 
-    print('=========================================================', days_exercises[0].exercise.name)
-    return {  }
+    return { "days": [item.to_dict() for item in days] }
 
 @day_routes.route('/', methods=['POST'])
 def addOneDay():
