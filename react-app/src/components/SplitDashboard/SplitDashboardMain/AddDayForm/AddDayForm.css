@@ -8,14 +8,80 @@
     right: 0;
     margin: auto;
     margin-top: 340px;
-    padding: 20px 10px;
-    height: 500px;
+    padding: 20px 30px;
+    /* height: 500px; */
     border-radius: 8px;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     white-space: nowrap;
 }
 
-.add-day-form {
+.add-day-form-header {
+    margin: 0 0 10px 0;
+}
+
+.add-day-form-element {
+    margin: 12px 0;
+}
+
+.add-day-form-label {
+    margin-right: 10px;
+    width: 300px;
+}
+
+.add-day-form-input {
+    margin: 0 10px;
+    height: 35px;
+    border-radius: 6px;
+    padding: 5px;
+}
+
+.add-day-form-goal {
+    margin-left: 12px;
+}
+
+.add-day-form-add-workout {
+    margin: 20px 0 15px 15px;
+    width: 150px;
+    height: 36px;
+    border-radius: 20px;
+    background-color: #8b0000;
+    color: white;
+    cursor: pointer;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    padding-left: 15px;
+    font-size: 13px;
+    z-index: 1;
+}
+
+.add-day-form-add-workout:hover {
+    background-color: #b40303;
+}
+
+.add-day-form-add-workout-message {
+    margin: 15px 0;
+    color: red;
+}
+
+.add-workout-plus {
+    margin-right: 8px;
+}
+
+.add-day-form-submit {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 3px;
+    border: 2px solid #b95ccc;
+    color: white;
+    background-color: #b95ccc;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+}
+
+.add-day-form-submit:hover {
+    background: #894597;
+    border: 2px solid #894597;
 }

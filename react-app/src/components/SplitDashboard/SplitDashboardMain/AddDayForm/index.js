@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 // FontAwesome icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
+
 
 // Store imports
 import { addOneDay } from "../../../../store/day";
@@ -62,26 +63,28 @@ const AddDayForm = () => {
 
     return (
         <div className="add-day-form-container">
+            <h2 className="add-day-form-header">Create your day's workout</h2>
             <form onSubmit={handleSubmit} className="add-day-form">
-                <label htmlFor='name'> Name
-                <input
-                    type="text"
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                    name="name"
-                    placeholder="Name"
-                    autoComplete="off"
-                />
-                </label>
+                <label htmlFor='name' className="add-day-form-element add-day-form-label"> Name</label>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                        name="name"
+                        className="add-day-form-input"
+                        autoComplete="off"
+                    />
+
                 {workoutInputList.map((input, index) => {
                     return (
-                        <div key={index}>
-                            <label htmlFor="workoutName"> {`Workout ${index + 1}`}
+                        <div key={index} className="add-day-form-element">
+                            <label htmlFor="workoutName" className="add-day-form-label"> {`Exercise ${index + 1}`}</label>
                                 <select
                                     name="workoutName"
                                     value={input.name}
                                     onChange={e => updateWorkoutInputListName(e, index)}
-                                    placeholder={`Workout #${index + 1}`}
+                                    placeholder={`Exercise #${index + 1}`}
+                                    className="add-day-form-input"
                                 >
                                     {exercises.map((exercise, i) => {
                                         return (
@@ -89,27 +92,30 @@ const AddDayForm = () => {
                                         )
                                     })}
                                 </select>
-                                <label> Goal
+                                <label className="add-day-form-label add-day-form-goal"> Goal</label>
                                     <input
                                         type="text"
                                         value={input.goal}
                                         onChange={e => updateWorkoutInputListGoal(e, index)}
                                         placeholder="sets x reps x weight"
+                                        className="add-day-form-input"
                                     />
-                                </label>
+
                                 { index !== 0 &&
                                     <FontAwesomeIcon onClick={() => handleRemoveWorkoutInput(index)} icon={faXmark} />
                                 }
-                            </label>
+
                         </div>
                     )
 
                 })}
-                { workoutInputList.length === 10 ?
-                                <div>Maximum number of workouts reached!</div>
-                                : <div onClick={handleAddWorkoutInput}>Add a workout!</div>
+                { workoutInputList.length === 9 ?
+                                <div className="add-day-form-add-workout-message">Maximum number of workouts reached!</div>
+                                : <div onClick={handleAddWorkoutInput} className="add-day-form-add-workout">
+                                    <FontAwesomeIcon className="add-workout-plus" icon={faPlus}/> Add an exercise!
+                                </div>
                             }
-                <button type="submit">Submit</button>
+                <button className="add-day-form-submit" type="submit">Submit</button>
             </form>
         </div>
     )
