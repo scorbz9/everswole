@@ -26,16 +26,16 @@ const SplitDashboard = () => {
         })();
     }, [dispatch])
 
-    const [showAddDayForm, setShowAddDayForm] = useState(false);
+    const [showMain, setShowMain] = useState('Home');
 
 
 
     return (
         <div className="split-dashboard-container">
-            <SideBar showAddDayForm={showAddDayForm} setShowAddDayForm={setShowAddDayForm} />
+            <SideBar showMain={showMain} setShowMain={setShowMain} />
             <div className="split-dashboard-right">
                 <SplitDashboardHero />
-                <SplitDashboardMain showAddDayForm={showAddDayForm} setShowAddDayForm={setShowAddDayForm} />
+                <SplitDashboardMain showMain={showMain} setShowMain={setShowMain} />
             </div>
         </div>
     )

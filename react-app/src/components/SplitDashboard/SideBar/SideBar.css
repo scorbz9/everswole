@@ -98,14 +98,29 @@
     margin-right: 27px;
 }
 
+.main-switch-buttons-container {
+    margin-top: 50px;
+}
+
+.sidebar-home {
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    height: 36px;
+}
+
+.sidebar-home:hover {
+    background-color: #333333;
+}
+
 .sidebar-day-dropdown-container {
     display: flex;
     align-items: center;
-    margin-top: 50px;
     height: 36px;
     color: white;
-    padding-left: 10px;
     width: 95%;
+    padding-left: 10px;
 }
 
 .sidebar-day-dropdown-container:hover {
@@ -114,4 +129,9 @@
 
 .day-dropdown-caret {
     margin-right: 10px;
+}
+
+.home-icon {
+    margin-right: 10px;
+    font-size: 10px;
 }

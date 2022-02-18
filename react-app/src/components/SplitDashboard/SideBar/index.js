@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faCaretDown, faHouse } from '@fortawesome/free-solid-svg-icons'
 
 import LogoutDropdown from './LogoutDropdown'
 import NewDropdown from './NewDropdown'
@@ -10,13 +10,16 @@ import './SideBar.css'
 import DayDropdown from './DayDropdown'
 
 
-const SideBar = ({ showAddDayForm, setShowAddDayForm }) => {
+const SideBar = ({ showMain, setShowMain }) => {
     const user = useSelector(state => state.session.user)
 
     const [showLogout, setShowLogout] = useState(false);
     const [showNewDropdown, setShowNewDropdown] = useState(false)
     const [showDayDropdown, setShowDayDropdown] = useState(false)
 
+    const toggleHome = () => {
+        setShowMain('Home')
+    }
 
     const toggleLogoutDropdown = () => {
         setShowLogout(!showLogout)
@@ -50,12 +53,17 @@ const SideBar = ({ showAddDayForm, setShowAddDayForm }) => {
             <div className="sidebar-new-dropdown-container" onClick={toggleNewDropdown}>
                 <FontAwesomeIcon icon={faPlus}/> <p className="new-dropdown-text">New</p> <FontAwesomeIcon icon={faCaretDown} className="new-dropdown-caret"/>
             </div>
-            <NewDropdown showNewDropdown={showNewDropdown} setShowNewDropdown={setShowNewDropdown} showAddDayForm={showAddDayForm} setShowAddDayForm={setShowAddDayForm}/>
+            <NewDropdown showNewDropdown={showNewDropdown} setShowNewDropdown={setShowNewDropdown} showMain={showMain} setShowMain={setShowMain}/>
+            <div className="main-switch-buttons-container">
+                <div className="sidebar-home" onClick={toggleHome}>
+                    <FontAwesomeIcon icon={faHouse} className="home-icon"/>Home
+                </div>
 
-            <div className="sidebar-day-dropdown-container" style={toggleStyle} onClick={toggleDayDropdown}>
-                <FontAwesomeIcon icon={faCaretDown} className="day-dropdown-caret"/> Days
+                <div className="sidebar-day-dropdown-container" style={toggleStyle} onClick={toggleDayDropdown}>
+                    <FontAwesomeIcon icon={faCaretDown} className="day-dropdown-caret"/> Days
+                </div>
+                <DayDropdown showDayDropdown={showDayDropdown} setShowDayDropdown={setShowDayDropdown}/>
             </div>
-            <DayDropdown showDayDropdown={showDayDropdown} setShowDayDropdown={setShowDayDropdown}/>
         </div>
     )
 }

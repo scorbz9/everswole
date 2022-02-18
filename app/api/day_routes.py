@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import db, Day, Exercise, DaysExercises
 from app.forms import DayForm
-from sqlalchemy.orm import joinedload
 from app.api.auth_routes import validation_errors_to_error_messages
 
 
@@ -16,7 +15,6 @@ def getDays(user_id):
             .filter(user_id == Day.user_id) \
             .all()
 
-    print({ "days": [item.to_dict() for item in days] })
     return { "days": [item.to_dict() for item in days] }
 
 @day_routes.route('/', methods=['POST'])

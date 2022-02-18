@@ -5,13 +5,11 @@ import AddDayForm from './AddDayForm'
 import './SplitDashboardMain.css'
 
 
-const SplitDashboardMain = ({ showAddDayForm }) => {
+const SplitDashboardMain = ({ showMain }) => {
 
-    return (
-        <>
-            {showAddDayForm ?
-                <AddDayForm /> :
+    if (showMain === "Home") {
 
+        return (
             <div className="split-dashboard-main-container">
                 <div className="split-dashboard-day">
 
@@ -35,9 +33,15 @@ const SplitDashboardMain = ({ showAddDayForm }) => {
 
                 </div>
             </div>
-            }
-        </>
-    )
+        )
+    } else if (showMain === "AddDayForm") {
+
+        return (
+            <AddDayForm />
+        )
+    }
+
+
 }
 
 export default SplitDashboardMain;
