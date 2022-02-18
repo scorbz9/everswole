@@ -1,12 +1,24 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import db, Day, Exercise, DaysExercises
 from app.forms import DayForm
+from sqlalchemy.orm import joinedload
 
 
 day_routes = Blueprint('day', __name__)
 
+@day_routes.route('/', methods=["GET"])
+def getDays():
+
+    days_exercises = DaysExercises.query \
+                    .options(joinedload(DaysExercises.exercise)) \
+                    .options(joinedload(DaysExercises.day)) \
+                    .all()
+
+    print('=========================================================', days_exercises[0].exercise.name)
+    return {  }
+
 @day_routes.route('/', methods=['POST'])
-def addOneExercise():
+def addOneDay():
     data = request.json
     form = DayForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -34,3 +46,5 @@ def addOneExercise():
 
             db.session.add(new_association)
             db.session.commit()
+
+    return data

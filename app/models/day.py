@@ -1,14 +1,5 @@
 from .db import db
 
-days_exercises = db.Table(
-    "day_exercise",
-    db.Column("day_id", db.Integer, db.ForeignKey("days.id"), primary_key=True),
-    db.Column("exercise_id", db.Integer, db.ForeignKey("exercises.id"), primary_key=True),
-    db.Column("goal", db.String(30)),
-    db.Column("actual", db.String(30)),
-    db.Column("notes", db.String(500))
-)
-
 class DaysExercises(db.Model):
     __tablename__ = 'DaysExercises'
 
@@ -31,7 +22,6 @@ class Day(db.Model):
 
     splits = db.relationship("Split", back_populates="days")
     exercises = db.relationship("DaysExercises", back_populates="day")
-    # exercises = db.relationship("Exercise", back_populates="days", secondary=days_exercises)
 
 class Exercise(db.Model):
     __tablename__ = "exercises"
@@ -40,7 +30,6 @@ class Exercise(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
 
-    # days = db.relationship("Day", back_populates="exercises", secondary=days_exercises)
     days = db.relationship("DaysExercises", back_populates="exercise")
 
     def to_dict(self):
