@@ -18,9 +18,23 @@
 }
 
 .add-day-form-header {
-    margin: 0 0 10px 0;
+    margin: 0 0 25px 0;
 }
 
+.add-day-form-input {
+    margin: 0 10px;
+    height: 35px;
+    border-radius: 6px;
+    padding: 5px;
+    border: none;
+}
+
+.add-day-form-name {
+    width: 384px;
+    margin-bottom: 15px;
+    position: relative;
+    left: 25px;
+}
 .add-day-form-element {
     margin: 12px 0;
 }
@@ -30,12 +44,6 @@
     width: 300px;
 }
 
-.add-day-form-input {
-    margin: 0 10px;
-    height: 35px;
-    border-radius: 6px;
-    padding: 5px;
-}
 
 .add-day-form-goal {
     margin-left: 12px;
@@ -84,4 +92,9 @@
 .add-day-form-submit:hover {
     background: #894597;
     border: 2px solid #894597;
+}
+
+.add-day-form-error {
+    margin: 10px 0;
+    color: red;
 }

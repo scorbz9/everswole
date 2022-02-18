@@ -7,6 +7,7 @@ import LogoutDropdown from './LogoutDropdown'
 import NewDropdown from './NewDropdown'
 
 import './SideBar.css'
+import DayDropdown from './DayDropdown'
 
 
 const SideBar = ({ showAddDayForm, setShowAddDayForm }) => {
@@ -14,6 +15,8 @@ const SideBar = ({ showAddDayForm, setShowAddDayForm }) => {
 
     const [showLogout, setShowLogout] = useState(false);
     const [showNewDropdown, setShowNewDropdown] = useState(false)
+    const [showDayDropdown, setShowDayDropdown] = useState(false)
+
 
     const toggleLogoutDropdown = () => {
         setShowLogout(!showLogout)
@@ -21,6 +24,17 @@ const SideBar = ({ showAddDayForm, setShowAddDayForm }) => {
 
     const toggleNewDropdown = () => {
         setShowNewDropdown(!showNewDropdown)
+    }
+
+    const toggleDayDropdown = () => {
+        setShowDayDropdown(!showDayDropdown)
+    }
+
+    let toggleStyle;
+    if (showDayDropdown) {
+        toggleStyle = {
+            backgroundColor: "#333333"
+        }
     }
 
     return (
@@ -32,10 +46,16 @@ const SideBar = ({ showAddDayForm, setShowAddDayForm }) => {
                 <div className="sidebar-user-info-dropdown-toggle"><FontAwesomeIcon icon={faCaretDown} /></div>
             </div>
             <LogoutDropdown showLogout={showLogout} setShowLogout={setShowLogout}/>
+
             <div className="sidebar-new-dropdown-container" onClick={toggleNewDropdown}>
                 <FontAwesomeIcon icon={faPlus}/> <p className="new-dropdown-text">New</p> <FontAwesomeIcon icon={faCaretDown} className="new-dropdown-caret"/>
             </div>
             <NewDropdown showNewDropdown={showNewDropdown} setShowNewDropdown={setShowNewDropdown} showAddDayForm={showAddDayForm} setShowAddDayForm={setShowAddDayForm}/>
+
+            <div className="sidebar-day-dropdown-container" style={toggleStyle} onClick={toggleDayDropdown}>
+                <FontAwesomeIcon icon={faCaretDown} className="day-dropdown-caret"/> Days
+            </div>
+            <DayDropdown showDayDropdown={showDayDropdown} setShowDayDropdown={setShowDayDropdown}/>
         </div>
     )
 }

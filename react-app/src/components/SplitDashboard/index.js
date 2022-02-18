@@ -27,6 +27,8 @@ const SplitDashboard = () => {
 
     const [showAddDayForm, setShowAddDayForm] = useState(false);
 
+
+
     return (
         <div className="split-dashboard-container">
             <SideBar showAddDayForm={showAddDayForm} setShowAddDayForm={setShowAddDayForm} />

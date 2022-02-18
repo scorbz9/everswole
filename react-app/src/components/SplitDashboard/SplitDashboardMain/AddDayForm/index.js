@@ -16,8 +16,8 @@ const AddDayForm = () => {
     const exercises = useSelector(state => state.exerciseState.entries)
 
     const [name, setName] = useState("");
-    const [goal, setGoal] = useState("")
     const [workoutInputList, setWorkoutInputList] = useState([{ name: 'Flat Bench', goal: ''}])
+    const [errors, setErrors] = useState([])
 
     const updateWorkoutInputListName = (e, index) => {
         const value = e.target.value
@@ -56,14 +56,23 @@ const AddDayForm = () => {
             workoutInputList
         }
 
-        console.log(payload)
+        const data = await dispatch(addOneDay(payload))
 
-        await dispatch(addOneDay(payload))
+        if (data.errors) {
+            setErrors([...data.errors])
+        } else {
+            setErrors([])
+        }
     }
 
     return (
         <div className="add-day-form-container">
             <h2 className="add-day-form-header">Create your day's workout</h2>
+            <div className="add-day-error-container">
+                {errors.map((error, ind) => (
+                    <div key={ind} className="add-day-form-error">{error}</div>
+                ))}
+            </div>
             <form onSubmit={handleSubmit} className="add-day-form">
                 <label htmlFor='name' className="add-day-form-element add-day-form-label"> Name</label>
                     <input
@@ -71,7 +80,7 @@ const AddDayForm = () => {
                         value={name}
                         onChange={e => setName(e.target.value)}
                         name="name"
-                        className="add-day-form-input"
+                        className="add-day-form-input add-day-form-name"
                         autoComplete="off"
                     />
 

@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from app.models import db, Day, Exercise, DaysExercises
 from app.forms import DayForm
 from sqlalchemy.orm import joinedload
+from app.api.auth_routes import validation_errors_to_error_messages
 
 
 day_routes = Blueprint('day', __name__)
@@ -46,4 +47,6 @@ def addOneDay():
             db.session.add(new_association)
             db.session.commit()
 
-    return data
+        return data.to_dict()
+
+    return { "errors": validation_errors_to_error_messages(form.errors) }

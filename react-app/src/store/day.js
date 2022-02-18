@@ -18,7 +18,7 @@ export const getAllDays = () => async dispatch => {
 
     if (response.ok) {
         const data = await response.json()
-        console.log(data)
+
         await dispatch(getDays(data))
         return data;
     }
@@ -34,8 +34,12 @@ export const addOneDay = (payload) => async dispatch => {
         body: JSON.stringify(payload)
     });
 
-    if (response.ok) {
-        const data = await response.json()
+    const data = await response.json()
+
+    if (data.errors) {
+
+        return data;
+    } else {
 
         await dispatch(addDay(data))
         return data;
@@ -51,8 +55,8 @@ const dayReducer = (state = initialState, action) => {
             return { ...state, entries: [...action.payload.days] }
         case ADD_DAY:
             newState = { ...state }
-
-            return { ...newState }
+            console.log('hereeee', action.payload)
+            return { ...newState, entries: [] }
         default:
             return state;
     }
