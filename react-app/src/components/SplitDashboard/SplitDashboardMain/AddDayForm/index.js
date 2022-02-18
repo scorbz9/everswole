@@ -16,7 +16,7 @@ const AddDayForm = () => {
 
     const [name, setName] = useState("");
     const [goal, setGoal] = useState("")
-    const [workoutInputList, setWorkoutInputList] = useState([{ name: '', goal: ''}])
+    const [workoutInputList, setWorkoutInputList] = useState([{ name: 'Flat Bench', goal: ''}])
 
     const updateWorkoutInputListName = (e, index) => {
         const value = e.target.value
