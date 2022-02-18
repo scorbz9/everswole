@@ -21,7 +21,9 @@ class Day(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     split_id = db.Column(db.Integer, db.ForeignKey("splits.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
+    users = db.relationship("User", back_populates="days")
     splits = db.relationship("Split", back_populates="days")
     exercises = db.relationship("DaysExercises", back_populates="day")
 
@@ -35,7 +37,8 @@ class Day(db.Model):
                 'name': exercise.exercise.name,
                 'goal': exercise.goal, 'actual': exercise.actual,
                 'notes': exercise.notes } for exercise in self.exercises],
-            'split_id': self.split_id
+            'split_id': self.split_id,
+            'user_id': self.user_id
         }
 
 class Exercise(db.Model):

@@ -12,9 +12,9 @@ const addDay = payload => ({
     payload
 })
 
-export const getAllDays = () => async dispatch => {
+export const getAllDays = (userId) => async dispatch => {
 
-    const response = await fetch('/api/days/')
+    const response = await fetch(`/api/${userId}/days`)
 
     if (response.ok) {
         const data = await response.json()
@@ -24,16 +24,15 @@ export const getAllDays = () => async dispatch => {
     }
 }
 
-export const addOneDay = (payload) => async dispatch => {
+export const addOneDay = (payload, userId) => async dispatch => {
 
-    const response = await fetch(`/api/days/`, {
+    const response = await fetch(`/api/${userId}/days/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload)
     });
-
     const data = await response.json()
 
     if (data.errors) {

@@ -13,6 +13,7 @@ import './AddDayForm.css'
 
 const AddDayForm = () => {
     const dispatch = useDispatch();
+    const userId = useSelector(state => state.session.user.id)
     const exercises = useSelector(state => state.exerciseState.entries)
 
     const [name, setName] = useState("");
@@ -53,10 +54,11 @@ const AddDayForm = () => {
 
         const payload = {
             name,
+            userId,
             workoutInputList
         }
 
-        const data = await dispatch(addOneDay(payload))
+        const data = await dispatch(addOneDay(payload, userId))
 
         if (data.errors) {
             setErrors([...data.errors])

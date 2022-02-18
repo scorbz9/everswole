@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // Store imports
 import { getAllExercises } from "../../store/exercise";
@@ -15,13 +15,14 @@ import './SplitDashboard.css'
 
 const SplitDashboard = () => {
     const dispatch = useDispatch();
+    const userId = useSelector(state => state.session.user.id)
 
     useEffect(() => {
         window.scroll(0, 240);
 
         (async() => {
             await dispatch(getAllExercises())
-            await dispatch(getAllDays())
+            await dispatch(getAllDays(userId))
         })();
     }, [dispatch])
 

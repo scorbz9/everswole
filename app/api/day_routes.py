@@ -8,25 +8,28 @@ from app.api.auth_routes import validation_errors_to_error_messages
 day_routes = Blueprint('day', __name__)
 
 @day_routes.route('/', methods=["GET"])
-def getDays():
-
+def getDays(user_id):
+    print(user_id, 'do i make it here   ')
     days = Day.query \
             .join(DaysExercises) \
             .join(Exercise) \
+            .filter(user_id == Day.user_id) \
             .all()
 
+    print({ "days": [item.to_dict() for item in days] })
     return { "days": [item.to_dict() for item in days] }
 
 @day_routes.route('/', methods=['POST'])
-def addOneDay():
+def addOneDay(user_id):
     data = request.json
     form = DayForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
+    print(data)
     if form.validate_on_submit():
 
         new_day = Day(
-            name = data['name']
+            name = data['name'],
+            user_id = data['userId']
         )
 
         db.session.add(new_day)
@@ -47,6 +50,8 @@ def addOneDay():
             db.session.add(new_association)
             db.session.commit()
 
-        return data.to_dict()
+
+
+        return data
 
     return { "errors": validation_errors_to_error_messages(form.errors) }
