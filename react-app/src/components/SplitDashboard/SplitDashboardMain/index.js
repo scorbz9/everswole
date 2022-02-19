@@ -1,6 +1,7 @@
 import React from 'react'
 
 import AddDayForm from './AddDayForm'
+import SingleDay from './SingleDay'
 
 import './SplitDashboardMain.css'
 
@@ -38,6 +39,12 @@ const SplitDashboardMain = ({ showMain }) => {
 
         return (
             <AddDayForm />
+        )
+    } else if (showMain.startsWith('SingleDay')) {
+        let index = showMain[showMain.length - 1]
+
+        return (
+            <SingleDay  index={index} />
         )
     }
 

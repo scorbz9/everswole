@@ -62,7 +62,7 @@ const SideBar = ({ showMain, setShowMain }) => {
                 <div className="sidebar-day-dropdown-container" style={toggleStyle} onClick={toggleDayDropdown}>
                     <FontAwesomeIcon icon={faCaretDown} className="day-dropdown-caret"/> Days
                 </div>
-                <DayDropdown showDayDropdown={showDayDropdown} setShowDayDropdown={setShowDayDropdown}/>
+                <DayDropdown showDayDropdown={showDayDropdown} setShowDayDropdown={setShowDayDropdown} showMain={showMain} setShowMain={setShowMain}/>
             </div>
         </div>
     )
