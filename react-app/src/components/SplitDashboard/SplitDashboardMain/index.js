@@ -8,6 +8,7 @@ import './SplitDashboardMain.css'
 
 const SplitDashboardMain = ({ showMain }) => {
 
+
     if (showMain === "Home") {
 
         return (
@@ -41,10 +42,9 @@ const SplitDashboardMain = ({ showMain }) => {
             <AddDayForm />
         )
     } else if (showMain.startsWith('SingleDay')) {
-        let index = showMain[showMain.length - 1]
 
         return (
-            <SingleDay  index={index} />
+            <SingleDay showMain={showMain} />
         )
     }
 

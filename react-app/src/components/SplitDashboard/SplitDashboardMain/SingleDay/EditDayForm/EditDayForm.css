@@ -1,0 +1,114 @@
+.edit-day-form-container {
+    color: white;
+    background-color: #1a1a1a;
+    position: absolute;
+    z-index: 100;
+    width: 1200px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 340px;
+    padding: 20px 30px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    white-space: nowrap;
+}
+
+.single-day-exercise-number {
+    display: flex;
+    align-items: center;
+    width: 100px;
+}
+
+.edit-day-form-header {
+    margin: 0 0 25px 0;
+}
+
+.edit-day-form-input {
+    height: 35px;
+    border-radius: 6px;
+    padding: 5px;
+    border: none;
+    margin: 0 5px;
+    width: 100px;
+}
+
+.edit-day-form-input-name {
+    margin: 4px 0 0 0;
+    height: 40px;
+    font-size: 36px;
+    width: 200px;
+}
+
+.edit-day-form-label {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.edit-day-form-add-workout {
+    margin: 20px 0 15px 15px;
+    width: 150px;
+    height: 36px;
+    border-radius: 20px;
+    background-color: #8b0000;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    font-size: 13px;
+    z-index: 1;
+}
+
+.edit-day-form-add-workout:hover {
+    background-color: #b40303;
+}
+
+.edit-day-form-add-workout-message {
+    margin: 15px 0;
+    color: red;
+}
+
+.add-workout-plus {
+    margin-right: 8px;
+}
+
+.edit-day-form-submit {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 3px;
+    border: 2px solid #b95ccc;
+    color: white;
+    background-color: #b95ccc;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+}
+
+.add-day-form-submit:hover {
+    background: #894597;
+    border: 2px solid #894597;
+}
+
+.add-day-form-error {
+    margin: 10px 0;
+    color: red;
+}
+
+.edit-day-form-notes {
+    resize: none;
+    padding-top: 9px;
+    width: 130px
+}
+
+.edit-day-form-exercise-name {
+    width: 125px;
+}
+
+.edit-day-form-delete-workout {
+    margin-left: 5px;
+}

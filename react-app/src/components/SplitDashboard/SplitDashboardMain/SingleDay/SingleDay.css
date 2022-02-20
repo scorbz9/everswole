@@ -10,13 +10,12 @@
     margin: auto;
     margin-top: 340px;
     padding: 20px 30px;
-    height: 500px;
     border-radius: 8px;
 }
 
 .single-day-info-container {
     position: relative;
-    width: 50%;
+    width: 55%;
 }
 
 .single-day-header {
@@ -50,10 +49,11 @@
     display: flex;
     font-size: 16px;
     margin: 20px 0;
+    align-items: center;
 }
 
 .single-day-exercise-element {
-    width: 150px;
+    width: 130px;
 }
 
 .single-day-exercise-number {
@@ -65,6 +65,10 @@
 }
 
 .single-day-exercise-actual {
-    margin-left: 20px;
     width: 100px
+}
+
+.single-day-exercise-actual,
+.single-day-exercise-notes {
+    display: flex;
 }
