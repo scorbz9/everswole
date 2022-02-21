@@ -1,6 +1,7 @@
 const LOAD_DAYS = 'day/LOAD_DAYS'
 const ADD_DAY = 'day/ADD_DAY'
 const EDIT_DAY = 'day/EDIT_DAY'
+const DELETE_DAY = 'day/DELETE_DAY'
 
 const getDays = (payload) => ({
     type: LOAD_DAYS,
@@ -14,6 +15,11 @@ const addDay = payload => ({
 
 const editDay = payload => ({
     type: EDIT_DAY,
+    payload
+})
+
+const deleteDay = payload => ({
+    type: DELETE_DAY,
     payload
 })
 
@@ -73,6 +79,29 @@ export const editOneDay = (payload, userId, dayId) => async dispatch => {
     }
 }
 
+export const deleteOneDay = (userId, dayId) => async dispatch => {
+
+    const response = await fetch(`/api/${userId}/days/${dayId}/`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify()
+    });
+
+    const data = await response.json()
+
+    if (data.errors) {
+
+        return data;
+    } else {
+        console.log(data)
+        await dispatch(deleteDay(data))
+        return data;
+    }
+}
+
+
 const initialState = { entries: [] }
 
 const dayReducer = (state = initialState, action) => {
@@ -83,6 +112,9 @@ const dayReducer = (state = initialState, action) => {
         case ADD_DAY:
             return { ...state, entries: [...action.payload.days] }
         case EDIT_DAY:
+            return { ...state, entries: [...action.payload.days] }
+        case DELETE_DAY:
+            console.log(action.payload.days)
             return { ...state, entries: [...action.payload.days] }
         default:
             return state;

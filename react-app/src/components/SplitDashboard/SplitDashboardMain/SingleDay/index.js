@@ -4,9 +4,10 @@ import EditDayForm from "./EditDayForm";
 
 import './SingleDay.css'
 
-const SingleDay = ({ showMain }) => {
+const SingleDay = ({ showMain, setShowMain }) => {
     const index = showMain.substring(9)
     const days = useSelector(state => state.dayState.entries)
+    console.log(index)
     const currentDay = days[index]
 
     const [showEditForm, setShowEditForm] = useState(false)
@@ -51,7 +52,7 @@ const SingleDay = ({ showMain }) => {
     } else {
 
         return (
-            <EditDayForm currentDay={currentDay} toggleEdit={toggleEdit} />
+            <EditDayForm currentDay={currentDay} toggleEdit={toggleEdit} setShowMain={setShowMain} />
         )
     }
 

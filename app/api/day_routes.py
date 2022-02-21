@@ -134,3 +134,23 @@ def editOneDay(user_id, day_id):
         return { "days": [item.to_dict() for item in days] }
 
     return { "errors": validation_errors_to_error_messages(form.errors) }
+
+@day_routes.route('/<int:day_id>/', methods=['DELETE'])
+def deleteOneDay(user_id, day_id):
+    DaysExercises.query \
+        .filter(DaysExercises.day_id == day_id) \
+        .delete()
+
+    Day.query \
+        .filter(Day.id == day_id) \
+        .delete()
+
+    db.session.commit()
+
+    days = Day.query \
+                .join(DaysExercises) \
+                .join(Exercise) \
+                .filter(user_id == Day.user_id) \
+                .all()
+    print({ "days": [item.to_dict() for item in days] })
+    return { "days": [item.to_dict() for item in days] }

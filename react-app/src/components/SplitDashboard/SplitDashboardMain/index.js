@@ -6,7 +6,7 @@ import SingleDay from './SingleDay'
 import './SplitDashboardMain.css'
 
 
-const SplitDashboardMain = ({ showMain }) => {
+const SplitDashboardMain = ({ showMain, setShowMain }) => {
 
 
     if (showMain === "Home") {
@@ -44,7 +44,7 @@ const SplitDashboardMain = ({ showMain }) => {
     } else if (showMain.startsWith('SingleDay')) {
 
         return (
-            <SingleDay showMain={showMain} />
+            <SingleDay showMain={showMain} setShowMain={setShowMain}/>
         )
     }
 

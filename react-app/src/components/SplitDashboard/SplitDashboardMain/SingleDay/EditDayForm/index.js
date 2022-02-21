@@ -6,17 +6,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // State imports
-import { editOneDay } from "../../../../../store/day";
+import { editOneDay, deleteOneDay } from "../../../../../store/day";
 
 import './EditDayForm.css'
 
-const EditDayForm = ({ currentDay, toggleEdit }) => {
+const EditDayForm = ({ setShowMain, currentDay, toggleEdit }) => {
     const dispatch = useDispatch();
     const exercises = useSelector(state => state.exerciseState.entries)
     const userId = useSelector(state => state.session.user.id)
 
     // Parse currentDay info into a state usable by 'workoutInputList'
-    const currentExerciseInfo = currentDay.exercises.map((exercise) => {
+    const currentExerciseInfo = currentDay?.exercises.map((exercise) => {
         return {
             name: exercise.name,
             goal: exercise.goal,
@@ -30,7 +30,7 @@ const EditDayForm = ({ currentDay, toggleEdit }) => {
     const [errors, setErrors] = useState([])
 
     useEffect(() => {
-        setName(currentDay.name)
+        setName(currentDay?.name)
         setWorkoutInputList(currentExerciseInfo)
     }, [currentDay])
 
@@ -72,7 +72,6 @@ const EditDayForm = ({ currentDay, toggleEdit }) => {
             workoutInputList
         }
 
-        console.log(currentDay)
         const data = await dispatch(editOneDay(payload, userId, currentDay.id));
 
         if (data.errors) {
@@ -82,14 +81,16 @@ const EditDayForm = ({ currentDay, toggleEdit }) => {
         }
     }
 
+    const handleDeleteDay = async e => {
+        e.preventDefault();
+
+        const data = await dispatch(deleteOneDay(userId, currentDay.id))
+        setShowMain("Home")
+    }
+
     return (
         <div className="edit-day-form-container">
                 <div className="single-day-info-container">
-                    <div className="add-day-error-container">
-                        {errors.map((error, ind) => (
-                            <div key={ind} className="add-day-form-error">{error}</div>
-                        ))}
-                    </div>
                     <form onSubmit={handleEditSubmit}>
                         <h2 className="edit-day-form-header">
                             <input
@@ -100,6 +101,11 @@ const EditDayForm = ({ currentDay, toggleEdit }) => {
                                 className="edit-day-form-input edit-day-form-input-name"
                             />
                         </h2>
+                        <div className="add-day-error-container">
+                            {errors.map((error, ind) => (
+                                <div key={ind} className="add-day-form-error">{error}</div>
+                            ))}
+                        </div>
                         <div className="single-day-edit-button" onClick={toggleEdit}>
                             Edit
                         </div>
@@ -161,6 +167,7 @@ const EditDayForm = ({ currentDay, toggleEdit }) => {
                                 </div>
                             }
                         <button className="edit-day-form-submit" type="submit">Submit</button>
+                        <button className="edit day-form-delete-day" onClick={handleDeleteDay}>Delete Day</button>
                     </form>
                 </div>
             </div>
