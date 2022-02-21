@@ -90,7 +90,7 @@ def editOneDay(user_id, day_id):
         # Update existing associations
         for exercise in day_to_update.exercises:
             index = day_to_update.exercises.index(exercise)
-            print(day_to_update.exercises)
+
             current_exercise = Exercise.query.filter(data['workoutInputList'][index]['name'] == Exercise.name).one()
 
             exercise.exercise_id = current_exercise.id
@@ -98,11 +98,11 @@ def editOneDay(user_id, day_id):
             exercise.actual = data['workoutInputList'][index]['actual']
             exercise.notes = data['workoutInputList'][index]['notes']
 
-            try:
-                db.session.commit()
-            except:
-                print('the error is from the update')
-                return { "errors": ["Please enter each exercise only once."]}
+        try:
+            db.session.commit()
+        except:
+
+            return { "errors": ["Please enter each exercise only once."]}
 
         # Handles case where an exercise was added
         if len(data['workoutInputList']) > len(day_to_update.exercises):

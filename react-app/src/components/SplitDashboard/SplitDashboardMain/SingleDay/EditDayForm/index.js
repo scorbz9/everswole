@@ -126,6 +126,9 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit }) => {
                                             )
                                         })}
                                     </select>
+                                    {/* <div>
+                                        {exercise.name}
+                                    </div> */}
 
                                         <input
                                             name="exercise-goal"

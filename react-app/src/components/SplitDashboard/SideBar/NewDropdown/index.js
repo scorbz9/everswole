@@ -11,6 +11,10 @@ const NewDropdown = ({ showNewDropdown, setShowNewDropdown, showMain, setShowMai
         setShowMain('AddDayForm')
     }
 
+    const toggleAddSplitForm = () => {
+        setShowMain('AddSplitForm')
+    }
+
     const ref = useRef()
 
     useEffect(() => {
@@ -37,7 +41,7 @@ const NewDropdown = ({ showNewDropdown, setShowNewDropdown, showMain, setShowMai
                     <div className="sidebar-new-dropdown-add-day new-dropdown-element" onClick={toggleAddDayForm}>
                         <FontAwesomeIcon icon={faDumbbell} className="new-dropdown-element-icon"/><div>Day</div>
                     </div>
-                    <div className="sidebar-new-dropdown-add-split new-dropdown-element">
+                    <div className="sidebar-new-dropdown-add-split new-dropdown-element" onClick={toggleAddSplitForm}>
                         <FontAwesomeIcon icon={faCalendar} className="new-dropdown-split-icon new-dropdown-element-icon" /><div id="new-dropdown-split-text">Split</div>
                     </div>
 
