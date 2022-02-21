@@ -11,7 +11,6 @@ export const getAllExercises = () => async dispatch => {
     if (response.ok) {
         const data = await response.json()
 
-        console.log('do i make it past data', data)
         dispatch(loadExercises(data))
         return data
     }

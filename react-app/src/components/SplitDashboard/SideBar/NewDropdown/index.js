@@ -4,11 +4,11 @@ import { faCalendar, faDumbbell } from '@fortawesome/free-solid-svg-icons'
 
 import './NewDropdown.css'
 
-const NewDropdown = ({ showNewDropdown, setShowNewDropdown, showAddDayForm, setShowAddDayForm }) => {
+const NewDropdown = ({ showNewDropdown, setShowNewDropdown, showMain, setShowMain }) => {
 
 
     const toggleAddDayForm = () => {
-        setShowAddDayForm(!showAddDayForm)
+        setShowMain('AddDayForm')
     }
 
     const ref = useRef()

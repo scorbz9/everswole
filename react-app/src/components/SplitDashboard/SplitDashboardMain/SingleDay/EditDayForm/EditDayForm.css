@@ -1,4 +1,4 @@
-.add-day-form-container {
+.edit-day-form-container {
     color: white;
     background-color: #1a1a1a;
     position: absolute;
@@ -9,7 +9,6 @@
     margin: auto;
     margin-top: 340px;
     padding: 20px 30px;
-    /* height: 500px; */
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -17,39 +16,40 @@
     white-space: nowrap;
 }
 
-.add-day-form-header {
+.single-day-exercise-number {
+    display: flex;
+    align-items: center;
+    width: 100px;
+}
+
+.edit-day-form-header {
     margin: 0 0 25px 0;
 }
 
-.add-day-form-input {
-    margin: 0 10px;
+.edit-day-form-input {
     height: 35px;
     border-radius: 6px;
     padding: 5px;
     border: none;
+    margin: 0 5px;
+    width: 100px;
 }
 
-.add-day-form-name {
-    width: 384px;
-    margin-bottom: 15px;
-    position: relative;
-    left: 25px;
-}
-.add-day-form-element {
-    margin: 12px 0;
+.edit-day-form-input-name {
+    margin: 4px 0 0 0;
+    height: 40px;
+    font-size: 36px;
+    width: 200px;
 }
 
-.add-day-form-label {
+.edit-day-form-label {
+    width: 100px;
+    display: flex;
+    align-items: center;
     margin-right: 10px;
-    width: 300px;
 }
 
-
-.add-day-form-goal {
-    margin-left: 12px;
-}
-
-.add-day-form-add-workout {
+.edit-day-form-add-workout {
     margin: 20px 0 15px 15px;
     width: 150px;
     height: 36px;
@@ -64,11 +64,11 @@
     z-index: 1;
 }
 
-.add-day-form-add-workout:hover {
+.edit-day-form-add-workout:hover {
     background-color: #b40303;
 }
 
-.add-day-form-add-workout-message {
+.edit-day-form-add-workout-message {
     margin: 15px 0;
     color: red;
 }
@@ -77,7 +77,7 @@
     margin-right: 8px;
 }
 
-.add-day-form-submit {
+.edit-day-form-submit {
     margin-top: 10px;
     padding: 10px 20px;
     border-radius: 3px;
@@ -97,4 +97,18 @@
 .add-day-form-error {
     margin: 10px 0;
     color: red;
+}
+
+.edit-day-form-notes {
+    resize: none;
+    padding-top: 9px;
+    width: 130px
+}
+
+.edit-day-form-exercise-name {
+    width: 125px;
+}
+
+.edit-day-form-delete-workout {
+    margin-left: 5px;
 }

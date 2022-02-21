@@ -1,0 +1,74 @@
+.single-day-container {
+    width: 1200px;
+    color: white;
+    background-color: #1a1a1a;
+    position: absolute;
+    z-index: 100;
+    width: 1200px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 340px;
+    padding: 20px 30px;
+    border-radius: 8px;
+}
+
+.single-day-info-container {
+    position: relative;
+    width: 55%;
+}
+
+.single-day-header {
+    font-size: 40px;
+    margin: 0 0 25px 0;
+}
+
+.single-day-edit-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px 0px 0px 0px;
+    height: 36px;
+    border-radius: 20px;
+    background-color: #8b0000;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0px 15px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.single-day-edit-button:hover {
+    background-color: #b40303;
+}
+
+.single-day-exercise-container {
+    display: flex;
+    font-size: 16px;
+    margin: 20px 0;
+    align-items: center;
+}
+
+.single-day-exercise-element {
+    width: 130px;
+}
+
+.single-day-exercise-number {
+    width: 120px;
+}
+
+.single-day-exercise-goal {
+    width: 100px
+}
+
+.single-day-exercise-actual {
+    width: 100px
+}
+
+.single-day-exercise-actual,
+.single-day-exercise-notes {
+    display: flex;
+}
