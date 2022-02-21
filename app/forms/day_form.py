@@ -1,13 +1,16 @@
 from dataclasses import Field
 from tkinter.tix import Select
+from typing import Optional, Text
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, FieldList, FormField
-from wtforms.validators import DataRequired
+from wtforms import StringField, SelectField, TextAreaField, FieldList, FormField
+from wtforms.validators import DataRequired, Optional
 
-class Workout(FlaskForm):
+class Exercise(FlaskForm):
     name = SelectField('name', choices=[])
-    goal = StringField('goal', validators=[DataRequired()])
+    goal = StringField('goal', validators=[])
+    actual = StringField('actual', validators=[])
+    notes = StringField('notes', validators=[])
 
 class DayForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
-    workoutInputList = FieldList(FormField(Workout))
+    workoutInputList = FieldList(FormField(Exercise), validators=[Optional()])

@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // FontAwesome icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
 
+// State imports
+import { editOneDay } from "../../../../../store/day";
+
 import './EditDayForm.css'
 
 const EditDayForm = ({ currentDay, toggleEdit }) => {
+    const dispatch = useDispatch();
     const exercises = useSelector(state => state.exerciseState.entries)
+    const userId = useSelector(state => state.session.user.id)
 
     // Parse currentDay info into a state usable by 'workoutInputList'
     const currentExerciseInfo = currentDay.exercises.map((exercise) => {
@@ -22,6 +27,7 @@ const EditDayForm = ({ currentDay, toggleEdit }) => {
 
     const [name, setName] = useState("")
     const [workoutInputList, setWorkoutInputList] = useState([])
+    const [errors, setErrors] = useState([])
 
     useEffect(() => {
         setName(currentDay.name)
@@ -57,20 +63,33 @@ const EditDayForm = ({ currentDay, toggleEdit }) => {
         setWorkoutInputList([...workoutInputList, { name: "Flat Bench", goal: "", actual: "", notes: "" }])
     }
 
-    const handleEditSubmit = (e) => {
+    const handleEditSubmit = async (e) => {
         e.preventDefault();
 
         const payload = {
             name,
+            userId,
             workoutInputList
         }
 
-        console.log(payload)
+        console.log(currentDay)
+        const data = await dispatch(editOneDay(payload, userId, currentDay.id));
+
+        if (data.errors) {
+            setErrors([...data.errors])
+        } else {
+            setErrors([])
+        }
     }
 
     return (
         <div className="edit-day-form-container">
                 <div className="single-day-info-container">
+                    <div className="add-day-error-container">
+                        {errors.map((error, ind) => (
+                            <div key={ind} className="add-day-form-error">{error}</div>
+                        ))}
+                    </div>
                     <form onSubmit={handleEditSubmit}>
                         <h2 className="edit-day-form-header">
                             <input
