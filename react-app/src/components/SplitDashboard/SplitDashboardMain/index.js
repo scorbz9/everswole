@@ -1,6 +1,7 @@
 import React from 'react'
 
 import AddDayForm from './AddDayForm'
+import AddSplitForm from './AddSplitForm'
 import SingleDay from './SingleDay'
 
 import './SplitDashboardMain.css'
@@ -45,6 +46,11 @@ const SplitDashboardMain = ({ showMain, setShowMain }) => {
 
         return (
             <SingleDay showMain={showMain} setShowMain={setShowMain}/>
+        )
+    } else if (showMain === "AddSplitForm") {
+
+        return (
+            <AddSplitForm />
         )
     }
 
