@@ -8,6 +8,7 @@ import NewDropdown from './NewDropdown'
 
 import './SideBar.css'
 import DayDropdown from './DayDropdown'
+import SplitDropdown from './SplitDropdown'
 
 
 const SideBar = ({ showMain, setShowMain }) => {
@@ -16,6 +17,7 @@ const SideBar = ({ showMain, setShowMain }) => {
     const [showLogout, setShowLogout] = useState(false);
     const [showNewDropdown, setShowNewDropdown] = useState(false)
     const [showDayDropdown, setShowDayDropdown] = useState(false)
+    const [showSplitDropdown, setShowSplitDropdown] = useState(false)
 
     const toggleHome = () => {
         setShowMain('Home')
@@ -33,9 +35,18 @@ const SideBar = ({ showMain, setShowMain }) => {
         setShowDayDropdown(!showDayDropdown)
     }
 
-    let toggleStyle;
+    const toggleSplitDropdown = () => {
+        setShowSplitDropdown(!showSplitDropdown)
+    }
+
+    let toggleStyleDay;
+    let toggleStyleSplit
     if (showDayDropdown) {
-        toggleStyle = {
+        toggleStyleDay = {
+            backgroundColor: "#333333"
+        }
+    } else if (showSplitDropdown) {
+        toggleStyleSplit = {
             backgroundColor: "#333333"
         }
     }
@@ -59,10 +70,15 @@ const SideBar = ({ showMain, setShowMain }) => {
                     <FontAwesomeIcon icon={faHouse} className="home-icon"/>Home
                 </div>
 
-                <div className="sidebar-day-dropdown-container" style={toggleStyle} onClick={toggleDayDropdown}>
-                    <FontAwesomeIcon icon={faCaretDown} className="day-dropdown-caret"/> Days
+                <div className="sidebar-day-dropdown-container" style={toggleStyleDay} onClick={toggleDayDropdown}>
+                    <FontAwesomeIcon icon={faCaretDown} className="dropdown-caret"/> Days
                 </div>
                 <DayDropdown showDayDropdown={showDayDropdown} setShowDayDropdown={setShowDayDropdown} showMain={showMain} setShowMain={setShowMain}/>
+
+                <div className="sidebar-split-dropdown-container" style={toggleStyleSplit} onClick={toggleSplitDropdown}>
+                    <FontAwesomeIcon icon={faCaretDown} className="dropdown-caret"/> Splits
+                </div>
+                <SplitDropdown showSplitDropdown={showSplitDropdown} setShowSplitDropdown={setShowSplitDropdown}  showMain={showMain} setShowMain={setShowMain}/>
             </div>
         </div>
     )
