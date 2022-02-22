@@ -11,41 +11,31 @@
     margin-top: 340px;
     padding: 20px 10px;
     border-radius: 8px;
-}
-
-.single-split-day {
-    background-color: #262626;
-    width: 148px;
-    height: 460px;
-    border-radius: 8px;
-    margin: 0 10px;
-    padding: 10px;
-    display: inline-block;
-}
-
-.single-split-edit-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 20px 15px 0px 0px;
-    height: 36px;
-    border-radius: 20px;
-    background-color: #8b0000;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    padding: 0px 15px;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 1.5px;
-}
-
-.single-split-edit-button:hover {
-    background-color: #b40303;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: block;
+    white-space: nowrap;
 }
 
 .single-split-header {
     font-size: 40px;
     margin: 0 0 25px 10px;
+}
+
+.single-split-day-exercise-container {
+    margin: 15px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+}
+
+.single-split-day-exercise-element {
+    margin: 5px 0;
+}
+
+.single-split-day-exercise-notes {
+    white-space: normal;
+    padding-bottom: 10px;
+}
+
+.single-split-day-header {
+    margin: 10px 20px;
 }

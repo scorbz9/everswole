@@ -26,8 +26,8 @@ class Split(db.Model):
                     'notes': exercise.notes } for exercise in day.exercises],
                 'split_id': day.split_id,
                 'user_id': day.user_id,
-                'assigned': day.assigned
-            } for day in self.days],
+                'assigned': day.assigned,
+                'assigned_day': day.assigned_day } for day in self.days],
             'user_id': self.user_id,
             'start_date': self.start_date
         }

@@ -42,7 +42,8 @@ class Day(db.Model):
                 'notes': exercise.notes } for exercise in self.exercises],
             'split_id': self.split_id,
             'user_id': self.user_id,
-            'assigned': self.assigned
+            'assigned': self.assigned,
+            'assigned_day': self.assigned_day
         }
 
 class Exercise(db.Model):
