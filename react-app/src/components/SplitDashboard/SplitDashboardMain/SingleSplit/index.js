@@ -18,6 +18,8 @@ const SingleSplit = ({ showMain, setShowMain }) => {
         setShowEditForm(!showEditForm)
     }
 
+    console.log(currentSplit)
+
     if (!showEditForm) {
         return (
             <div className="single-split-container">

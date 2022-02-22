@@ -48,7 +48,7 @@ const EditSplitForm = ({ currentSplit, toggleEdit, setShowMain }) => {
                 <div className="single-split-edit-form-day">
 
                 </div>
-                <button className="edit day-form-delete-day" onClick={handleDeleteSplit}>Delete Split</button>
+                <button className="edit-split-form-delete-split" onClick={handleDeleteSplit}>Delete Split</button>
             </form>
         </div>
     )

@@ -37,10 +37,12 @@ class Day(db.Model):
             'exercises': [{
                 'id': exercise.exercise.id,
                 'name': exercise.exercise.name,
-                'goal': exercise.goal, 'actual': exercise.actual,
+                'goal': exercise.goal,
+                'actual': exercise.actual,
                 'notes': exercise.notes } for exercise in self.exercises],
             'split_id': self.split_id,
-            'user_id': self.user_id
+            'user_id': self.user_id,
+            'assigned': self.assigned
         }
 
 class Exercise(db.Model):

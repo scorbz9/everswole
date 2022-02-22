@@ -11,7 +11,11 @@ def getSplits(user_id):
     splits = Split.query.filter(user_id == Split.user_id).all()
 
     for split in splits:
-        days = Day.query.filter(split.id == Day.split_id).all()
+        days = Day.query \
+            .join(DaysExercises) \
+            .join(Exercise) \
+            .filter(Day.split_id == split.id) \
+            .all()
         split.days = days
 
     return { "splits": [split.to_dict() for split in splits]}
