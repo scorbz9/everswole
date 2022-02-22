@@ -65,6 +65,7 @@ const SideBar = ({ showMain, setShowMain }) => {
                 <FontAwesomeIcon icon={faPlus}/> <p className="new-dropdown-text">New</p> <FontAwesomeIcon icon={faCaretDown} className="new-dropdown-caret"/>
             </div>
             <NewDropdown showNewDropdown={showNewDropdown} setShowNewDropdown={setShowNewDropdown} showMain={showMain} setShowMain={setShowMain}/>
+
             <div className="main-switch-buttons-container">
                 <div className="sidebar-home" onClick={toggleHome}>
                     <FontAwesomeIcon icon={faHouse} className="home-icon"/>Home

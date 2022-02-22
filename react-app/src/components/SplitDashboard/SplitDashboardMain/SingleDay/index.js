@@ -7,7 +7,7 @@ import './SingleDay.css'
 const SingleDay = ({ showMain, setShowMain }) => {
     const index = showMain.substring(9)
     const days = useSelector(state => state.dayState.entries)
-    console.log(index)
+
     const currentDay = days[index]
 
     const [showEditForm, setShowEditForm] = useState(false)

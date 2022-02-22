@@ -1,0 +1,51 @@
+.single-split-container {
+    width: 1200px;
+    color: white;
+    background-color: #1a1a1a;
+    position: absolute;
+    z-index: 100;
+    width: 1200px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 340px;
+    padding: 20px 10px;
+    border-radius: 8px;
+}
+
+.single-split-day {
+    background-color: #262626;
+    width: 148px;
+    height: 460px;
+    border-radius: 8px;
+    margin: 0 10px;
+    padding: 10px;
+    display: inline-block;
+}
+
+.single-split-edit-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px 15px 0px 0px;
+    height: 36px;
+    border-radius: 20px;
+    background-color: #8b0000;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0px 15px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.single-split-edit-button:hover {
+    background-color: #b40303;
+}
+
+.single-split-header {
+    font-size: 40px;
+    margin: 0 0 25px 10px;
+}

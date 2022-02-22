@@ -1,4 +1,4 @@
-.add-split-form-container {
+.edit-split-form-container {
     color: white;
     background-color: #1a1a1a;
     position: absolute;
@@ -9,11 +9,10 @@
     margin: auto;
     margin-top: 340px;
     padding: 20px 10px;
-    height: 500px;
     border-radius: 8px;
 }
 
-.add-split-form-day {
+.single-split-edit-form-day {
     background-color: #262626;
     width: 148px;
     height: 460px;
