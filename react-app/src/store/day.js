@@ -25,7 +25,7 @@ const deleteDay = payload => ({
 
 export const getAllDays = (userId) => async dispatch => {
 
-    const response = await fetch(`/api/${userId}/days`)
+    const response = await fetch(`/api/${userId}/days/`)
 
     if (response.ok) {
         const data = await response.json()
@@ -114,7 +114,6 @@ const dayReducer = (state = initialState, action) => {
         case EDIT_DAY:
             return { ...state, entries: [...action.payload.days] }
         case DELETE_DAY:
-            console.log(action.payload.days)
             return { ...state, entries: [...action.payload.days] }
         default:
             return state;

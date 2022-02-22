@@ -23,6 +23,7 @@ class Day(db.Model):
     split_id = db.Column(db.Integer, db.ForeignKey("splits.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     assigned = db.Column(db.Boolean, default=False)
+    assigned_day = db.Column(db.DateTime(timezone=True))
 
     users = db.relationship("User", back_populates="days")
     splits = db.relationship("Split", back_populates="days")
