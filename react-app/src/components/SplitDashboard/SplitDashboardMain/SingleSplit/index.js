@@ -29,10 +29,32 @@ const SingleSplit = ({ showMain, setShowMain }) => {
         setShowEditForm(!showEditForm)
     }
 
+    // Parse datetime obj for header display
+    const parseDate = datetime => {
+        let month = datetime.getUTCMonth() + 1
+        let day = datetime.getUTCDate()
+        let year = datetime.getUTCFullYear()
+
+        return month + "/" + day + "/" + year;
+    }
+
+    let temp = new Date(currentSplit.start_date)
+    let startDate = new Date(currentSplit.start_date)
+    let endDate = new Date(new Date(currentSplit.start_date).setDate(temp.getDate() + 6))
+
+    let start = parseDate(startDate)
+    let end = parseDate(endDate)
+
     if (!showEditForm) {
         return (
             <div className="single-split-container">
-                <h2 className="single-split-header">{currentSplit.start_date}</h2>
+                <div className="single-split-header">
+                    <div>{currentSplit.name}</div>
+                    <div className="single-split-date-range">{start} - {end}</div>
+                    <div className="single-split-edit-button" onClick={toggleEdit}>
+                        Edit
+                    </div>
+                </div>
                 <SingleSplitDay day={sunday} dayOfWeek={"Sunday"} setShowMain={setShowMain} />
                 <SingleSplitDay day={monday} dayOfWeek={"Monday"} setShowMain={setShowMain} />
                 <SingleSplitDay day={tuesday} dayOfWeek={"Tuesday"} setShowMain={setShowMain} />
