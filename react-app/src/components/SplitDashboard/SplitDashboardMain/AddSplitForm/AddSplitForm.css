@@ -22,3 +22,12 @@
     padding: 10px;
     display: inline-block;
 }
+
+.add-split-form-name {
+    margin-bottom: 15px;
+    width: 384px;
+    height: 35px;
+    border-radius: 6px;
+    padding: 5px;
+    border: none;
+}

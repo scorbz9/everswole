@@ -29,21 +29,17 @@ const SingleSplit = ({ showMain, setShowMain }) => {
         setShowEditForm(!showEditForm)
     }
 
-    const toggleEditDay = () => {
-        setShowMain(`SingleDay${1}`)
-    }
-
     if (!showEditForm) {
         return (
             <div className="single-split-container">
                 <h2 className="single-split-header">{currentSplit.start_date}</h2>
-                <SingleSplitDay day={sunday} dayOfWeek={"Sunday"} toggleEdit={toggleEdit}/>
-                <SingleSplitDay day={monday} dayOfWeek={"Monday"} toggleEdit={toggleEdit}/>
-                <SingleSplitDay day={tuesday} dayOfWeek={"Tuesday"} toggleEdit={toggleEdit}/>
-                <SingleSplitDay day={wednesday} dayOfWeek={"Wednesday"} toggleEdit={toggleEdit}/>
-                <SingleSplitDay day={thursday} dayOfWeek={"Thursday"} toggleEdit={toggleEdit}/>
-                <SingleSplitDay day={friday} dayOfWeek={"Friday"} toggleEdit={toggleEdit}/>
-                <SingleSplitDay day={saturday} dayOfWeek={"Saturday"} toggleEdit={toggleEdit}/>
+                <SingleSplitDay day={sunday} dayOfWeek={"Sunday"} setShowMain={setShowMain} />
+                <SingleSplitDay day={monday} dayOfWeek={"Monday"} setShowMain={setShowMain} />
+                <SingleSplitDay day={tuesday} dayOfWeek={"Tuesday"} setShowMain={setShowMain} />
+                <SingleSplitDay day={wednesday} dayOfWeek={"Wednesday"} setShowMain={setShowMain} />
+                <SingleSplitDay day={thursday} dayOfWeek={"Thursday"} setShowMain={setShowMain} />
+                <SingleSplitDay day={friday} dayOfWeek={"Friday"} setShowMain={setShowMain} />
+                <SingleSplitDay day={saturday} dayOfWeek={"Saturday"} setShowMain={setShowMain} />
             </div>
         )
     } else {
