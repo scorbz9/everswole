@@ -9,13 +9,16 @@
     margin: auto;
     margin-top: 340px;
     padding: 20px 10px;
-    height: 500px;
     border-radius: 8px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: block;
+    white-space: nowrap;
 }
 
 .add-split-form-day {
     background-color: #262626;
-    width: 148px;
+    width: 260px;
     height: 460px;
     border-radius: 8px;
     margin: 0 10px;
@@ -30,4 +33,8 @@
     border-radius: 6px;
     padding: 5px;
     border: none;
+}
+
+.hide-option {
+    display: none;
 }

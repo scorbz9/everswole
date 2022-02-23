@@ -24,8 +24,30 @@ const AddSplitForm = () => {
     const [saturday, setSaturday] = useState("")
     const [errors, setErrors] = useState([])
 
-    const handleSunday = (e) => {
-        setSunday(e.target.value)
+    const [selected, setSelected] = useState({ sunday: "", monday: "" , tuesday: "", wednesday: "", thursday: "" , friday: "" , saturday: "" })
+
+    const handleDayChange = (e, day) => {
+            if (day === sunday) {
+                setSunday(e.target.value)
+            } else if (day === monday) {
+                setMonday(e.target.value)
+            } else if (day === tuesday) {
+                setTuesday(e.target.value)
+            } else if (day === wednesday) {
+                setWednesday(e.target.value)
+            } else if (day === thursday) {
+                setThursday(e.target.value)
+            } else if (day === friday) {
+                setFriday(e.target.value)
+            } else if (day === saturday) {
+                setSaturday(e.target.value)
+            }
+
+            const list = { ...selected }
+            console.log(list)
+            list[day] = e.target.value
+            setSelected(list)
+            console.log(selected)
     }
 
     const handleSubmit = async (e) => {
@@ -60,6 +82,7 @@ const AddSplitForm = () => {
     return (
 
         <div className="add-split-form-container">
+            <h2>Organize your week's workouts</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name"> Name:
                     <input
@@ -81,29 +104,31 @@ const AddSplitForm = () => {
                         <h4>Sunday</h4>
                         <select
                             value={sunday}
-                            onChange={e => setSunday(e.target.value)}
+                            onChange={e => handleDayChange(e, sunday)}
                             name="sunday"
+
                         >
                             <option value="">Rest Day</option>
                             {unassignedDays.map((day, i) => {
                                 return (
-                                    <option key={i} value={day.id}>
+                                    <option className={Object.values(selected).includes(day.name) ? "hide-option" : ""} key={i} value={day.id}>
                                         {day.name}
                                     </option>
                                 )
                             })}
                         </select>
+
                     </div>
                     <div className="add-split-form-day add-split-form-monday">
                         <h4>Monday</h4>
                         <select
                             value={monday}
-                            onChange={e => setMonday(e.target.value)}
+                            onChange={e =>  handleDayChange(e, monday)}
                         >
                             <option value="">Rest Day</option>
                             {unassignedDays.map((day, i) => {
                                 return (
-                                    <option key={i} value={day.id}>
+                                    <option className={Object.values(selected).includes(day.name) ? "hide-option" : ""} key={i} value={day.id}>
                                         {day.name}
                                     </option>
                                 )
@@ -114,12 +139,12 @@ const AddSplitForm = () => {
                         <h4>Tuesday</h4>
                         <select
                             value={tuesday}
-                            onChange={e => setTuesday(e.target.value)}
+                            onChange={e => handleDayChange(e, tuesday)}
                         >
                             <option value="">Rest Day</option>
                             {unassignedDays.map((day, i) => {
                                 return (
-                                    <option key={i} value={day.id}>
+                                    <option className={Object.values(selected).includes(day.name) ? "hide-option" : ""} key={i} value={day.id}>
                                         {day.name}
                                     </option>
                                 )
@@ -130,12 +155,12 @@ const AddSplitForm = () => {
                         <h4>Wednesday</h4>
                         <select
                             value={wednesday}
-                            onChange={e => setWednesday(e.target.value)}
+                            onChange={e =>  handleDayChange(e, wednesday)}
                         >
                             <option value="">Rest Day</option>
                             {unassignedDays.map((day, i) => {
                                 return (
-                                    <option key={i} value={day.id}>
+                                    <option className={Object.values(selected).includes(day.name) ? "hide-option" : ""} key={i} value={day.id}>
                                         {day.name}
                                     </option>
                                 )
@@ -146,12 +171,12 @@ const AddSplitForm = () => {
                         <h4>Thursday</h4>
                         <select
                             value={thursday}
-                            onChange={e => setThursday(e.target.value)}
+                            onChange={e =>  handleDayChange(e, thursday)}
                         >
                             <option value="">Rest Day</option>
                             {unassignedDays.map((day, i) => {
                                 return (
-                                    <option key={i} value={day.id}>
+                                    <option className={Object.values(selected).includes(day.name) ? "hide-option" : ""} key={i} value={day.id}>
                                         {day.name}
                                     </option>
                                 )
@@ -162,12 +187,12 @@ const AddSplitForm = () => {
                         <h4>Friday</h4>
                         <select
                             value={friday}
-                            onChange={e => setFriday(e.target.value)}
+                            onChange={e =>  handleDayChange(e, friday)}
                         >
                             <option value="">Rest Day</option>
                             {unassignedDays.map((day, i) => {
                                 return (
-                                    <option key={i} value={day.id}>
+                                    <option className={Object.values(selected).includes(day.name) ? "hide-option" : ""} key={i} value={day.id}>
                                         {day.name}
                                     </option>
                                 )
@@ -178,12 +203,12 @@ const AddSplitForm = () => {
                         <h4>Saturday</h4>
                         <select
                             value={saturday}
-                            onChange={e => setSaturday(e.target.value)}
+                            onChange={e =>  handleDayChange(e, saturday)}
                         >
                             <option value="">Rest Day</option>
                             {unassignedDays.map((day, i) => {
                                 return (
-                                    <option key={i} value={day.id}>
+                                    <option className={Object.values(selected).includes(day.name) ? "hide-option" : ""} key={i} value={day.id}>
                                         {day.name}
                                     </option>
                                 )
