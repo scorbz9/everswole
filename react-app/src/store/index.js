@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import dayReducer from './day';
 import exerciseReducer from './exercise';
 import session from './session'
+import splitReducer from './split';
 
 const rootReducer = combineReducers({
   session,
   exerciseState: exerciseReducer,
   dayState: dayReducer,
+  splitState: splitReducer,
 });
 
 

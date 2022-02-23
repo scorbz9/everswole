@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // Store imports
 import { getAllExercises } from "../../store/exercise";
 import { getAllDays } from "../../store/day";
+import { getAllSplits } from "../../store/split";
 
 // Component imports
 import SideBar from "./SideBar";
@@ -11,6 +12,7 @@ import SplitDashboardHero from "./SplitDashboardHero";
 import SplitDashboardMain from "./SplitDashboardMain";
 
 import './SplitDashboard.css'
+
 
 
 const SplitDashboard = () => {
@@ -23,6 +25,7 @@ const SplitDashboard = () => {
         (async() => {
             await dispatch(getAllExercises())
             await dispatch(getAllDays(userId))
+            await dispatch(getAllSplits(userId))
         })();
     }, [dispatch])
 

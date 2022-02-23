@@ -1,0 +1,41 @@
+.single-split-container {
+    width: 1200px;
+    color: white;
+    background-color: #1a1a1a;
+    position: absolute;
+    z-index: 100;
+    width: 1200px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 340px;
+    padding: 20px 10px;
+    border-radius: 8px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: block;
+    white-space: nowrap;
+}
+
+.single-split-header {
+    font-size: 40px;
+    margin: 0 0 25px 10px;
+}
+
+.single-split-day-exercise-container {
+    margin: 15px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+}
+
+.single-split-day-exercise-element {
+    margin: 5px 0;
+}
+
+.single-split-day-exercise-notes {
+    white-space: normal;
+    padding-bottom: 10px;
+}
+
+.single-split-day-header {
+    margin: 10px 20px;
+}

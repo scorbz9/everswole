@@ -1,4 +1,4 @@
-.add-split-form-container {
+.edit-split-form-container {
     color: white;
     background-color: #1a1a1a;
     position: absolute;
@@ -10,31 +10,14 @@
     margin-top: 340px;
     padding: 20px 10px;
     border-radius: 8px;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    display: block;
-    white-space: nowrap;
 }
 
-.add-split-form-day {
+.single-split-edit-form-day {
     background-color: #262626;
-    width: 260px;
+    width: 148px;
     height: 460px;
     border-radius: 8px;
     margin: 0 10px;
     padding: 10px;
     display: inline-block;
-}
-
-.add-split-form-name {
-    margin-bottom: 15px;
-    width: 384px;
-    height: 35px;
-    border-radius: 6px;
-    padding: 5px;
-    border: none;
-}
-
-.hide-option {
-    display: none;
 }

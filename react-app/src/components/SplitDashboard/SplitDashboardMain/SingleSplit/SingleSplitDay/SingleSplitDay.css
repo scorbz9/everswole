@@ -1,0 +1,39 @@
+.single-split-day-container {
+    display: inline-block;
+}
+
+.single-split-day-info {
+    background-color: #262626;
+    width: 260px;
+    height: 460px;
+    border-radius: 8px;
+    margin: 0 10px;
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    white-space: normal;
+}
+
+.single-split-edit-day-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px 15px 0px 0px;
+    height: 36px;
+    border-radius: 20px;
+    background-color: #8b0000;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0px 15px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.single-split-edit-day-button:hover {
+    background-color: #b40303;
+}

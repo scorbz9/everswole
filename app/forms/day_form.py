@@ -1,6 +1,3 @@
-from dataclasses import Field
-from tkinter.tix import Select
-from typing import Optional, Text
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, TextAreaField, FieldList, FormField
 from wtforms.validators import DataRequired, Optional

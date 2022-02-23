@@ -170,7 +170,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit }) => {
                                 </div>
                             }
                         <button className="edit-day-form-submit" type="submit">Submit</button>
-                        <button className="edit day-form-delete-day" onClick={handleDeleteDay}>Delete Day</button>
+                        <button className="edit-day-form-delete-day" onClick={handleDeleteDay}>Delete Day</button>
                     </form>
                 </div>
             </div>

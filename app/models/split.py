@@ -11,3 +11,24 @@ class Split(db.Model):
 
     users = db.relationship("User", back_populates="splits")
     days = db.relationship("Day", back_populates="splits")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'days': [{
+                'id': day.id,
+                'name': day.name,
+                'exercises': [{
+                    'id': exercise.exercise.id,
+                    'name': exercise.exercise.name,
+                    'goal': exercise.goal,
+                    'actual': exercise.actual,
+                    'notes': exercise.notes } for exercise in day.exercises],
+                'split_id': day.split_id,
+                'user_id': day.user_id,
+                'assigned': day.assigned,
+                'assigned_day': day.assigned_day } for day in self.days],
+            'user_id': self.user_id,
+            'start_date': self.start_date
+        }
