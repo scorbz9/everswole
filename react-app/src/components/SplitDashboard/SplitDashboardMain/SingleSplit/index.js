@@ -66,7 +66,7 @@ const SingleSplit = ({ showMain, setShowMain }) => {
         )
     } else {
         return (
-            <EditSplitForm currentSplit={currentSplit} toggleEdit={toggleEdit} setShowMain={setShowMain}/>
+            <EditSplitForm currentSplit={currentSplit} toggleEdit={toggleEdit} setShowMain={setShowMain} start={start} end={end}/>
         )
     }
 

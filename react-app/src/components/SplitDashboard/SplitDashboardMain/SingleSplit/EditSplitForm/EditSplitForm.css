@@ -10,6 +10,10 @@
     margin-top: 340px;
     padding: 20px 10px;
     border-radius: 8px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: block;
+    white-space: nowrap;
 }
 
 .single-split-edit-form-day {

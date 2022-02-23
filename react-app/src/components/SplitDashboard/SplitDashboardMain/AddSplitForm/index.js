@@ -46,11 +46,9 @@ const AddSplitForm = () => {
             }
 
             const list = { ...selected }
-            console.log(list, list[day])
 
             list[day] = e.target.value
             setSelected(list)
-            console.log(selected, Object.values(selected))
     }
 
     const handleSubmit = async (e) => {
