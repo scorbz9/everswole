@@ -23,6 +23,14 @@ const LoginForm = () => {
     }
   };
 
+  const onDemo = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data) {
+      setErrors(data)
+    }
+  }
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -75,8 +83,9 @@ const LoginForm = () => {
               <p className="login-form-sign-up">New to Everswole? <Link to="/sign-up" className="login-form-sign-up-link">Sign up</Link></p>
         </div>
         <div className="login-form-demo-user-container form-element">
-            <button className="login-form-demo-user form-element" type='button'>Demo User</button>
+            <button onClick={onDemo} className="login-form-demo-user form-element" type='button'>Demo User</button>
         </div>
+
       </form>
 
     </div>

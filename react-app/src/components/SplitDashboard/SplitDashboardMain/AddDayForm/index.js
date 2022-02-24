@@ -5,13 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
 
-
 // Store imports
 import { addOneDay } from "../../../../store/day";
 
 import './AddDayForm.css'
 
-const AddDayForm = () => {
+const AddDayForm = ({ setShowMain, setShowAddMessage }) => {
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.user.id)
     const exercises = useSelector(state => state.exerciseState.entries)
@@ -64,6 +63,14 @@ const AddDayForm = () => {
             setErrors([...data.errors])
         } else {
             setErrors([])
+
+            // Send confirmation message
+            setShowAddMessage(true)
+            setTimeout(() => {
+                setShowAddMessage(false)
+            }, 3500);
+
+            setShowMain("Home")
         }
     }
 
@@ -76,7 +83,7 @@ const AddDayForm = () => {
                 ))}
             </div>
             <form onSubmit={handleSubmit} className="add-day-form">
-                <label htmlFor='name' className="add-day-form-element add-day-form-label"> Name</label>
+                <label htmlFor='name' className="add-day-form-element add-day-form-label"> *Name</label>
                     <input
                         type="text"
                         value={name}

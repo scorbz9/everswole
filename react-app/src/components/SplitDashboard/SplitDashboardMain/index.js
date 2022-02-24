@@ -1,16 +1,21 @@
-import React from 'react'
+// React imports
+import React, { useState } from 'react'
 
+// Component imports
 import AddDayForm from './AddDayForm'
 import AddSplitForm from './AddSplitForm'
 import SingleDay from './SingleDay'
-import EditDayForm from './SingleDay/EditDayForm'
 import SingleSplit from './SingleSplit'
 
 import './SplitDashboardMain.css'
 
 
-const SplitDashboardMain = ({ showMain, setShowMain }) => {
-
+const SplitDashboardMain =
+    ({ showMain,
+    setShowMain,
+    setShowAddMessage,
+    setShowEditMessage,
+    setShowDeleteMessage }) => {
 
     if (showMain === "Home") {
 
@@ -42,28 +47,40 @@ const SplitDashboardMain = ({ showMain, setShowMain }) => {
     } else if (showMain === "AddDayForm") {
 
         return (
-            <AddDayForm />
+            <AddDayForm
+                setShowMain={setShowMain}
+                setShowAddMessage={setShowAddMessage}
+                setShowEditMessage={setShowEditMessage}
+            />
         )
     } else if (showMain.startsWith('SingleDay')) {
 
         return (
-            <SingleDay showMain={showMain} setShowMain={setShowMain}/>
+            <SingleDay
+                showMain={showMain}
+                setShowMain={setShowMain}
+                setShowEditMessage={setShowEditMessage}
+                setShowDeleteMessage={setShowDeleteMessage}
+            />
         )
-    } else if (showMain.startsWith('EditSingleDay')) {
-        return (
-            <EditDayForm showMain={showMain} setShowMain={setShowMain}/>
-        )
-    }
-
-    else if (showMain === "AddSplitForm") {
+    } else if (showMain === "AddSplitForm") {
 
         return (
-            <AddSplitForm />
+            <AddSplitForm
+                showMain={showMain}
+                setShowMain={setShowMain}
+                setShowAddMessage={setShowAddMessage}
+            />
         )
     } else if (showMain.startsWith('SingleSplit')) {
 
         return (
-            <SingleSplit showMain={showMain} setShowMain={setShowMain}/>
+            <SingleSplit
+                showMain={showMain}
+                setShowMain={setShowMain}
+                setShowEditMessage={setShowEditMessage}
+                setShowDeleteMessage={setShowDeleteMessage}
+            />
         )
     }
 

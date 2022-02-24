@@ -7,7 +7,7 @@ import { getAllDays } from "../../../../store/day";
 
 import './AddSplitForm.css'
 
-const AddSplitForm = () => {
+const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
     const dispatch = useDispatch()
 
     const days = useSelector(state => state.dayState.entries)
@@ -75,6 +75,14 @@ const AddSplitForm = () => {
         } else {
             setErrors([])
 
+            // Send confirmation message
+            setShowAddMessage(true)
+            setTimeout(() => {
+                setShowAddMessage(false)
+            }, 3500);
+
+            setShowMain("Home")
+
             // Update day state to cause re-render on new split submit
             await dispatch(getAllDays(userId))
         }
@@ -85,7 +93,7 @@ const AddSplitForm = () => {
         <div className="add-split-form-container">
             <h2>Organize your week's workouts</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name"> Name:
+                <label htmlFor="name"> *Name:
                     <input
                         name="name"
                         type="text"

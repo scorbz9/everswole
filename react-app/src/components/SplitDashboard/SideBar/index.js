@@ -45,7 +45,9 @@ const SideBar = ({ showMain, setShowMain }) => {
         toggleStyleDay = {
             backgroundColor: "#333333"
         }
-    } else if (showSplitDropdown) {
+    }
+
+    if (showSplitDropdown) {
         toggleStyleSplit = {
             backgroundColor: "#333333"
         }

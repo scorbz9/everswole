@@ -7,7 +7,7 @@ import SingleSplitDay from "./SingleSplitDay";
 
 import './SingleSplit.css'
 
-const SingleSplit = ({ showMain, setShowMain }) => {
+const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteMessage }) => {
     const index = showMain.substring(11)
     const splits = useSelector(state => state.splitState.entries)
     const days = useSelector(state => state.dayState.entries)
@@ -66,7 +66,15 @@ const SingleSplit = ({ showMain, setShowMain }) => {
         )
     } else {
         return (
-            <EditSplitForm currentSplit={currentSplit} toggleEdit={toggleEdit} setShowMain={setShowMain} start={start} end={end}/>
+            <EditSplitForm
+                currentSplit={currentSplit}
+                toggleEdit={toggleEdit}
+                setShowMain={setShowMain}
+                start={start}
+                end={end}
+                setShowEditMessage={setShowEditMessage}
+                setShowDeleteMessage={setShowDeleteMessage}
+            />
         )
     }
 

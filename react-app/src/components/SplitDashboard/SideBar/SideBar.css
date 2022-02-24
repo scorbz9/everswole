@@ -108,6 +108,7 @@
     align-items: center;
     padding-left: 10px;
     height: 36px;
+    width: 95%;
 }
 
 .sidebar-home:hover {
@@ -143,4 +144,8 @@
     color: white;
     width: 95%;
     padding-left: 10px;
+}
+
+.sidebar-split-dropdown-container:hover {
+    background-color: #333333;
 }

@@ -10,6 +10,7 @@ import { getAllSplits } from "../../store/split";
 import SideBar from "./SideBar";
 import SplitDashboardHero from "./SplitDashboardHero";
 import SplitDashboardMain from "./SplitDashboardMain";
+import Footer from "../SplashPage/Footer";
 
 import './SplitDashboard.css'
 
@@ -31,15 +32,38 @@ const SplitDashboard = () => {
 
     const [showMain, setShowMain] = useState('Home');
 
-
+    const [showEditMessage, setShowEditMessage] = useState(false)
+    const [showAddMessage, setShowAddMessage] = useState(false)
+    const [showDeleteMessage, setShowDeleteMessage] = useState(false)
 
     return (
         <div className="split-dashboard-container">
+            {showAddMessage ?
+                <div className="confirmation-message">
+                    Successfully added.
+                </div>
+            : <></> }
+            {showEditMessage ?
+                <div className="confirmation-message">
+                    Successfully updated.
+                </div>
+            : <></> }
+            {showDeleteMessage ?
+                <div className="confirmation-message">
+                    Successfully deleted.
+                </div>
+            : <></> }
             <SideBar showMain={showMain} setShowMain={setShowMain} />
             <div className="split-dashboard-right">
                 <SplitDashboardHero />
-                <SplitDashboardMain showMain={showMain} setShowMain={setShowMain} />
+                <SplitDashboardMain showMain={showMain}
+                    setShowMain={setShowMain}
+                    setShowAddMessage={setShowAddMessage}
+                    setShowEditMessage={setShowEditMessage}
+                    setShowDeleteMessage={setShowDeleteMessage}
+                />
             </div>
+            <Footer />
         </div>
     )
 }

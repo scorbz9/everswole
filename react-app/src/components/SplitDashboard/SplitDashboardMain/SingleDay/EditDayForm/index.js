@@ -10,7 +10,7 @@ import { editOneDay, deleteOneDay } from "../../../../../store/day";
 
 import './EditDayForm.css'
 
-const EditDayForm = ({ setShowMain, currentDay, toggleEdit }) => {
+const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, setShowDeleteMessage }) => {
     const dispatch = useDispatch();
     const exercises = useSelector(state => state.exerciseState.entries)
     const userId = useSelector(state => state.session.user.id)
@@ -78,6 +78,14 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit }) => {
             setErrors([...data.errors])
         } else {
             setErrors([])
+
+            // Send confirmation message
+            setShowEditMessage(true)
+            setTimeout(() => {
+                setShowEditMessage(false)
+            }, 4000);
+
+            setShowMain("Home")
         }
     }
 
@@ -85,6 +93,13 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit }) => {
         e.preventDefault();
 
         const data = await dispatch(deleteOneDay(userId, currentDay.id))
+
+        // Confirmation message
+        setShowDeleteMessage(true)
+        setTimeout(() => {
+            setShowDeleteMessage(false)
+        }, 4000)
+
         setShowMain("Home")
     }
 
@@ -93,13 +108,15 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit }) => {
                 <div className="single-day-info-container">
                     <form onSubmit={handleEditSubmit}>
                         <h2 className="edit-day-form-header">
-                            <input
-                                type="text"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                placeholder="Name"
-                                className="edit-day-form-input edit-day-form-input-name"
-                            />
+                            <label> *Name:
+                                <input
+                                    type="text"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    placeholder="Name"
+                                    className="edit-day-form-input edit-day-form-input-name"
+                                />
+                            </label>
                         </h2>
                         <div className="add-day-error-container">
                             {errors.map((error, ind) => (

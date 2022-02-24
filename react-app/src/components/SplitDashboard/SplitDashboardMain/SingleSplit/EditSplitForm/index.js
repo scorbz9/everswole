@@ -5,13 +5,21 @@ import { useDispatch, useSelector } from "react-redux";
 import EditSplitSingleDay from "./EditSplitSingleDay";
 
 // Store Imports
-import { deleteOneSplit, editOneSplit } from "../../../../../store/split";
+import { deleteOneSplit, getAllSplits, editOneSplit } from "../../../../../store/split";
 
 import './EditSplitForm.css'
 import { getAllDays } from "../../../../../store/day";
 
 
-const EditSplitForm = ({ currentSplit, toggleEdit, setShowMain, start, end }) => {
+const EditSplitForm =
+    ({ currentSplit,
+    toggleEdit,
+    setShowMain,
+    start,
+    end,
+    setShowEditMessage,
+    setShowDeleteMessage }) => {
+
     const dispatch = useDispatch();
 
     const days = useSelector(state => state.dayState.entries)
@@ -97,8 +105,7 @@ const EditSplitForm = ({ currentSplit, toggleEdit, setShowMain, start, end }) =>
             ],
             unassigned
         }
-        // console.log(selected, currentSplit.days)
-        // console.log(payload, unassigned)
+
         const data = await dispatch(editOneSplit(payload, userId, currentSplit.id))
 
         if (data.errors) {
@@ -106,14 +113,32 @@ const EditSplitForm = ({ currentSplit, toggleEdit, setShowMain, start, end }) =>
         } else {
             setErrors([])
 
+            // Send confirmation message
+            setShowEditMessage(true)
+            setTimeout(() => {
+                setShowEditMessage(false)
+            }, 3500);
+
+            setShowMain("Home")
+
+            // Update day state to cause re-render on new split submit
+            await dispatch(getAllDays(userId))
         }
     }
 
     const handleDeleteSplit = async (e) => {
         e.preventDefault();
 
-        setShowMain("Home")
         const data = await dispatch(deleteOneSplit(userId, currentSplit.id))
+
+        // Confirmation message
+        setShowDeleteMessage(true)
+        setTimeout(() => {
+            setShowDeleteMessage(false)
+        }, 4000)
+
+        setShowMain("Home")
+
         await dispatch(getAllDays(userId))
     }
 
@@ -121,13 +146,12 @@ const EditSplitForm = ({ currentSplit, toggleEdit, setShowMain, start, end }) =>
         <div className="edit-split-form-container">
             <form onSubmit={handleSubmit}>
                 <div className="single-split-header">
-                    <label htmlFor="name">
+                    <label htmlFor="name">*Name:
                         <input
                             name="name"
                             type="text"
                             value={name}
                             onChange={e => setName(e.target.value)}
-                            placeholder="Name"
                             className="add-split-form-name"
                         />
                     </label>
