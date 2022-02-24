@@ -9,4 +9,17 @@
     justify-content: center;
     align-items: center;
     font-size: 12px;
+    z-index: 101;
+}
+
+.footer-about {
+    font-size: 12px;
+    letter-spacing: 1.24px;
+    margin-right: 5px;
+}
+
+.footer-linkedin-icon,
+.footer-github-icon {
+    font-size: 18px;
+    margin: 0 5px;
 }

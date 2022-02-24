@@ -40,7 +40,7 @@ def addSplit(user_id):
 
         db.session.add(new_split)
         db.session.commit()
-        print(data['days'], data['days'][0].values())
+
         for day in range(len(data['days'])):
             current_day_id = list(data['days'][day].values())[0]
             current_day_name = list(data['days'][day].keys())[0]
@@ -65,14 +65,93 @@ def addSplit(user_id):
                 .all()
             split.days = days
 
-        return { "splits": [split.to_dict() for split in splits]}
+        return { "splits": [split.to_dict() for split in splits] }
 
     return { "errors": ["Please provide a name for this split."]}
 
-@split_routes.route('/', methods=["PATCH"])
-def editSplit(user_id):
-    pass
+@split_routes.route('/<int:split_id>/', methods=["PATCH"])
+def editSplit(user_id, split_id):
+    data = request.json
+    form = SplitForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print(data)
+    if form.validate_on_submit():
 
-@split_routes.route('/', methods=["DELETE"])
-def deleteSplit(user_id):
-    pass
+        # Update days that ASSIGNED
+        for day in range(len(data['days'])):
+            current_day_id = list(data['days'][day].values())[0]
+            current_day_name = list(data['days'][day].keys())[0]
+
+            if current_day_id == "":
+                continue
+            else:
+                current_day = Day.query \
+                    .filter(Day.id == current_day_id) \
+                    .one()
+
+                current_day.split_id = split_id
+                current_day.assigned_day = current_day_name
+                current_day.assigned = True
+
+        # Update all days that were UNASSIGNED during edit
+        for day in data['unassigned']:
+            current_day = Day.query \
+                .filter(Day.id == day['id']) \
+                .one()
+
+            current_day.split_id = None
+            current_day.assigned_day = None
+            current_day.assigned = False
+
+        split_to_update = Split.query \
+            .filter(Split.id == split_id) \
+            .one()
+
+        split_to_update.name = data['name']
+
+        db.session.commit()
+
+        splits = Split.query.filter(user_id == Split.user_id).all()
+
+        for split in splits:
+            days = Day.query \
+                .join(DaysExercises) \
+                .join(Exercise) \
+                .filter(Day.split_id == split.id) \
+                .all()
+            split.days = days
+
+    return { "splits": [split.to_dict() for split in splits] }
+
+    return { "errors": ["Please provide a name for this split."]}
+
+@split_routes.route('/<int:split_id>/', methods=["DELETE"])
+def deleteSplit(user_id, split_id):
+
+    # Get rid of assignment to split for each day
+    days_to_delete = Day.query \
+        .filter(Day.split_id == split_id) \
+        .all()
+
+    for day in days_to_delete:
+        day.split_id = None
+        day.assigned_day = None
+        day.assigned = False
+
+    Split.query \
+        .filter(Split.id == split_id) \
+        .delete()
+
+    db.session.commit()
+
+    splits = Split.query.filter(user_id == Split.user_id).all()
+
+    for split in splits:
+        days = Day.query \
+            .join(DaysExercises) \
+            .join(Exercise) \
+            .filter(Day.split_id == split.id) \
+            .all()
+        split.days = days
+
+    return { "splits": [split.to_dict() for split in splits] }

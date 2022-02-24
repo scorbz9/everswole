@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import EditDayForm from "./EditDayForm";
 
 import './SingleDay.css'
 
-const SingleDay = ({ showMain, setShowMain }) => {
+const SingleDay = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteMessage }) => {
     const index = showMain.substring(9)
     const days = useSelector(state => state.dayState.entries)
 
@@ -52,7 +52,13 @@ const SingleDay = ({ showMain, setShowMain }) => {
     } else {
 
         return (
-            <EditDayForm currentDay={currentDay} toggleEdit={toggleEdit} setShowMain={setShowMain} />
+            <EditDayForm
+                currentDay={currentDay}
+                toggleEdit={toggleEdit}
+                setShowMain={setShowMain}
+                setShowEditMessage={setShowEditMessage}
+                setShowDeleteMessage={setShowDeleteMessage}
+            />
         )
     }
 

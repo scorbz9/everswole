@@ -1,4 +1,3 @@
-
 .split-dashboard-right {
     margin-left: 240px;
     display: flex;
@@ -6,6 +5,44 @@
     background-color: black;
     height: 1000px;
     position: relative;
+}
+
+.confirmation-message {
+    margin: 350px 0 0 800px;
+    position: absolute;
+    font-weight: 900;
+    color: green;
+    background-color: rgb(90, 206, 90);
+    padding: 10px 5px;
+    border-radius: 8px;
+    z-index: 102;
+    animation-name: fadeInOut;
+    animation-timing-function: ease-in-out;
+    animation-duration: 4s;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 ::-webkit-scrollbar {

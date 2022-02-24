@@ -10,7 +10,7 @@ import { editOneDay, deleteOneDay } from "../../../../../store/day";
 
 import './EditDayForm.css'
 
-const EditDayForm = ({ setShowMain, currentDay, toggleEdit }) => {
+const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, setShowDeleteMessage }) => {
     const dispatch = useDispatch();
     const exercises = useSelector(state => state.exerciseState.entries)
     const userId = useSelector(state => state.session.user.id)
@@ -78,6 +78,14 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit }) => {
             setErrors([...data.errors])
         } else {
             setErrors([])
+
+            // Send confirmation message
+            setShowEditMessage(true)
+            setTimeout(() => {
+                setShowEditMessage(false)
+            }, 4000);
+
+            setShowMain("Home")
         }
     }
 
@@ -85,6 +93,13 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit }) => {
         e.preventDefault();
 
         const data = await dispatch(deleteOneDay(userId, currentDay.id))
+
+        // Confirmation message
+        setShowDeleteMessage(true)
+        setTimeout(() => {
+            setShowDeleteMessage(false)
+        }, 4000)
+
         setShowMain("Home")
     }
 
@@ -93,13 +108,15 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit }) => {
                 <div className="single-day-info-container">
                     <form onSubmit={handleEditSubmit}>
                         <h2 className="edit-day-form-header">
-                            <input
-                                type="text"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                placeholder="Name"
-                                className="edit-day-form-input edit-day-form-input-name"
-                            />
+                            <label> *Name:
+                                <input
+                                    type="text"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    placeholder="Name"
+                                    className="edit-day-form-input edit-day-form-input-name"
+                                />
+                            </label>
                         </h2>
                         <div className="add-day-error-container">
                             {errors.map((error, ind) => (
@@ -109,7 +126,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit }) => {
                         <div className="single-day-edit-button" onClick={toggleEdit}>
                             Edit
                         </div>
-                        {workoutInputList.map((exercise, i) => {
+                        {workoutInputList?.map((exercise, i) => {
                             return (
                                 <div key={i} className="single-day-exercise-container">
                                     <div className="edit-day-form-label">{`Exercise #${i + 1}:`}</div>
@@ -163,7 +180,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit }) => {
                                 </div>
                             )
                         })}
-                        { workoutInputList.length === 9 ?
+                        { workoutInputList?.length === 9 ?
                                 <div className="edit-day-form-add-workout-message">Maximum number of workouts reached!</div>
                                 : <div onClick={handleAddWorkoutInput} className="edit-day-form-add-workout">
                                     <FontAwesomeIcon className="add-workout-plus" icon={faPlus}/> Add an exercise!

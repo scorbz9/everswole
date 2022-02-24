@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, Link, useHistory } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { signUp, login } from '../../store/session';
 import './SignUpForm.css'
 
 
@@ -27,6 +27,14 @@ const SignUpForm = () => {
     }
   };
 
+  const onDemo = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data) {
+      setErrors(data)
+    }
+  }
+
   const updateUsername = (e) => {
     setUsername(e.target.value);
   };
@@ -44,8 +52,9 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    history.push('/')
   }
+
 
   return (
     <div className="sign-up-form-container">
@@ -106,8 +115,8 @@ const SignUpForm = () => {
         <div className="sign-up-form-sign-up-container form-element">
               <p className="sign-up-form-sign-up">Already have an account? <Link to="/login" className="sign-up-form-sign-up-link">Log in</Link></p>
         </div>
-        <div className="sign-up-form-demo-user-container form-element">
-            <button className="sign-up-form-demo-user form-element" type='button'>Demo User</button>
+        <div className="login-form-demo-user-container form-element">
+            <button onClick={onDemo} className="login-form-demo-user form-element" type='button'>Demo User</button>
         </div>
       </form>
     </div>

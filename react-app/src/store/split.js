@@ -111,9 +111,9 @@ const splitReducer = (state = initialState, action) => {
         case ADD_SPLIT:
             return { ...state, entries: [...action.payload.splits] }
         case EDIT_SPLIT:
-            return { ...state, entries: [...action.payload.days] }
+            return { ...state, entries: [...action.payload.splits] }
         case DELETE_SPLIT:
-            return { ...state, entries: [...action.payload.days] }
+            return { ...state, entries: [...action.payload.splits] }
         default:
             return state;
     }
