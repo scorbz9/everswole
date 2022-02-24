@@ -13,15 +13,15 @@ const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteM
     const days = useSelector(state => state.dayState.entries)
     const currentSplit = splits[index]
 
-    const currentSplitDays = days.filter(day => day.split_id === currentSplit.id)
+    const currentSplitDays = days.filter(day => day.split_id === currentSplit?.id)
 
-    const sunday = currentSplitDays.find(day => day.assigned_day === 'sunday')
-    const monday = currentSplitDays.find(day => day.assigned_day === 'monday')
-    const tuesday = currentSplitDays.find(day => day.assigned_day === 'tuesday')
-    const wednesday = currentSplitDays.find(day => day.assigned_day === 'wednesday')
-    const thursday = currentSplitDays.find(day => day.assigned_day === 'thursday')
-    const friday = currentSplitDays.find(day => day.assigned_day === 'friday')
-    const saturday = currentSplitDays.find(day => day.assigned_day === 'saturday')
+    const sunday = currentSplitDays?.find(day => day.assigned_day === 'sunday')
+    const monday = currentSplitDays?.find(day => day.assigned_day === 'monday')
+    const tuesday = currentSplitDays?.find(day => day.assigned_day === 'tuesday')
+    const wednesday = currentSplitDays?.find(day => day.assigned_day === 'wednesday')
+    const thursday = currentSplitDays?.find(day => day.assigned_day === 'thursday')
+    const friday = currentSplitDays?.find(day => day.assigned_day === 'friday')
+    const saturday = currentSplitDays?.find(day => day.assigned_day === 'saturday')
 
     const [showEditForm, setShowEditForm] = useState(false)
 
@@ -31,16 +31,16 @@ const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteM
 
     // Parse datetime obj for header display
     const parseDate = datetime => {
-        let month = datetime.getUTCMonth() + 1
-        let day = datetime.getUTCDate()
-        let year = datetime.getUTCFullYear()
+        let month = datetime.getMonth() + 1
+        let day = datetime.getDate()
+        let year = datetime.getFullYear()
 
         return month + "/" + day + "/" + year;
     }
 
-    let temp = new Date(currentSplit.start_date)
-    let startDate = new Date(currentSplit.start_date)
-    let endDate = new Date(new Date(currentSplit.start_date).setDate(temp.getDate() + 6))
+    let temp = new Date(currentSplit?.start_date)
+    let startDate = new Date(currentSplit?.start_date)
+    let endDate = new Date(new Date(currentSplit?.start_date).setDate(temp.getDate() + 6))
 
     let start = parseDate(startDate)
     let end = parseDate(endDate)

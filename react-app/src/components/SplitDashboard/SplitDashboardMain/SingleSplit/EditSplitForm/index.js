@@ -23,20 +23,20 @@ const EditSplitForm =
     const dispatch = useDispatch();
 
     const days = useSelector(state => state.dayState.entries)
-    let unassignedDays = days.filter(day => !day.assigned)
+    let unassignedDays = days?.filter(day => !day.assigned)
     const userId = useSelector(state => state.session.user.id)
 
-    unassignedDays = [...unassignedDays, ...currentSplit.days]
+    if (currentSplit) unassignedDays = [...unassignedDays, ...currentSplit.days]
 
-    const currentSunday = currentSplit.days.find(day => day.assigned_day === 'sunday')
-    const currentMonday = currentSplit.days.find(day => day.assigned_day === 'monday')
-    const currentTuesday = currentSplit.days.find(day => day.assigned_day === 'tuesday')
-    const currentWednesday = currentSplit.days.find(day => day.assigned_day === 'wednesday')
-    const currentThursday = currentSplit.days.find(day => day.assigned_day === 'thursday')
-    const currentFriday = currentSplit.days.find(day => day.assigned_day === 'friday')
-    const currentSaturday = currentSplit.days.find(day => day.assigned_day === 'saturday')
+    const currentSunday = currentSplit?.days.find(day => day.assigned_day === 'sunday')
+    const currentMonday = currentSplit?.days.find(day => day.assigned_day === 'monday')
+    const currentTuesday = currentSplit?.days.find(day => day.assigned_day === 'tuesday')
+    const currentWednesday = currentSplit?.days.find(day => day.assigned_day === 'wednesday')
+    const currentThursday = currentSplit?.days.find(day => day.assigned_day === 'thursday')
+    const currentFriday = currentSplit?.days.find(day => day.assigned_day === 'friday')
+    const currentSaturday = currentSplit?.days.find(day => day.assigned_day === 'saturday')
 
-    const [name, setName] = useState(currentSplit.name)
+    const [name, setName] = useState(currentSplit?.name)
     const [sunday, setSunday] = useState(currentSunday ? currentSunday.id : "")
     const [monday, setMonday] = useState(currentMonday ? currentMonday.id : "")
     const [tuesday, setTuesday] = useState(currentTuesday ? currentTuesday.id : "")
@@ -84,7 +84,7 @@ const EditSplitForm =
         e.preventDefault();
 
         // Get days that were unassigned during edit in order to properly update database
-        const unassigned = currentSplit.days.filter(day => {
+        const unassigned = currentSplit?.days.filter(day => {
             if (Object.values(selected).includes(day.id.toString())) {
                 return false;
             } else {

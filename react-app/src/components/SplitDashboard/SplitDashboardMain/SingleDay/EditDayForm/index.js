@@ -126,7 +126,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                         <div className="single-day-edit-button" onClick={toggleEdit}>
                             Edit
                         </div>
-                        {workoutInputList.map((exercise, i) => {
+                        {workoutInputList?.map((exercise, i) => {
                             return (
                                 <div key={i} className="single-day-exercise-container">
                                     <div className="edit-day-form-label">{`Exercise #${i + 1}:`}</div>
@@ -180,7 +180,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                                 </div>
                             )
                         })}
-                        { workoutInputList.length === 9 ?
+                        { workoutInputList?.length === 9 ?
                                 <div className="edit-day-form-add-workout-message">Maximum number of workouts reached!</div>
                                 : <div onClick={handleAddWorkoutInput} className="edit-day-form-add-workout">
                                     <FontAwesomeIcon className="add-workout-plus" icon={faPlus}/> Add an exercise!
