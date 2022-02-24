@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import EditSplitSingleDay from "./EditSplitSingleDay";
 
 // Store Imports
-import { deleteOneSplit } from "../../../../../store/split";
+import { deleteOneSplit, editOneSplit } from "../../../../../store/split";
 
 import './EditSplitForm.css'
 
@@ -17,20 +17,34 @@ const EditSplitForm = ({ currentSplit, toggleEdit, setShowMain, start, end }) =>
     let unassignedDays = days.filter(day => !day.assigned)
     const userId = useSelector(state => state.session.user.id)
 
-    const currentSplitDays = days.filter(day => day.split_id === currentSplit.id)
-    unassignedDays = [...unassignedDays, ...currentSplitDays]
-    console.log(unassignedDays)
-    const [name, setName] = useState("")
-    const [sunday, setSunday] = useState("")
-    const [monday, setMonday] = useState("")
-    const [tuesday, setTuesday] = useState("")
-    const [wednesday, setWednesday] = useState("")
-    const [thursday, setThursday] = useState("")
-    const [friday, setFriday] = useState("")
-    const [saturday, setSaturday] = useState("")
+    unassignedDays = [...unassignedDays, ...currentSplit.days]
+
+    const currentSunday = currentSplit.days.find(day => day.assigned_day === 'sunday')
+    const currentMonday = currentSplit.days.find(day => day.assigned_day === 'monday')
+    const currentTuesday = currentSplit.days.find(day => day.assigned_day === 'tuesday')
+    const currentWednesday = currentSplit.days.find(day => day.assigned_day === 'wednesday')
+    const currentThursday = currentSplit.days.find(day => day.assigned_day === 'thursday')
+    const currentFriday = currentSplit.days.find(day => day.assigned_day === 'friday')
+    const currentSaturday = currentSplit.days.find(day => day.assigned_day === 'saturday')
+
+    const [name, setName] = useState(currentSplit.name)
+    const [sunday, setSunday] = useState(currentSunday?.id)
+    const [monday, setMonday] = useState(currentMonday?.id)
+    const [tuesday, setTuesday] = useState(currentTuesday?.id)
+    const [wednesday, setWednesday] = useState(currentWednesday?.id)
+    const [thursday, setThursday] = useState(currentThursday?.id)
+    const [friday, setFriday] = useState(currentFriday?.id)
+    const [saturday, setSaturday] = useState(currentSaturday?.id)
     const [errors, setErrors] = useState([])
 
-    const [selected, setSelected] = useState({ sunday: "", monday: "" , tuesday: "", wednesday: "", thursday: "" , friday: "" , saturday: "" })
+    const [selected, setSelected] = useState({
+                                        sunday: currentSunday ? `${currentSunday.id}` : "",
+                                        monday: currentMonday ? `${currentMonday.id}` : "",
+                                        tuesday: currentTuesday ? `${currentTuesday.id}` : "",
+                                        wednesday: currentWednesday ? `${currentWednesday.id}` : "",
+                                        thursday: currentThursday ? `${currentThursday.id}` : "",
+                                        friday: currentFriday ? `${currentFriday.id}` : "",
+                                        saturday: currentSaturday ? `${currentSaturday.id}` : "" })
 
     const handleDayChange = (e, day) => {
         if (day === 'sunday') {
@@ -52,15 +66,22 @@ const EditSplitForm = ({ currentSplit, toggleEdit, setShowMain, start, end }) =>
         }
 
         const list = { ...selected }
-        console.log(list, list[day])
 
         list[day] = e.target.value
         setSelected(list)
-        console.log(selected, Object.values(selected))
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Get days that were unassigned during edit in order to properly update database
+        const unassigned = currentSplit.days.filter(day => {
+            if (Object.values(selected).includes(day.id.toString())) {
+                return false;
+            } else {
+                return true;
+            }
+        })
 
         const payload = {
             name,
@@ -72,26 +93,25 @@ const EditSplitForm = ({ currentSplit, toggleEdit, setShowMain, start, end }) =>
                 { thursday: thursday },
                 { friday: friday },
                 { satuday: saturday },
-            ]
+            ],
+            unassigned
         }
+        // console.log(selected, currentSplit.days)
+        // console.log(payload, unassigned)
+        const data = await dispatch(editOneSplit(payload, userId, currentSplit.id))
 
-        console.log(payload)
-        // const data = await dispatch(addOneSplit(payload, userId))
+        if (data.errors) {
+            setErrors([...data.errors])
+        } else {
+            setErrors([])
 
-        // if (data.errors) {
-        //     setErrors([...data.errors])
-        // } else {
-        //     setErrors([])
-
-        //     // Update day state to cause re-render on new split submit
-        //     await dispatch(getAllDays(userId))
-        // }
+        }
     }
 
     const handleDeleteSplit = async (e) => {
         e.preventDefault();
 
-        // const data = await dispatch(deleteOneSplit(userId, currentSplit.id))
+        const data = await dispatch(deleteOneSplit(userId, currentSplit.id))
         setShowMain("Home")
     }
 
@@ -120,13 +140,16 @@ const EditSplitForm = ({ currentSplit, toggleEdit, setShowMain, start, end }) =>
                         <div key={ind} className="add-day-form-error">{error}</div>
                     ))}
                 </div>
-                <EditSplitSingleDay day={sunday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Sunday"} selected={selected}/>
-                <EditSplitSingleDay day={monday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Monday"} selected={selected}/>
-                <EditSplitSingleDay day={tuesday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Tuesday"} selected={selected}/>
-                <EditSplitSingleDay day={wednesday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Wednesday"} selected={selected}/>
-                <EditSplitSingleDay day={thursday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Thursday"} selected={selected}/>
-                <EditSplitSingleDay day={friday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Friday"} selected={selected}/>
-                <EditSplitSingleDay day={saturday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Saturday"} selected={selected}/>
+                <div>
+                    <EditSplitSingleDay day={sunday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Sunday"} selected={selected}/>
+                    <EditSplitSingleDay day={monday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Monday"} selected={selected}/>
+                    <EditSplitSingleDay day={tuesday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Tuesday"} selected={selected}/>
+                    <EditSplitSingleDay day={wednesday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Wednesday"} selected={selected}/>
+                    <EditSplitSingleDay day={thursday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Thursday"} selected={selected}/>
+                    <EditSplitSingleDay day={friday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Friday"} selected={selected}/>
+                    <EditSplitSingleDay day={saturday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Saturday"} selected={selected}/>
+                </div>
+                <button type="submit">Submit</button>
             </form>
         </div>
     )
