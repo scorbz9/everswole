@@ -8,6 +8,7 @@ import EditSplitSingleDay from "./EditSplitSingleDay";
 import { deleteOneSplit, editOneSplit } from "../../../../../store/split";
 
 import './EditSplitForm.css'
+import { getAllDays } from "../../../../../store/day";
 
 
 const EditSplitForm = ({ currentSplit, toggleEdit, setShowMain, start, end }) => {
@@ -111,8 +112,9 @@ const EditSplitForm = ({ currentSplit, toggleEdit, setShowMain, start, end }) =>
     const handleDeleteSplit = async (e) => {
         e.preventDefault();
 
-        const data = await dispatch(deleteOneSplit(userId, currentSplit.id))
         setShowMain("Home")
+        const data = await dispatch(deleteOneSplit(userId, currentSplit.id))
+        await dispatch(getAllDays(userId))
     }
 
     return (
