@@ -1,17 +1,18 @@
+// React imports
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
+// Component imports
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
-import { authenticate } from './store/session';
-
-// Component imports
 import SplashPage from "./components/SplashPage"
 import SplitDashboard from './components/SplitDashboard';
+import Footer from './components/SplashPage/Footer';
+
+// Store imports
+import { authenticate } from './store/session';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,6 +35,7 @@ function App() {
     return (
       <BrowserRouter>
         <NavBar user={user} />
+        <Footer />
         <Switch>
           <Route path="/" exact={true}>
             <SplashPage />
@@ -43,6 +45,9 @@ function App() {
           </Route>
           <Route path='/sign-up' exact={true}>
             <SignUpForm />
+          </Route>
+          <Route>
+            <h1 className="bad-url-catch-header">There's nothing here! <Link className="bad-url-home-link" to="/">Return to safety.</Link></h1>
           </Route>
         </Switch>
       </BrowserRouter>
@@ -61,6 +66,11 @@ function App() {
           </Route>
           <Route path='/sign-up' exact={true}>
             <SignUpForm />
+          </Route>
+          <Route>
+            <NavBar user={user} />
+            <h1 className="bad-url-catch-header">There's nothing here! <Link className="bad-url-home-link" to="/">Return to safety.</Link></h1>
+            <Footer />
           </Route>
         </Switch>
       </BrowserRouter>
