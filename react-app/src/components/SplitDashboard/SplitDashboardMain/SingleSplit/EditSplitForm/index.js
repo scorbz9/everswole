@@ -29,13 +29,13 @@ const EditSplitForm = ({ currentSplit, toggleEdit, setShowMain, start, end }) =>
     const currentSaturday = currentSplit.days.find(day => day.assigned_day === 'saturday')
 
     const [name, setName] = useState(currentSplit.name)
-    const [sunday, setSunday] = useState(currentSunday?.id)
-    const [monday, setMonday] = useState(currentMonday?.id)
-    const [tuesday, setTuesday] = useState(currentTuesday?.id)
-    const [wednesday, setWednesday] = useState(currentWednesday?.id)
-    const [thursday, setThursday] = useState(currentThursday?.id)
-    const [friday, setFriday] = useState(currentFriday?.id)
-    const [saturday, setSaturday] = useState(currentSaturday?.id)
+    const [sunday, setSunday] = useState(currentSunday ? currentSunday.id : "")
+    const [monday, setMonday] = useState(currentMonday ? currentMonday.id : "")
+    const [tuesday, setTuesday] = useState(currentTuesday ? currentTuesday.id : "")
+    const [wednesday, setWednesday] = useState(currentWednesday ? currentWednesday.id : "")
+    const [thursday, setThursday] = useState(currentThursday ? currentThursday.id : "")
+    const [friday, setFriday] = useState(currentFriday ? currentFriday.id : "")
+    const [saturday, setSaturday] = useState(currentSaturday ? currentSaturday : "")
     const [errors, setErrors] = useState([])
 
     const [selected, setSelected] = useState({
