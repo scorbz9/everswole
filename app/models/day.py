@@ -1,4 +1,5 @@
 from .db import db
+from sqlalchemy import func
 
 class DaysExercises(db.Model):
     __tablename__ = 'DaysExercises'
@@ -8,6 +9,7 @@ class DaysExercises(db.Model):
     goal = db.Column(db.String(30))
     actual = db.Column(db.String(30))
     notes = db.Column(db.String(500))
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     exercise = db.relationship("Exercise", back_populates="days")
     day = db.relationship("Day", back_populates="exercises")
@@ -24,6 +26,7 @@ class Day(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     assigned = db.Column(db.Boolean, default=False)
     assigned_day = db.Column(db.DateTime(timezone=True))
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     users = db.relationship("User", back_populates="days")
     splits = db.relationship("Split", back_populates="days")
@@ -52,6 +55,7 @@ class Exercise(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     days = db.relationship("DaysExercises", back_populates="exercise")
 

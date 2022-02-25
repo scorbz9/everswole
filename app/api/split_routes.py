@@ -3,18 +3,21 @@ from app.models import db, Day, Split, Exercise, DaysExercises
 from app.forms import DayForm, SplitForm
 from app.api.auth_routes import validation_errors_to_error_messages
 from datetime import datetime, timedelta
+from sqlalchemy import asc, desc
+
 
 split_routes = Blueprint('split', __name__)
 
 @split_routes.route('/', methods=["GET"])
 def getSplits(user_id):
-    splits = Split.query.filter(user_id == Split.user_id).all()
+    splits = Split.query.filter(user_id == Split.user_id).order_by(desc(Split.created_at)).all()
 
     for split in splits:
         days = Day.query \
             .join(DaysExercises) \
             .join(Exercise) \
             .filter(Day.split_id == split.id) \
+            .order_by(desc(Day.created_at)) \
             .all()
         split.days = days
 
@@ -55,13 +58,14 @@ def addSplit(user_id):
 
         db.session.commit()
 
-        splits = Split.query.filter(user_id == Split.user_id).all()
+        splits = Split.query.filter(user_id == Split.user_id).order_by(desc(Split.created_at)).all()
 
         for split in splits:
             days = Day.query \
                 .join(DaysExercises) \
                 .join(Exercise) \
                 .filter(Day.split_id == split.id) \
+                .order_by(desc(Day.created_at)) \
                 .all()
             split.days = days
 
@@ -111,13 +115,14 @@ def editSplit(user_id, split_id):
 
         db.session.commit()
 
-        splits = Split.query.filter(user_id == Split.user_id).all()
+        splits = Split.query.filter(user_id == Split.user_id).order_by(desc(Split.created_at)).all()
 
         for split in splits:
             days = Day.query \
                 .join(DaysExercises) \
                 .join(Exercise) \
                 .filter(Day.split_id == split.id) \
+                .order_by(desc(Day.created_at)) \
                 .all()
             split.days = days
 
@@ -144,13 +149,14 @@ def deleteSplit(user_id, split_id):
 
     db.session.commit()
 
-    splits = Split.query.filter(user_id == Split.user_id).all()
+    splits = Split.query.filter(user_id == Split.user_id).order_by(desc(Split.created_at)).all()
 
     for split in splits:
         days = Day.query \
             .join(DaysExercises) \
             .join(Exercise) \
             .filter(Day.split_id == split.id) \
+            .order_by(desc(Day.created_at)) \
             .all()
         split.days = days
 

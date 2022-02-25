@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from app.models import db, Day, Exercise, DaysExercises
 from app.forms import DayForm
 from app.api.auth_routes import validation_errors_to_error_messages
-
+from sqlalchemy import desc
 
 day_routes = Blueprint('day', __name__)
 
@@ -13,6 +13,7 @@ def getDays(user_id):
             .join(DaysExercises) \
             .join(Exercise) \
             .filter(user_id == Day.user_id) \
+            .order_by(desc(Day.created_at)) \
             .all()
 
     return { "days": [item.to_dict() for item in days] }
@@ -54,6 +55,7 @@ def addOneDay(user_id):
             .join(DaysExercises) \
             .join(Exercise) \
             .filter(user_id == Day.user_id) \
+            .order_by(desc(Day.created_at)) \
             .all()
 
         return { "days": [item.to_dict() for item in days] }
@@ -126,10 +128,11 @@ def editOneDay(user_id, day_id):
                     return { "errors": ["Please enter each exercise only once."]}
 
         days = Day.query \
-                .join(DaysExercises) \
-                .join(Exercise) \
-                .filter(user_id == Day.user_id) \
-                .all()
+            .join(DaysExercises) \
+            .join(Exercise) \
+            .filter(user_id == Day.user_id) \
+            .order_by(desc(Day.created_at)) \
+            .all()
 
         return { "days": [item.to_dict() for item in days] }
 
@@ -148,9 +151,10 @@ def deleteOneDay(user_id, day_id):
     db.session.commit()
 
     days = Day.query \
-                .join(DaysExercises) \
-                .join(Exercise) \
-                .filter(user_id == Day.user_id) \
-                .all()
-    print({ "days": [item.to_dict() for item in days] })
+            .join(DaysExercises) \
+            .join(Exercise) \
+            .filter(user_id == Day.user_id) \
+            .order_by(desc(Day.created_at)) \
+            .all()
+
     return { "days": [item.to_dict() for item in days] }
