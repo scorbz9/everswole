@@ -35,6 +35,14 @@ def addSplit(user_id):
         current_date = datetime.today()
         split_date = current_date - timedelta(days=current_date.weekday() + 1)
 
+        splits_to_check = Split.query.filter(Split.user_id == user_id).all()
+
+        for split in splits_to_check:
+            current_split_date = split.start_date
+
+            if split_date.date() == current_split_date.date():
+                return { "errors": ["A split for the current week already exists."] }
+
         new_split = Split(
             name = data["name"],
             user_id = user_id,
