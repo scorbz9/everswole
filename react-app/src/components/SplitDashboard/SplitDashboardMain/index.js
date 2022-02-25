@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 
 // Component imports
+import DashboardHome from './DashboardHome'
 import AddDayForm from './AddDayForm'
 import AddSplitForm from './AddSplitForm'
 import SingleDay from './SingleDay'
@@ -20,29 +21,7 @@ const SplitDashboardMain =
     if (showMain === "Home") {
 
         return (
-            <div className="split-dashboard-main-container">
-                <div className="split-dashboard-day">
-
-                </div>
-                <div className="split-dashboard-day">
-
-                </div>
-                <div className="split-dashboard-day">
-
-                </div>
-                <div className="split-dashboard-day">
-
-                </div>
-                <div className="split-dashboard-day">
-
-                </div>
-                <div className="split-dashboard-day">
-
-                </div>
-                <div className="split-dashboard-day">
-
-                </div>
-            </div>
+            <DashboardHome setShowMain={setShowMain} setShowEditMessage={setShowEditMessage} setShowDeleteMessage={setShowDeleteMessage}/>
         )
     } else if (showMain === "AddDayForm") {
 

@@ -119,6 +119,7 @@ const EditSplitForm =
                 setShowEditMessage(false)
             }, 3500);
 
+            toggleEdit()
             setShowMain("Home")
 
             // Update day state to cause re-render on new split submit
@@ -137,6 +138,7 @@ const EditSplitForm =
             setShowDeleteMessage(false)
         }, 4000)
 
+        toggleEdit()
         setShowMain("Home")
 
         await dispatch(getAllDays(userId))
