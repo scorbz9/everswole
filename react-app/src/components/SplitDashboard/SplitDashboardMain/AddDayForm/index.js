@@ -122,11 +122,10 @@ const AddDayForm = ({ setShowMain, setShowAddMessage }) => {
                                 { index !== 0 &&
                                     <FontAwesomeIcon onClick={() => handleRemoveWorkoutInput(index)} icon={faXmark} />
                                 }
-
                         </div>
                     )
-
                 })}
+
                 { workoutInputList.length === 9 ?
                                 <div className="add-day-form-add-workout-message">Maximum number of workouts reached!</div>
                                 : <div onClick={handleAddWorkoutInput} className="add-day-form-add-workout">

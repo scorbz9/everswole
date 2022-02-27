@@ -163,9 +163,9 @@ const EditSplitForm =
                     </div>
                     <button className="edit-split-form-delete-split" onClick={handleDeleteSplit}>Delete Split</button>
                 </div>
-                <div className="add-day-error-container">
+                <div className="add-split-error-container">
                     {errors.map((error, ind) => (
-                        <div key={ind} className="add-day-form-error">{error}</div>
+                        <div key={ind} className="add-split-form-error">{error}</div>
                     ))}
                 </div>
                 <div>

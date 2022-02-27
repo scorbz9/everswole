@@ -52,3 +52,9 @@
 .hide-option {
     display: none;
 }
+
+.add-split-error-container {
+    margin-left: 12px;
+    color: red;
+    margin-bottom: 10px;
+}

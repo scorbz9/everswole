@@ -6,9 +6,9 @@ class DaysExercises(db.Model):
 
     day_id = db.Column(db.Integer, db.ForeignKey("days.id"), primary_key=True)
     exercise_id = db.Column(db.Integer, db.ForeignKey("exercises.id"), primary_key=True)
-    goal = db.Column(db.String(30))
-    actual = db.Column(db.String(30))
-    notes = db.Column(db.String(500))
+    goal = db.Column(db.String(30), default="")
+    actual = db.Column(db.String(30), default="")
+    notes = db.Column(db.String(500), default="")
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     exercise = db.relationship("Exercise", back_populates="days")

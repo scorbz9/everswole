@@ -93,18 +93,21 @@ def editOneDay(user_id, day_id):
                 db.session.commit()
 
         error_array = []
-        print(day_to_update.exercises)
+
         # Update existing associations
         for exercise in day_to_update.exercises:
             index = day_to_update.exercises.index(exercise)
 
             current_exercise = Exercise.query.filter(data['workoutInputList'][index]['name'] == Exercise.name).one()
 
-            if len(exercise.goal) > 30:
+            if len(data['workoutInputList'][index]['goal']) > 30:
+                print('too long')
                 error_array.append("Goals must be less than 30 characters.")
-            if len(exercise.actual) > 30:
+            if len(data['workoutInputList'][index]['actual']) > 30:
+                print('too long')
                 error_array.append("Actual field must be less than 30 characters.")
-            if len(exercise.notes) > 500:
+            if len(data['workoutInputList'][index]['notes']) > 500:
+                print('too long')
                 error_array.append("Notes must be less than 500 characters.")
 
             exercise.exercise_id = current_exercise.id
@@ -112,12 +115,13 @@ def editOneDay(user_id, day_id):
             exercise.actual = data['workoutInputList'][index]['actual']
             exercise.notes = data['workoutInputList'][index]['notes']
 
-        if len(error_array) > 0:
-            return { "errors": error_array }
 
         try:
             db.session.commit()
         except:
+            print(error_array)
+            if len(error_array) > 0:
+                return { "errors": error_array }
             return { "errors": ["Please enter each exercise only once."]}
 
         # Handles case where an exercise was added

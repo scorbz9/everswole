@@ -24,7 +24,14 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
     const [saturday, setSaturday] = useState("")
     const [errors, setErrors] = useState([])
 
-    const [selected, setSelected] = useState({ sunday: "", monday: "" , tuesday: "", wednesday: "", thursday: "" , friday: "" , saturday: "" })
+    const [selected, setSelected] = useState({
+        sunday: "",
+        monday: "" ,
+        tuesday: "",
+        wednesday: "",
+        thursday: "" ,
+        friday: "" ,
+        saturday: "" })
 
     const handleDayChange = (e, day) => {
             if (day === 'sunday') {
@@ -103,13 +110,14 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         placeholder="Name"
                         className="add-split-form-name"
                     />
-                <div className="add-day-error-container">
+                <div className="add-split-error-container">
                     {errors.map((error, ind) => (
                         <div key={ind} className="add-day-form-error">{error}</div>
                     ))}
                 </div>
                 <div className="add-split-form-day-container">
                     <div className="add-split-form-day add-split-form-sunday">
+
                         <h4>Sunday</h4>
                         <select
                             value={sunday}
