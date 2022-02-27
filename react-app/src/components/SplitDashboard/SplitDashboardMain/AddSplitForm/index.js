@@ -74,7 +74,6 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
             ]
         }
 
-        console.log(payload)
         const data = await dispatch(addOneSplit(payload, userId))
 
         if (data.errors) {
@@ -127,7 +126,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         >
                             <option value="">Rest Day</option>
                             {unassignedDays.map((day, i) => {
-                                console.log(day.id)
+
                                 return (
                                     <option className={Object.values(selected).includes(`${day.id}`) ? "hide-option" : ""} key={i} value={day.id}>
                                         {day.name}

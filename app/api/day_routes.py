@@ -101,13 +101,10 @@ def editOneDay(user_id, day_id):
             current_exercise = Exercise.query.filter(data['workoutInputList'][index]['name'] == Exercise.name).one()
 
             if len(data['workoutInputList'][index]['goal']) > 30:
-                print('too long')
                 error_array.append("Goals must be less than 30 characters.")
             if len(data['workoutInputList'][index]['actual']) > 30:
-                print('too long')
                 error_array.append("Actual field must be less than 30 characters.")
             if len(data['workoutInputList'][index]['notes']) > 500:
-                print('too long')
                 error_array.append("Notes must be less than 500 characters.")
 
             exercise.exercise_id = current_exercise.id
@@ -119,7 +116,6 @@ def editOneDay(user_id, day_id):
         try:
             db.session.commit()
         except:
-            print(error_array)
             if len(error_array) > 0:
                 return { "errors": error_array }
             return { "errors": ["Please enter each exercise only once."]}

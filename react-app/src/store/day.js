@@ -95,7 +95,7 @@ export const deleteOneDay = (userId, dayId) => async dispatch => {
 
         return data;
     } else {
-        console.log(data)
+
         await dispatch(deleteDay(data))
         return data;
     }

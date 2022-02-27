@@ -95,7 +95,7 @@ export const deleteOneSplit = (userId, splitId) => async dispatch => {
 
         return data;
     } else {
-        console.log(data)
+
         await dispatch(deleteSplit(data))
         return data;
     }
