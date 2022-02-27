@@ -148,7 +148,8 @@ const EditSplitForm =
         <div className="edit-split-form-container">
             <form onSubmit={handleSubmit}>
                 <div className="single-split-header">
-                    <label htmlFor="name">*Name:
+                    <label className="edit-split-name-label" htmlFor="name">*Name:
+                    </label>
                         <input
                             name="name"
                             type="text"
@@ -156,7 +157,6 @@ const EditSplitForm =
                             onChange={e => setName(e.target.value)}
                             className="add-split-form-name"
                         />
-                    </label>
                     <div className="single-split-date-range">{start} - {end}</div>
                     <div className="single-split-edit-button" onClick={toggleEdit}>
                         Edit
@@ -177,7 +177,7 @@ const EditSplitForm =
                     <EditSplitSingleDay day={friday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Friday"} selected={selected}/>
                     <EditSplitSingleDay day={saturday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Saturday"} selected={selected}/>
                 </div>
-                <button type="submit">Submit</button>
+                <button className="edit-split-submit-button" type="submit">Submit</button>
             </form>
         </div>
     )

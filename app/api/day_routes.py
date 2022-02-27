@@ -49,6 +49,9 @@ def addOneDay(user_id):
                 db.session.add(new_association)
                 db.session.commit()
             except:
+
+                if len(new_association.goal) > 30:
+                    return { "errors": ["Goals must be 30 characters or less."]}
                 return { "errors": ["Please enter each exercise only once."]}
 
         days = Day.query \
@@ -89,21 +92,32 @@ def editOneDay(user_id, day_id):
 
                 db.session.commit()
 
+        error_array = []
+        print(day_to_update.exercises)
         # Update existing associations
         for exercise in day_to_update.exercises:
             index = day_to_update.exercises.index(exercise)
 
             current_exercise = Exercise.query.filter(data['workoutInputList'][index]['name'] == Exercise.name).one()
 
+            if len(exercise.goal) > 30:
+                error_array.append("Goals must be less than 30 characters.")
+            if len(exercise.actual) > 30:
+                error_array.append("Actual field must be less than 30 characters.")
+            if len(exercise.notes) > 500:
+                error_array.append("Notes must be less than 500 characters.")
+
             exercise.exercise_id = current_exercise.id
             exercise.goal = data['workoutInputList'][index]['goal']
             exercise.actual = data['workoutInputList'][index]['actual']
             exercise.notes = data['workoutInputList'][index]['notes']
 
+        if len(error_array) > 0:
+            return { "errors": error_array }
+
         try:
             db.session.commit()
         except:
-
             return { "errors": ["Please enter each exercise only once."]}
 
         # Handles case where an exercise was added
@@ -124,8 +138,17 @@ def editOneDay(user_id, day_id):
                     db.session.add(new_association)
                     db.session.commit()
                 except:
+                    error_array = []
+                    if len(new_association.goal) > 30:
+                        error_array.append("Goals must be less than 30 characters.")
+                    if len(new_association.actual) > 30:
+                        error_array.append("Actual field must be less than 30 characters.")
+                    if len(new_association.notes) > 500:
+                        error_array.append("Notes must be less than 500 characters.")
+                    if len(new_association.goal) < 30 and len(new_association.actual) < 30 and len(new_association.notes) < 500:
+                        return { "errors": ["Please enter each exercise only once."]}
 
-                    return { "errors": ["Please enter each exercise only once."]}
+                    return { "errors": error_array }
 
         days = Day.query \
             .join(DaysExercises) \

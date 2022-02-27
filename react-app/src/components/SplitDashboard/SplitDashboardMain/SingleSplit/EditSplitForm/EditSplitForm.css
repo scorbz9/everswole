@@ -19,9 +19,50 @@
 .single-split-edit-form-day {
     background-color: #262626;
     width: 148px;
-    height: 460px;
+    height: 380px;
     border-radius: 8px;
     margin: 0 10px;
     padding: 10px;
     display: inline-block;
+}
+
+.edit-split-submit-button {
+    margin: 20px 0 0 10px;
+    padding: 10px 20px;
+    border-radius: 3px;
+    border: 2px solid #b95ccc;
+    color: white;
+    background-color: #b95ccc;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+}
+
+.edit-split-submit-button:hover {
+    background: #894597;
+    border: 2px solid #894597;
+}
+
+.edit-split-name-label {
+    margin-top: 12px;
+    margin-right: 12px;
+    font-size: 28px;
+}
+
+.edit-split-form-delete-split {
+    height: 36px;
+    margin: 12px 0 0 20px;
+    padding: 0px 15px;
+    border-radius: 20px;
+    border: 2px solid #b95ccc;
+    color: white;
+    background-color: #b95ccc;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+}
+
+.edit-split-form-delete-split:hover {
+    background: #894597;
+    border: 2px solid #894597;
 }

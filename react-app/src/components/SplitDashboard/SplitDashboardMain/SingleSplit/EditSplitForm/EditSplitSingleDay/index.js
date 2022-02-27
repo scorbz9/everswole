@@ -11,6 +11,7 @@ const EditSplitSingleDay = ({ day, dayOfWeek, handleDayChange, unassignedDays, s
                 value={day}
                 onChange={e => handleDayChange(e, dayOfWeek.toLowerCase())}
                 name={day}
+                className="add-split-form-day-select"
             >
                 <option value="">Rest Day</option>
                 {unassignedDays.map((dayOption, i) => {

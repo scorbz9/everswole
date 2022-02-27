@@ -79,7 +79,7 @@ def addSplit(user_id):
 
         return { "splits": [split.to_dict() for split in splits] }
 
-    return { "errors": ["Please provide a name for this split."]}
+    return { "errors": [validation_errors_to_error_messages(form.errors)]}
 
 @split_routes.route('/<int:split_id>/', methods=["PATCH"])
 def editSplit(user_id, split_id):
@@ -134,9 +134,9 @@ def editSplit(user_id, split_id):
                 .all()
             split.days = days
 
-    return { "splits": [split.to_dict() for split in splits] }
+        return { "splits": [split.to_dict() for split in splits] }
 
-    return { "errors": ["Please provide a name for this split."]}
+    return { "errors": [validation_errors_to_error_messages(form.errors)]}
 
 @split_routes.route('/<int:split_id>/', methods=["DELETE"])
 def deleteSplit(user_id, split_id):
