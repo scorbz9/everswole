@@ -86,7 +86,7 @@ def editSplit(user_id, split_id):
     data = request.json
     form = SplitForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(data)
+
     if form.validate_on_submit():
 
         # Update days that ASSIGNED
