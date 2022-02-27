@@ -31,7 +31,7 @@
     border-radius: 6px;
     padding: 5px;
     border: none;
-    margin: 0 5px;
+    margin: 0 10px 0 5px;
     width: 100px;
 }
 
@@ -40,6 +40,10 @@
     height: 40px;
     font-size: 36px;
     width: 200px;
+}
+
+.edit-day-form-name-label {
+    margin-right: 15px;
 }
 
 .edit-day-form-label {
@@ -89,7 +93,7 @@
     letter-spacing: 1.5px;
 }
 
-.add-day-form-submit:hover {
+.edit-day-form-submit:hover {
     background: #894597;
     border: 2px solid #894597;
 }
@@ -111,4 +115,23 @@
 
 .edit-day-form-delete-workout {
     margin-left: 5px;
+}
+
+.edit-day-form-delete-day {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 2px solid #b95ccc;
+    color: white;
+    background-color: #b95ccc;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    position: absolute;
+    right: 0;
+}
+
+.edit-day-form-delete-day:hover {
+    background: #894597;
+    border: 2px solid #894597;
 }

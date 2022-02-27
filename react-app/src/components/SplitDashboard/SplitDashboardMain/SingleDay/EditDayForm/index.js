@@ -21,11 +21,13 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
             name: exercise.name,
             goal: exercise.goal,
             actual: exercise.actual,
-            notes: exercise.notes
+            notes: exercise.notes,
+            current: true,
         }
     })
 
     const [name, setName] = useState("")
+    const [currentExerciseList, setCurrentExerciseList] = useState([])
     const [workoutInputList, setWorkoutInputList] = useState([])
     const [errors, setErrors] = useState([])
 
@@ -108,7 +110,8 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                 <div className="single-day-info-container">
                     <form onSubmit={handleEditSubmit}>
                         <h2 className="edit-day-form-header">
-                            <label> *Name:
+                            <label className="edit-day-form-name-label"> *Name:
+                            </label>
                                 <input
                                     type="text"
                                     value={name}
@@ -116,7 +119,6 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                                     placeholder="Name"
                                     className="edit-day-form-input edit-day-form-input-name"
                                 />
-                            </label>
                         </h2>
                         <div className="add-day-error-container">
                             {errors.map((error, ind) => (
@@ -130,23 +132,21 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                             return (
                                 <div key={i} className="single-day-exercise-container">
                                     <div className="edit-day-form-label">{`Exercise #${i + 1}:`}</div>
-                                    <select
-                                        name="exercise-name"
-                                        value={exercise.name}
-                                        onChange={e => updateWorkoutInputListName(e, i)}
-                                        placeholder={`Exercise #${i + 1}`}
-                                        className="edit-day-form-input edit-day-form-exercise-name"
-                                    >
-                                        {exercises.map((exercise, i) => {
-                                            return (
-                                                <option key={i} value={exercise.name}>{exercise.name}</option>
-                                            )
-                                        })}
-                                    </select>
-                                    {/* <div>
-                                        {exercise.name}
-                                    </div> */}
-
+                                    {!exercise.current ?
+                                        <select
+                                            name="exercise-name"
+                                            value={exercise.name}
+                                            onChange={e => updateWorkoutInputListName(e, i)}
+                                            placeholder={`Exercise #${i + 1}`}
+                                            className="edit-day-form-input edit-day-form-exercise-name"
+                                        >
+                                            {exercises.map((exercise, i) => {
+                                                return (
+                                                    <option key={i} value={exercise.name}>{exercise.name}</option>
+                                                )
+                                            })}
+                                        </select>
+                                    : <div className="edit-day-form-input">{exercise.name}</div>}
                                         <input
                                             name="exercise-goal"
                                             type="text"

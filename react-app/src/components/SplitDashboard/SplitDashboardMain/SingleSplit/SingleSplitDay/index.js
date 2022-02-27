@@ -6,7 +6,7 @@ import './SingleSplitDay.css'
 const SingleSplitDay = ({ day, dayOfWeek, setShowMain }) => {
     const days = useSelector(state => state.dayState.entries)
     const currentDay = days.indexOf(day)
-    console.log(currentDay)
+
     const toggleEditDay = () => {
         setShowMain(`SingleDay${currentDay}`)
     }

@@ -21,9 +21,9 @@ def upgrade():
     op.create_table('DaysExercises',
     sa.Column('day_id', sa.Integer(), nullable=False),
     sa.Column('exercise_id', sa.Integer(), nullable=False),
-    sa.Column('goal', sa.String(length=30), nullable=True),
-    sa.Column('actual', sa.String(length=30), nullable=True),
-    sa.Column('notes', sa.String(length=500), nullable=True),
+    sa.Column('goal', sa.String(length=30), nullable=True, default=""),
+    sa.Column('actual', sa.String(length=30), nullable=True, default=""),
+    sa.Column('notes', sa.String(length=500), nullable=True, default=""),
     sa.ForeignKeyConstraint(['day_id'], ['days.id'], ),
     sa.ForeignKeyConstraint(['exercise_id'], ['exercises.id'], ),
     sa.PrimaryKeyConstraint('day_id', 'exercise_id')

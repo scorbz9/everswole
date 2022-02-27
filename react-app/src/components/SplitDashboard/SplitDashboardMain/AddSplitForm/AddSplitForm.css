@@ -16,17 +16,31 @@
     white-space: nowrap;
 }
 
+.add-split-form-header {
+    margin: 0px 0px 15px 10px;
+
+}
+
 .add-split-form-day {
     background-color: #262626;
     width: 260px;
-    height: 460px;
+    height: 380px;
     border-radius: 8px;
     margin: 0 10px;
     padding: 10px;
     display: inline-block;
 }
 
+.add-split-name-label {
+    margin-top: 12px;
+    margin-right: 16px;
+    margin-left: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
 .add-split-form-name {
+    margin-top: 12px;
     margin-bottom: 15px;
     width: 384px;
     height: 35px;
@@ -37,4 +51,10 @@
 
 .hide-option {
     display: none;
+}
+
+.add-split-error-container {
+    margin-left: 12px;
+    color: red;
+    margin-bottom: 10px;
 }

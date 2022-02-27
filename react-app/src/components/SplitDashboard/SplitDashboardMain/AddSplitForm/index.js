@@ -24,7 +24,14 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
     const [saturday, setSaturday] = useState("")
     const [errors, setErrors] = useState([])
 
-    const [selected, setSelected] = useState({ sunday: "", monday: "" , tuesday: "", wednesday: "", thursday: "" , friday: "" , saturday: "" })
+    const [selected, setSelected] = useState({
+        sunday: "",
+        monday: "" ,
+        tuesday: "",
+        wednesday: "",
+        thursday: "" ,
+        friday: "" ,
+        saturday: "" })
 
     const handleDayChange = (e, day) => {
             if (day === 'sunday') {
@@ -91,9 +98,10 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
     return (
 
         <div className="add-split-form-container">
-            <h2>Organize your week's workouts</h2>
+            <h2 className="add-split-form-header">Organize your week's workouts</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name"> *Name:
+                <label className="add-split-name-label" htmlFor="name"> *Name:
+                </label>
                     <input
                         name="name"
                         type="text"
@@ -102,20 +110,20 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         placeholder="Name"
                         className="add-split-form-name"
                     />
-                </label>
-                <div className="add-day-error-container">
+                <div className="add-split-error-container">
                     {errors.map((error, ind) => (
                         <div key={ind} className="add-day-form-error">{error}</div>
                     ))}
                 </div>
                 <div className="add-split-form-day-container">
                     <div className="add-split-form-day add-split-form-sunday">
+
                         <h4>Sunday</h4>
                         <select
                             value={sunday}
                             onChange={e => handleDayChange(e, 'sunday')}
                             name="sunday"
-
+                            className="add-split-form-day-select"
                         >
                             <option value="">Rest Day</option>
                             {unassignedDays.map((day, i) => {
@@ -134,6 +142,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         <select
                             value={monday}
                             onChange={e =>  handleDayChange(e, 'monday')}
+                            className="add-split-form-day-select"
                         >
                             <option value="">Rest Day</option>
                             {unassignedDays.map((day, i) => {
@@ -150,6 +159,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         <select
                             value={tuesday}
                             onChange={e => handleDayChange(e, 'tuesday')}
+                            className="add-split-form-day-select"
                         >
                             <option value="">Rest Day</option>
                             {unassignedDays.map((day, i) => {
@@ -166,6 +176,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         <select
                             value={wednesday}
                             onChange={e =>  handleDayChange(e, 'wednesday')}
+                            className="add-split-form-day-select"
                         >
                             <option value="">Rest Day</option>
                             {unassignedDays.map((day, i) => {
@@ -182,6 +193,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         <select
                             value={thursday}
                             onChange={e =>  handleDayChange(e, 'thursday')}
+                            className="add-split-form-day-select"
                         >
                             <option value="">Rest Day</option>
                             {unassignedDays.map((day, i) => {
@@ -198,6 +210,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         <select
                             value={friday}
                             onChange={e =>  handleDayChange(e, 'friday')}
+                            className="add-split-form-day-select"
                         >
                             <option value="">Rest Day</option>
                             {unassignedDays.map((day, i) => {
@@ -214,6 +227,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         <select
                             value={saturday}
                             onChange={e =>  handleDayChange(e, 'saturday')}
+                            className="add-split-form-day-select"
                         >
                             <option value="">Rest Day</option>
                             {unassignedDays.map((day, i) => {
@@ -226,7 +240,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         </select>
                     </div>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" className="edit-split-submit-button">Submit</button>
             </form>
         </div>
     )

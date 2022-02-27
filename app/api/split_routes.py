@@ -3,18 +3,21 @@ from app.models import db, Day, Split, Exercise, DaysExercises
 from app.forms import DayForm, SplitForm
 from app.api.auth_routes import validation_errors_to_error_messages
 from datetime import datetime, timedelta
+from sqlalchemy import asc, desc
+
 
 split_routes = Blueprint('split', __name__)
 
 @split_routes.route('/', methods=["GET"])
 def getSplits(user_id):
-    splits = Split.query.filter(user_id == Split.user_id).all()
+    splits = Split.query.filter(user_id == Split.user_id).order_by(desc(Split.created_at)).all()
 
     for split in splits:
         days = Day.query \
             .join(DaysExercises) \
             .join(Exercise) \
             .filter(Day.split_id == split.id) \
+            .order_by(desc(Day.created_at)) \
             .all()
         split.days = days
 
@@ -31,6 +34,14 @@ def addSplit(user_id):
         # Calculate nearest previous sunday (start date of split)
         current_date = datetime.today()
         split_date = current_date - timedelta(days=current_date.weekday() + 1)
+
+        splits_to_check = Split.query.filter(Split.user_id == user_id).all()
+
+        for split in splits_to_check:
+            current_split_date = split.start_date
+
+            if split_date.date() == current_split_date.date():
+                return { "errors": ["A split for the current week already exists."] }
 
         new_split = Split(
             name = data["name"],
@@ -55,19 +66,20 @@ def addSplit(user_id):
 
         db.session.commit()
 
-        splits = Split.query.filter(user_id == Split.user_id).all()
+        splits = Split.query.filter(user_id == Split.user_id).order_by(desc(Split.created_at)).all()
 
         for split in splits:
             days = Day.query \
                 .join(DaysExercises) \
                 .join(Exercise) \
                 .filter(Day.split_id == split.id) \
+                .order_by(desc(Day.created_at)) \
                 .all()
             split.days = days
 
         return { "splits": [split.to_dict() for split in splits] }
 
-    return { "errors": ["Please provide a name for this split."]}
+    return { "errors": [validation_errors_to_error_messages(form.errors)]}
 
 @split_routes.route('/<int:split_id>/', methods=["PATCH"])
 def editSplit(user_id, split_id):
@@ -111,19 +123,20 @@ def editSplit(user_id, split_id):
 
         db.session.commit()
 
-        splits = Split.query.filter(user_id == Split.user_id).all()
+        splits = Split.query.filter(user_id == Split.user_id).order_by(desc(Split.created_at)).all()
 
         for split in splits:
             days = Day.query \
                 .join(DaysExercises) \
                 .join(Exercise) \
                 .filter(Day.split_id == split.id) \
+                .order_by(desc(Day.created_at)) \
                 .all()
             split.days = days
 
-    return { "splits": [split.to_dict() for split in splits] }
+        return { "splits": [split.to_dict() for split in splits] }
 
-    return { "errors": ["Please provide a name for this split."]}
+    return { "errors": [validation_errors_to_error_messages(form.errors)]}
 
 @split_routes.route('/<int:split_id>/', methods=["DELETE"])
 def deleteSplit(user_id, split_id):
@@ -144,13 +157,14 @@ def deleteSplit(user_id, split_id):
 
     db.session.commit()
 
-    splits = Split.query.filter(user_id == Split.user_id).all()
+    splits = Split.query.filter(user_id == Split.user_id).order_by(desc(Split.created_at)).all()
 
     for split in splits:
         days = Day.query \
             .join(DaysExercises) \
             .join(Exercise) \
             .filter(Day.split_id == split.id) \
+            .order_by(desc(Day.created_at)) \
             .all()
         split.days = days
 

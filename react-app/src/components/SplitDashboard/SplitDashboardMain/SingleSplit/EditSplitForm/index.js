@@ -119,6 +119,7 @@ const EditSplitForm =
                 setShowEditMessage(false)
             }, 3500);
 
+            toggleEdit()
             setShowMain("Home")
 
             // Update day state to cause re-render on new split submit
@@ -137,6 +138,7 @@ const EditSplitForm =
             setShowDeleteMessage(false)
         }, 4000)
 
+        toggleEdit()
         setShowMain("Home")
 
         await dispatch(getAllDays(userId))
@@ -146,7 +148,8 @@ const EditSplitForm =
         <div className="edit-split-form-container">
             <form onSubmit={handleSubmit}>
                 <div className="single-split-header">
-                    <label htmlFor="name">*Name:
+                    <label className="edit-split-name-label" htmlFor="name">*Name:
+                    </label>
                         <input
                             name="name"
                             type="text"
@@ -154,16 +157,15 @@ const EditSplitForm =
                             onChange={e => setName(e.target.value)}
                             className="add-split-form-name"
                         />
-                    </label>
                     <div className="single-split-date-range">{start} - {end}</div>
                     <div className="single-split-edit-button" onClick={toggleEdit}>
                         Edit
                     </div>
                     <button className="edit-split-form-delete-split" onClick={handleDeleteSplit}>Delete Split</button>
                 </div>
-                <div className="add-day-error-container">
+                <div className="add-split-error-container">
                     {errors.map((error, ind) => (
-                        <div key={ind} className="add-day-form-error">{error}</div>
+                        <div key={ind} className="add-split-form-error">{error}</div>
                     ))}
                 </div>
                 <div>
@@ -175,7 +177,7 @@ const EditSplitForm =
                     <EditSplitSingleDay day={friday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Friday"} selected={selected}/>
                     <EditSplitSingleDay day={saturday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Saturday"} selected={selected}/>
                 </div>
-                <button type="submit">Submit</button>
+                <button className="edit-split-submit-button" type="submit">Submit</button>
             </form>
         </div>
     )

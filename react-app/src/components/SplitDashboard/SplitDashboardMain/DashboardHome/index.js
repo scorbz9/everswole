@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-
 import { useSelector } from "react-redux";
 
-import EditSplitForm from "./EditSplitForm";
-import SingleSplitDay from "./SingleSplitDay";
+import SingleSplitDay from "../SingleSplit/SingleSplitDay";
+import EditSplitForm from "../SingleSplit/EditSplitForm";
 
-import './SingleSplit.css'
+import './DashboardHome.css'
 
-const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteMessage }) => {
-    const index = showMain.substring(11)
+const DashboardHome = ({ setShowMain, setShowEditMessage, setShowDeleteMessage }) => {
     const splits = useSelector(state => state.splitState.entries)
     const days = useSelector(state => state.dayState.entries)
-    const currentSplit = splits[index]
+
+    // Load most recently created split
+    const currentSplit = splits[0]
 
     const currentSplitDays = days.filter(day => day.split_id === currentSplit?.id)
 
@@ -45,11 +45,21 @@ const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteM
     let start = parseDate(startDate)
     let end = parseDate(endDate)
 
+    if (!currentSplit) {
+        return (
+            <div className="no-split-container">
+
+                <div className="no-split-warning">There are no splits! <span onClick={() => setShowMain("AddSplitForm")} className="create-link">Create one now.</span></div>
+
+            </div>
+        )
+    }
+
     if (!showEditForm) {
         return (
             <div className="single-split-container">
                 <div className="single-split-header">
-                    <div>{currentSplit?.name}</div>
+                    <div>Current Split - {currentSplit?.name}</div>
                     <div className="single-split-date-range">{start} - {end}</div>
                     <div className="single-split-edit-button" onClick={toggleEdit}>
                         Edit
@@ -77,7 +87,6 @@ const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteM
             />
         )
     }
-
 }
 
-export default SingleSplit
+export default DashboardHome

@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from app.models import db, Day, Exercise, DaysExercises
 from app.forms import DayForm
 from app.api.auth_routes import validation_errors_to_error_messages
-
+from sqlalchemy import desc
 
 day_routes = Blueprint('day', __name__)
 
@@ -13,6 +13,7 @@ def getDays(user_id):
             .join(DaysExercises) \
             .join(Exercise) \
             .filter(user_id == Day.user_id) \
+            .order_by(desc(Day.created_at)) \
             .all()
 
     return { "days": [item.to_dict() for item in days] }
@@ -48,12 +49,16 @@ def addOneDay(user_id):
                 db.session.add(new_association)
                 db.session.commit()
             except:
+
+                if len(new_association.goal) > 30:
+                    return { "errors": ["Goals must be 30 characters or less."]}
                 return { "errors": ["Please enter each exercise only once."]}
 
         days = Day.query \
             .join(DaysExercises) \
             .join(Exercise) \
             .filter(user_id == Day.user_id) \
+            .order_by(desc(Day.created_at)) \
             .all()
 
         return { "days": [item.to_dict() for item in days] }
@@ -87,21 +92,36 @@ def editOneDay(user_id, day_id):
 
                 db.session.commit()
 
+        error_array = []
+
         # Update existing associations
         for exercise in day_to_update.exercises:
             index = day_to_update.exercises.index(exercise)
 
             current_exercise = Exercise.query.filter(data['workoutInputList'][index]['name'] == Exercise.name).one()
 
+            if len(data['workoutInputList'][index]['goal']) > 30:
+                print('too long')
+                error_array.append("Goals must be less than 30 characters.")
+            if len(data['workoutInputList'][index]['actual']) > 30:
+                print('too long')
+                error_array.append("Actual field must be less than 30 characters.")
+            if len(data['workoutInputList'][index]['notes']) > 500:
+                print('too long')
+                error_array.append("Notes must be less than 500 characters.")
+
             exercise.exercise_id = current_exercise.id
             exercise.goal = data['workoutInputList'][index]['goal']
             exercise.actual = data['workoutInputList'][index]['actual']
             exercise.notes = data['workoutInputList'][index]['notes']
 
+
         try:
             db.session.commit()
         except:
-
+            print(error_array)
+            if len(error_array) > 0:
+                return { "errors": error_array }
             return { "errors": ["Please enter each exercise only once."]}
 
         # Handles case where an exercise was added
@@ -122,14 +142,24 @@ def editOneDay(user_id, day_id):
                     db.session.add(new_association)
                     db.session.commit()
                 except:
+                    error_array = []
+                    if len(new_association.goal) > 30:
+                        error_array.append("Goals must be less than 30 characters.")
+                    if len(new_association.actual) > 30:
+                        error_array.append("Actual field must be less than 30 characters.")
+                    if len(new_association.notes) > 500:
+                        error_array.append("Notes must be less than 500 characters.")
+                    if len(new_association.goal) < 30 and len(new_association.actual) < 30 and len(new_association.notes) < 500:
+                        return { "errors": ["Please enter each exercise only once."]}
 
-                    return { "errors": ["Please enter each exercise only once."]}
+                    return { "errors": error_array }
 
         days = Day.query \
-                .join(DaysExercises) \
-                .join(Exercise) \
-                .filter(user_id == Day.user_id) \
-                .all()
+            .join(DaysExercises) \
+            .join(Exercise) \
+            .filter(user_id == Day.user_id) \
+            .order_by(desc(Day.created_at)) \
+            .all()
 
         return { "days": [item.to_dict() for item in days] }
 
@@ -148,9 +178,10 @@ def deleteOneDay(user_id, day_id):
     db.session.commit()
 
     days = Day.query \
-                .join(DaysExercises) \
-                .join(Exercise) \
-                .filter(user_id == Day.user_id) \
-                .all()
-    print({ "days": [item.to_dict() for item in days] })
+            .join(DaysExercises) \
+            .join(Exercise) \
+            .filter(user_id == Day.user_id) \
+            .order_by(desc(Day.created_at)) \
+            .all()
+
     return { "days": [item.to_dict() for item in days] }

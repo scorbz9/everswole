@@ -24,6 +24,8 @@ const SignUpForm = () => {
       } else {
         history.push('/')
       }
+    } else {
+      setErrors(["Your password and confirm password do not match."])
     }
   };
 
