@@ -1,8 +1,19 @@
-# Flask React Project
+# Everswole
 
-This is the starter for the Flask React project.
+Everswole is a clone of Evernote, with a focus on lifting weights. Access the Everswole [here.](https://everswole.herokuapp.com/).
 
-## Getting started
+# Index
+|
+[MVP Feature List](https://github.com/GoodWillHunting11/everswole/wiki/MVP-Feature-List) |
+[Database Schema](https://github.com/GoodWillHunting11/everswole/wiki/Database-Schema) |
+[API Documentation](https://github.com/GoodWillHunting11/everswole/wiki/API-Documentation) |
+[Frontend Routes](https://github.com/GoodWillHunting11/everswole/wiki/Frontend-Routes) |
+
+# Technologies Used
+
+<img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"  height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height=50/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"  height=40/>
+
+## Clone Everswole
 
 1. Clone this repository (only this branch)
 
@@ -37,22 +48,47 @@ This is the starter for the Flask React project.
    ```bash
    flask run
    ```
-
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
-
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+6. To run the React App, cd into the `react-app` directory.
 
    ```bash
-   pipenv lock -r > requirements.txt
+   npm install
    ```
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+   ```bash
+   npm start
+   ```
+
+# Features Highlights
+
+## Add/Edit Day Forms - Forms that accept a dynamic amount of inputs
+Both the forms for 'add-day' and 'edit-day' features allow the user to submit a dynamic amount of inputs. When adding a day, a user may add or delete inputs from the form, allowing them to choose any amount of exercises they'd like on a given day up to 9. When editing a day, a user is able to add exercises to a day. 
+
+This was achieved using a React state variable holding within it an array of objects, with each object representing a potential input on the form.
+
+![](https://res.cloudinary.com/dzi47txgs/image/upload/v1645930256/everswole_readme1_wfrfqq.png)
+
+The inputs are read onto the form programmatically using a map call on this state variable.
+
+![](https://res.cloudinary.com/dzi47txgs/image/upload/v1645930450/everswole_readme2_yczymd.png)
+
+Two functions control adding or removing objects from this state variable. These functions are used as onClick attributes on user-facing buttons, allowing the user to add or delete exercise inputs from the form as they please.
+
+![](https://res.cloudinary.com/dzi47txgs/image/upload/v1645930552/everswole_readme3_owtzhv.png)
+
+## Add/Edit Split Forms - Select dropdowns exclude options which have already been selected 
+When adding or editing a split, the select dropdowns on each form disallow the user from selecting the same day twice on a given split. Once a user makes a selection, that selection is excluded from every other select field. The user would first need to undo this selection in order to move that day elsewhere to another input.
+
+This functionality was achieved using another React state variable, this one holding an array of day id's which are currently selected on the form. 
+
+![](https://res.cloudinary.com/dzi47txgs/image/upload/v1645930907/everswole_readme4_dzl1sz.png)
+
+When an input changes, the id of the day it has been changed to will be added to this React state variable.
+
+![image](https://user-images.githubusercontent.com/63172733/155866387-e04364ce-0f98-47b2-ac2d-a80f5c8d4e6a.png)
+
+Later, when the form programatically reads in options on a given select input using a map call, any of the days which are currently tracked in the 'selected' React state variable will be removed from the dropdown using css.
+
+![image](https://user-images.githubusercontent.com/63172733/155866424-6f33e097-801f-416e-9bf1-48e84fcf5d5f.png)
 
 ## Deploy to Heroku
 
