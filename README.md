@@ -4,10 +4,10 @@ Everswole is a clone of Evernote, with a focus on lifting weights. Access the Ev
 
 # Index
 |
-[MVP Feature List](https://github.com/GoodWillHunting11/everswole/wiki/MVP-Feature-List) |
-[Database Schema](https://github.com/GoodWillHunting11/everswole/wiki/Database-Schema) |
-[API Documentation](https://github.com/GoodWillHunting11/everswole/wiki/API-Documentation) |
-[Frontend Routes](https://github.com/GoodWillHunting11/everswole/wiki/Frontend-Routes) |
+[MVP Feature List](https://github.com/scorbz9/everswole/wiki/MVP-Feature-List) |
+[Database Schema](https://github.com/scorbz9/everswole/wiki/Database-Schema) |
+[API Documentation](https://github.com/scorbz9/everswole/wiki/API-Documentation) |
+[Frontend Routes](https://github.com/scorbz9/everswole/wiki/Frontend-Routes) |
 
 # Technologies Used
 
