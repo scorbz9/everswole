@@ -13,6 +13,23 @@ Everswole is a clone of Evernote, with a focus on lifting weights. Access the Ev
 
 <img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"  height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height=50/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"  height=40/>
 
+# Screenshots of the Application
+
+## Splash Page
+
+![image](https://user-images.githubusercontent.com/63172733/155911557-63217192-a86b-43c0-8cd4-b57da9a08626.png)
+
+
+## Split Dashboard
+
+![image](https://user-images.githubusercontent.com/63172733/155911519-0532f738-aac7-4493-9f18-f51c67f7544f.png)
+
+# Key Functionality Implemented
+
+Everswole allows the user the create a workout day. A day is a list of exercises that the user will perform on a given day. Users can assign a dynamic amount of exercises on a day up to 9. A user can then go back to the day (once they've performed the exercises) and make notes on how they performed relative to their goals or anything else they'd like to remember about how an exercise went for the future. Lastly, a user can delete a day when they no longer need it. 
+
+Everswole additionally allows the user to organize these workout days in a week-long group called a split. A user can place the days they've created on any day, sunday through monday. They can later update these splits if their plans change and they need to move when a workout takes place. Additionally, a user can delete these splits if they no longer need them.
+
 ## Clone Everswole
 
 1. Clone this repository (only this branch)
