@@ -25,7 +25,12 @@ const SignUpForm = () => {
         history.push('/')
       }
     } else {
-      setErrors(["Your password and confirm password do not match."])
+      if (errors.includes("Your password and confirm password do not match.")) {
+        setErrors(["Your password and confirm password do not match."])
+      } else {
+
+        setErrors([...errors, "Your password and confirm password do not match."])
+      }
     }
   };
 

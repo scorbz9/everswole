@@ -87,7 +87,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                 setShowEditMessage(false)
             }, 4000);
 
-            setShowMain("Home")
+            toggleEdit()
         }
     }
 
