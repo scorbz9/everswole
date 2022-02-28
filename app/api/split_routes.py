@@ -33,7 +33,11 @@ def addSplit(user_id):
 
         # Calculate nearest previous sunday (start date of split)
         current_date = datetime.today()
-        split_date = current_date - timedelta(days=current_date.weekday() + 1)
+
+        if current_date.weekday() == 6:
+            split_date = current_date
+        else:
+            split_date = current_date - timedelta(days=current_date.weekday() + 1)
 
         splits_to_check = Split.query.filter(Split.user_id == user_id).all()
 
