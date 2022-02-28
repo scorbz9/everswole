@@ -37,10 +37,12 @@ const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteM
 
         return month + "/" + day + "/" + year;
     }
-
+    console.log('from db', currentSplit?.start_date)
     let temp = new Date(currentSplit?.start_date)
     let startDate = new Date(currentSplit?.start_date)
     let endDate = new Date(new Date(currentSplit?.start_date).setDate(temp.getDate() + 6))
+    console.log('start', startDate)
+    console.log('end', endDate)
 
     let start = parseDate(startDate)
     let end = parseDate(endDate)
