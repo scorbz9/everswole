@@ -1,6 +1,6 @@
 # Everswole
 
-Everswole is a clone of Evernote, with a focus on lifting weights. Access the Everswole [here.](https://everswole.herokuapp.com/).
+Everswole is a clone of Evernote, with a focus on lifting weights. Access the Everswole [here](https://everswole.herokuapp.com/).
 
 # Index
 |
