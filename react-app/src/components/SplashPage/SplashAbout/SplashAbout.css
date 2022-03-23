@@ -5,8 +5,8 @@
 }
 
 .splash-about-image {
-    height: 698px;
-    width: 980px;
+    height: calc(.68 * 65.3vw);
+    width: 65.3vw;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
     display: block;
@@ -31,4 +31,38 @@
     line-height: 175%;
     font-weight: bold;
     font-size: 16px;
+}
+
+
+@media only screen and (max-width: 950px) {
+
+    .splash-about-container {
+        display: flex;
+        flex-direction: column;
+        margin: 40px 0;
+        align-items: center;
+    }
+
+    .splash-about-info-container {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        margin: 40px 0px;
+    }
+
+    .splash-about-image {
+        align-self: center;
+    }
+
+    .splash-about-info-section {
+        margin: 0 20px;
+    }
+
+    .splash-about-info-header {
+        font-size: 14px;
+    }
+
+    .splash-about-info {
+        font-size: 12px;
+    }
 }

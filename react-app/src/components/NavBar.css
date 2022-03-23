@@ -42,7 +42,7 @@
 .nav-links-container {
     display: flex;
     flex-direction: row;
-    width: 20%;
+    min-width: 300px;
     align-items: center;
     list-style-type: none;
     justify-content: flex-end;
@@ -96,6 +96,7 @@
     font-weight: bold;
     font-size: 16px;
     text-decoration: none;
+    width: 100%;
 }
 
 #nav-sign-up:hover {
