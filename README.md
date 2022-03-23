@@ -24,18 +24,12 @@ Everswole is a clone of Evernote, with a focus on lifting weights. Access the Ev
 
 ![image](https://user-images.githubusercontent.com/63172733/155911519-0532f738-aac7-4493-9f18-f51c67f7544f.png)
 
-# Key Functionality Implemented
-
-Everswole allows the user the create a workout day. A day is a list of exercises that the user will perform on a given day. Users can assign a dynamic amount of exercises on a day up to 9. A user can then go back to the day (once they've performed the exercises) and make notes on how they performed relative to their goals or anything else they'd like to remember about how an exercise went for the future. Lastly, a user can delete a day when they no longer need it. 
-
-Everswole additionally allows the user to organize these workout days in a week-long group called a split. A user can place the days they've created on any day, sunday through monday. They can later update these splits if their plans change and they need to move when a workout takes place. Additionally, a user can delete these splits if they no longer need them.
-
 ## Clone Everswole
 
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
+   git clone https://github.com/scorbz9/everswole.git
    ```
 
 2. Install dependencies
@@ -74,6 +68,12 @@ Everswole additionally allows the user to organize these workout days in a week-
    ```bash
    npm start
    ```
+
+# Key Functionality Implemented
+
+Everswole allows the user the create a workout day. A day is a list of exercises that the user will perform on a given day. Users can assign a dynamic amount of exercises on a day up to 9. A user can then go back to the day (once they've performed the exercises) and make notes on how they performed relative to their goals or anything else they'd like to remember about how an exercise went for the future. Lastly, a user can delete a day when they no longer need it. 
+
+Everswole additionally allows the user to organize these workout days in a week-long group called a split. A user can place the days they've created on any day, sunday through monday. They can later update these splits if their plans change and they need to move when a workout takes place. Additionally, a user can delete these splits if they no longer need them.
 
 # Features Highlights
 
