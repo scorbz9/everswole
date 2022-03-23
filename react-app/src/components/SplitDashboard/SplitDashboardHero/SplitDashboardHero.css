@@ -1,11 +1,12 @@
 .split-dashboard-hero-container {
     height: 460px;
     display: flex;
+    width: 100%;
 }
 
 .split-dashboard-hero-image {
     height: 460px;
-    width: 644px;
+    width: 50%;
     animation-name: blurIn;
     animation-timing-function: ease-in;
     animation-duration: 1.5s;

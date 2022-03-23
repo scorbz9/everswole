@@ -1,3 +1,7 @@
+.split-dashboard-container {
+    display: flex;
+}
+
 .split-dashboard-right {
     margin-left: 240px;
     display: flex;
