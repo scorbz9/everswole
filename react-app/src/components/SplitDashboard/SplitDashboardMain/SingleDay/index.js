@@ -21,11 +21,11 @@ const SingleDay = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteMes
         return (
             <div className="single-day-container">
                 <div className="single-day-info-container">
-                    <h2 className="single-day-header">{currentDay.name}</h2>
+                    <h2 className="single-day-header">{currentDay?.name}</h2>
                     <div className="single-day-edit-button" onClick={toggleEdit}>
                         Edit
                     </div>
-                    {currentDay.exercises.map((exercise, i) => {
+                    {currentDay?.exercises.map((exercise, i) => {
                         return (
                             <div key={i} className="single-day-exercise-container">
                                 <div className="single-day-exercise-number single-day-exercise-element">

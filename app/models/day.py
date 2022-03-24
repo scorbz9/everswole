@@ -4,8 +4,9 @@ from sqlalchemy import func
 class DaysExercises(db.Model):
     __tablename__ = 'DaysExercises'
 
-    day_id = db.Column(db.Integer, db.ForeignKey("days.id"), primary_key=True)
-    exercise_id = db.Column(db.Integer, db.ForeignKey("exercises.id"), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    day_id = db.Column(db.Integer, db.ForeignKey("days.id"))
+    exercise_id = db.Column(db.Integer, db.ForeignKey("exercises.id"))
     goal = db.Column(db.String(30), default="")
     actual = db.Column(db.String(30), default="")
     notes = db.Column(db.String(500), default="")
@@ -38,7 +39,8 @@ class Day(db.Model):
             'id': self.id,
             'name': self.name,
             'exercises': [{
-                'id': exercise.exercise.id,
+                'id': exercise.id,
+                'exercise_id': exercise.exercise.id,
                 'name': exercise.exercise.name,
                 'goal': exercise.goal,
                 'actual': exercise.actual,

@@ -18,6 +18,8 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
     // Parse currentDay info into a state usable by 'workoutInputList'
     const currentExerciseInfo = currentDay?.exercises.map((exercise) => {
         return {
+            id: exercise.id,
+            exercise_id: exercise.exercise_id,
             name: exercise.name,
             goal: exercise.goal,
             actual: exercise.actual,
@@ -27,7 +29,6 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
     })
 
     const [name, setName] = useState("")
-    const [currentExerciseList, setCurrentExerciseList] = useState([])
     const [workoutInputList, setWorkoutInputList] = useState([])
     const [errors, setErrors] = useState([])
 
@@ -43,6 +44,10 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
 
         if (e.target.name === 'exercise-name') {
             list[index].name = value
+
+            let newExerciseId = exercises.find(exercise => exercise.name === value).id
+            list[index].exercise_id = newExerciseId
+
         } else if (e.target.name === 'exercise-goal') {
             list[index].goal = value
         } else if (e.target.name === 'exercise-actual') {
@@ -62,7 +67,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
     }
 
     const handleAddWorkoutInput = () => {
-        setWorkoutInputList([...workoutInputList, { name: "Flat Bench", goal: "", actual: "", notes: "" }])
+        setWorkoutInputList([...workoutInputList, { exercise_id: 1, name: "Flat Bench", goal: "", actual: "", notes: "" }])
     }
 
     const handleEditSubmit = async (e) => {
@@ -117,6 +122,8 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     placeholder="Name"
+                                    autoComplete="off"
+                                    maxLength="50"
                                     className="edit-day-form-input edit-day-form-input-name"
                                 />
                         </h2>
@@ -132,7 +139,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                             return (
                                 <div key={i} className="single-day-exercise-container">
                                     <div className="edit-day-form-label">{`Exercise #${i + 1}:`}</div>
-                                    {!exercise.current ?
+
                                         <select
                                             name="exercise-name"
                                             value={exercise.name}
@@ -146,13 +153,15 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                                                 )
                                             })}
                                         </select>
-                                    : <div className="edit-day-form-input">{exercise.name}</div>}
+
                                         <input
                                             name="exercise-goal"
                                             type="text"
                                             value={exercise.goal}
                                             onChange={e => updateWorkoutInputListName(e, i)}
                                             placeholder="Goal"
+                                            autoComplete="off"
+                                            maxLength="30"
                                             className="edit-day-form-input"
                                         />
 
@@ -163,6 +172,8 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                                             value={exercise.actual}
                                             onChange={e => updateWorkoutInputListName(e, i)}
                                             placeholder="Actual"
+                                            autoComplete="off"
+                                            maxLength="30"
                                             className="edit-day-form-input"
                                         />
 
@@ -171,6 +182,8 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                                             value={exercise.notes}
                                             onChange={e => updateWorkoutInputListName(e, i)}
                                             placeholder="Notes"
+                                            autoComplete="off"
+                                            maxLength="500"
                                             className="edit-day-form-input edit-day-form-notes"
 
                                         />
