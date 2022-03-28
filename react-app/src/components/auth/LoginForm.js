@@ -49,7 +49,7 @@ const LoginForm = () => {
       <form onSubmit={onLogin} className="login-form">
         <div className="login-form-header">
           <h4>Please log in to Everswole</h4>
-          <h6>By logging in to Everswole, you hereby agree to never do curls in the squat rack.</h6>
+          <h6 className="form-element">By logging in to Everswole, you hereby agree to never do curls in the squat rack.</h6>
         </div>
         <div className="error-container">
           {errors.map((error, ind) => (

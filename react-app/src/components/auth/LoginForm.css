@@ -8,14 +8,19 @@
 .login-form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     background-color: rgba(136, 0, 0, 0.2);
-    width: 460px;
+    width: min(90%, 460px);
     border-radius: 10px;
     opacity: 1;
     animation-name: fadeInOpacity;
     animation-timing-function: ease-in;
     animation-duration: .3s;
+}
+
+.form-element input {
+    width: 100%;
 }
 
 @keyframes fadeInOpacity {
@@ -29,7 +34,7 @@
 }
 
 .form-element {
-    width: 391px;
+    width: min(85%, 391px);
 }
 
 .login-form-header {
@@ -98,6 +103,7 @@
 .login-form-demo-user {
     margin: 5px 0 30px 0;
     height: 40px;
+    width: 100%;
     background-color: #b40303;
     color: white;
     font-weight: bold;

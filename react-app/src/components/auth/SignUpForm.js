@@ -68,7 +68,7 @@ const SignUpForm = () => {
       <form onSubmit={onSignUp} className="sign-up-form">
         <div className="sign-up-form-header">
           <h4>Sign up for Everswole</h4>
-          <h6>By creating an account for Everswole, you hereby agree to not skip leg day.</h6>
+          <h6 className="form-element">By creating an account for Everswole, you hereby agree to not skip leg day.</h6>
         </div>
         <div className="error-container">
           {errors.map((error, ind) => (
@@ -77,7 +77,7 @@ const SignUpForm = () => {
         </div>
         <div className="sign-up-input form-element">
           <input
-            className="form-element"
+
             type='text'
             name='username'
             onChange={updateUsername}
@@ -123,7 +123,7 @@ const SignUpForm = () => {
               <p className="sign-up-form-sign-up">Already have an account? <Link to="/login" className="sign-up-form-sign-up-link">Log in</Link></p>
         </div>
         <div className="login-form-demo-user-container form-element">
-            <button onClick={onDemo} className="login-form-demo-user form-element" type='button'>Demo User</button>
+            <button onClick={onDemo} className="sign-up-form-demo-user form-element" type='button'>Demo User</button>
         </div>
       </form>
     </div>

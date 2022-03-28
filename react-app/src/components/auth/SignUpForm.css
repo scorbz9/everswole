@@ -8,15 +8,20 @@
 .sign-up-form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     background-color: rgba(136, 0, 0, 0.2);
-    width: 460px;
+    width: min(90%, 460px);
     margin-bottom: 80px;
     border-radius: 10px;
     opacity: 1;
     animation-name: fadeInOpacity;
     animation-timing-function: ease-in;
     animation-duration: .3s;
+}
+
+.form-element input {
+    width: 100%;
 }
 
 @keyframes fadeInOpacity {
@@ -27,10 +32,6 @@
     100% {
         opacity: 1;
     }
-}
-
-.form-element {
-    width: 391px;
 }
 
 .sign-up-form-header {
@@ -97,6 +98,7 @@
 .sign-up-form-demo-user {
     margin: 5px 0 30px 0;
     height: 40px;
+    width: 100%;
     background-color: #b40303;
     color: white;
     font-weight: bold;
