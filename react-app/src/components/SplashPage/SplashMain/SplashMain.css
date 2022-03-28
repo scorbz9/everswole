@@ -24,6 +24,7 @@
     line-height: 150%;
     text-align: center;
     width: 90%;
+    z-index: 1;
 }
 
 .greeting-subtitle {
