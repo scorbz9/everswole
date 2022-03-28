@@ -60,7 +60,7 @@ const NavBar = ({ user }) => {
         <div className='drop-button' >
           {show === false ? <button className='res-margin' onClick={handleMenu}>Menu <FontAwesomeIcon icon={faBars} className='fa-nav-res' /></button>:<button className='res-margin' onClick={handleMenu}>Menu <FontAwesomeIcon icon={faCaretSquareDown} className='fa-nav-res' /></button>}
           {show === true ? <Link className='res-nav-bar-links' to='/login'>Log in</Link>: <></>}
-          {show === true ? <Link className='res-nav-bar-links' to='/signup'>Sign up</Link>: <></>}
+          {show === true ? <Link className='res-nav-bar-links' to='/sign-up'>Sign up</Link>: <></>}
         </div>
       </nav>
     </>
