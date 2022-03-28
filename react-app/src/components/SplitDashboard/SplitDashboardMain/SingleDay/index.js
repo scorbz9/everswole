@@ -19,7 +19,7 @@ const SingleDay = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteMes
     if (!showEditForm) {
 
         return (
-            <div className="single-day-container">
+            <div className="single-day-container main-content-container">
                 <div className="single-day-info-container">
                     <h2 className="single-day-header">{currentDay?.name}</h2>
                     <div className="single-day-edit-button" onClick={toggleEdit}>
@@ -27,21 +27,24 @@ const SingleDay = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteMes
                     </div>
                     {currentDay?.exercises.map((exercise, i) => {
                         return (
-                            <div key={i} className="single-day-exercise-container">
-                                <div className="single-day-exercise-number single-day-exercise-element">
-                                    {`Exercise #${i + 1}:`}
-                                </div>
-                                <div className="single-day-exercise-name single-day-exercise-element">
-                                    {exercise.name}
-                                </div>
+                            <div key={i} className="single-day-exercise-container ">
+
+                                    <strong className="single-day-label">{`Exercise #${i + 1}:`}</strong>
+                                    <div className="single-day-exercise-name single-day-exercise-element">
+                                        {exercise.name}
+                                    </div>
+
+                                <strong className="single-day-label">Goal: </strong>
                                 <div className="single-day-exercise-goal single-day-exercise-element">
-                                    Goal: {exercise.goal}
+                                    {exercise.goal}
                                 </div>
+                                <strong className="single-day-label">Actual: </strong>
                                 <div className="single-day-exercise-actual single-day-exercise-element">
-                                    Actual: {exercise.actual}
+                                    {exercise.actual}
                                 </div>
+                                <strong className="single-day-label">Notes: </strong>
                                 <div className="single-day-exercise-notes single-day-exercise-element">
-                                    Notes: {exercise.notes}
+                                    {exercise.notes}
                                 </div>
                             </div>
                         )

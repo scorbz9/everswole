@@ -21,7 +21,6 @@ const SplitDashboard = () => {
     const userId = useSelector(state => state.session.user.id)
 
     useEffect(() => {
-        window.scroll(0, 240);
 
         (async() => {
             await dispatch(getAllExercises())

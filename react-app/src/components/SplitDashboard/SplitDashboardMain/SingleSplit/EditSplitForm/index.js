@@ -144,7 +144,7 @@ const EditSplitForm =
     }
 
     return (
-        <div className="edit-split-form-container">
+        <div className="edit-split-form-container main-content-container">
             <form onSubmit={handleSubmit}>
                 <div className="single-split-header">
                     <label className="edit-split-name-label" htmlFor="name">*Name:

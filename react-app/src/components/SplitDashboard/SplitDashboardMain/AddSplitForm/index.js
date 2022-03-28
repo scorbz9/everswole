@@ -96,7 +96,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
 
     return (
 
-        <div className="add-split-form-container">
+        <div className="add-split-form-container main-content-container">
             <h2 className="add-split-form-header">Organize your week's workouts</h2>
             <form onSubmit={handleSubmit}>
                 <label className="add-split-name-label" htmlFor="name"> *Name:

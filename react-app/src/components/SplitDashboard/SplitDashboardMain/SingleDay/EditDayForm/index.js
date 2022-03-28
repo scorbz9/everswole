@@ -111,7 +111,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
     }
 
     return (
-        <div className="edit-day-form-container">
+        <div className="edit-day-form-container main-content-container">
                 <div className="single-day-info-container">
                     <form onSubmit={handleEditSubmit}>
                         <h2 className="edit-day-form-header">
@@ -137,7 +137,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                         </div>
                         {workoutInputList?.map((exercise, i) => {
                             return (
-                                <div key={i} className="single-day-exercise-container">
+                                <div key={i} className="single-day-edit-exercise-container">
                                     <div className="edit-day-form-label">{`Exercise #${i + 1}:`}</div>
 
                                         <select
@@ -154,6 +154,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                                             })}
                                         </select>
 
+                                        <strong className="edit-day-form-label">Goal: </strong>
                                         <input
                                             name="exercise-goal"
                                             type="text"
@@ -165,7 +166,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                                             className="edit-day-form-input"
                                         />
 
-
+                                        <strong className="edit-day-form-label">Actual: </strong>
                                         <input
                                             type="text"
                                             name="exercise-actual"
@@ -177,6 +178,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                                             className="edit-day-form-input"
                                         />
 
+                                        <strong className="edit-day-form-label">Notes: </strong>
                                         <textarea
                                             name="exercise-notes"
                                             value={exercise.notes}

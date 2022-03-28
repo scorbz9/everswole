@@ -51,7 +51,7 @@ const DashboardHome = ({ setShowMain, setShowEditMessage, setShowDeleteMessage }
 
     if (!currentSplit) {
         return (
-            <div className="no-split-container">
+            <div className="no-split-container main-content-container">
 
                 <div className="no-split-warning">There are no splits! <span onClick={() => setShowMain("AddSplitForm")} className="create-link">Create one now.</span></div>
 
@@ -61,7 +61,7 @@ const DashboardHome = ({ setShowMain, setShowEditMessage, setShowDeleteMessage }
 
     if (!showEditForm) {
         return (
-            <div className="single-split-container">
+            <div className="single-split-container main-content-container">
                 <div className="single-split-header">
                     <div>Current Split - {currentSplit?.name}</div>
                     <div className="single-split-date-range">{start} - {end}</div>

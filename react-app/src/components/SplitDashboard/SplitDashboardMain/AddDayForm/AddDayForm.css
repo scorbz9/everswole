@@ -7,14 +7,14 @@
     left: 0;
     right: 0;
     margin: auto;
-    margin-top: 340px;
     padding: 20px 30px;
-    /* height: 500px; */
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     white-space: nowrap;
+    max-height: 600px;
+    overflow-y: scroll;
 }
 
 .add-day-form-header {
