@@ -115,6 +115,7 @@
 .edit-day-form-delete-workout {
     margin-left: 5px;
     align-self: center;
+    cursor: pointer;
 }
 
 .edit-day-form-delete-day {

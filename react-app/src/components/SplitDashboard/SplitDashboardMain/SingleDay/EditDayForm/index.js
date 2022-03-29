@@ -8,6 +8,9 @@ import { faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
 // State imports
 import { editOneDay, deleteOneDay } from "../../../../../store/day";
 
+// Component imports
+import ConfirmDelete from "../../ConfirmDelete";
+
 import './EditDayForm.css'
 
 const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, setShowDeleteMessage }) => {
@@ -24,7 +27,6 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
             goal: exercise.goal,
             actual: exercise.actual,
             notes: exercise.notes,
-            current: true,
         }
     })
 
@@ -110,8 +112,17 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
         setShowMain("Home")
     }
 
+    const [showDelete, setShowDelete] = useState(false)
+
+    const toggleDelete = (e) => {
+        e.preventDefault();
+
+        setShowDelete(!showDelete)
+    }
+
     return (
         <div className="edit-day-form-container main-content-container">
+            {showDelete ? <ConfirmDelete typeOfDelete={"day"} handleDeleteDay={handleDeleteDay} toggleDelete={toggleDelete} /> : <></>}
                 <div className="single-day-info-container">
                     <form onSubmit={handleEditSubmit}>
                         <h2 className="edit-day-form-header">
@@ -202,7 +213,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                                 </div>
                             }
                         <button className="edit-day-form-submit" type="submit">Submit</button>
-                        <button className="edit-day-form-delete-day" onClick={handleDeleteDay}>Delete Day</button>
+                        <button className="edit-day-form-delete-day" onClick={toggleDelete}>Delete Day</button>
                     </form>
                 </div>
             </div>
