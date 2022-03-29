@@ -23,9 +23,11 @@ const SplitDashboard = () => {
     useEffect(() => {
 
         (async() => {
-            await dispatch(getAllExercises())
-            await dispatch(getAllDays(userId))
-            await dispatch(getAllSplits(userId))
+            await Promise.all([
+                dispatch(getAllExercises()),
+                dispatch(getAllDays(userId)),
+                dispatch(getAllSplits(userId))
+            ])
         })();
     }, [dispatch])
 
