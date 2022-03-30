@@ -5,6 +5,7 @@
 }
 
 .split-dashboard-hero-image {
+    margin-top: -185px;
     height: 460px;
     width: 50%;
     animation-name: blurIn;

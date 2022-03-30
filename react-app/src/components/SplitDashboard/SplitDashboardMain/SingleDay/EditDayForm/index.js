@@ -1,3 +1,4 @@
+// React imports
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -7,6 +8,9 @@ import { faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // State imports
 import { editOneDay, deleteOneDay } from "../../../../../store/day";
+
+// Component imports
+import ConfirmDelete from "../../ConfirmDelete";
 
 import './EditDayForm.css'
 
@@ -24,10 +28,10 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
             goal: exercise.goal,
             actual: exercise.actual,
             notes: exercise.notes,
-            current: true,
         }
     })
 
+    // Form state variables
     const [name, setName] = useState("")
     const [workoutInputList, setWorkoutInputList] = useState([])
     const [errors, setErrors] = useState([])
@@ -86,7 +90,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
         } else {
             setErrors([])
 
-            // Send confirmation message
+            // Send successful edit confirmation message
             setShowEditMessage(true)
             setTimeout(() => {
                 setShowEditMessage(false)
@@ -96,12 +100,13 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
         }
     }
 
+
     const handleDeleteDay = async e => {
         e.preventDefault();
 
         const data = await dispatch(deleteOneDay(userId, currentDay.id))
 
-        // Confirmation message
+        // Successful delete confirmation message
         setShowDeleteMessage(true)
         setTimeout(() => {
             setShowDeleteMessage(false)
@@ -110,8 +115,19 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
         setShowMain("Home")
     }
 
+    // Shows delete confirmation popup
+
+    const [showDelete, setShowDelete] = useState(false)
+
+    const toggleDelete = (e) => {
+        e.preventDefault();
+
+        setShowDelete(!showDelete)
+    }
+
     return (
-        <div className="edit-day-form-container">
+        <div className="edit-day-form-container main-content-container">
+            {showDelete ? <ConfirmDelete typeOfDelete={"day"} handleDeleteDay={handleDeleteDay} toggleDelete={toggleDelete} /> : <></>}
                 <div className="single-day-info-container">
                     <form onSubmit={handleEditSubmit}>
                         <h2 className="edit-day-form-header">
@@ -137,7 +153,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                         </div>
                         {workoutInputList?.map((exercise, i) => {
                             return (
-                                <div key={i} className="single-day-exercise-container">
+                                <div key={i} className="single-day-edit-exercise-container">
                                     <div className="edit-day-form-label">{`Exercise #${i + 1}:`}</div>
 
                                         <select
@@ -154,18 +170,19 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                                             })}
                                         </select>
 
+                                        <strong className="edit-day-form-label">Goal: </strong>
                                         <input
                                             name="exercise-goal"
                                             type="text"
                                             value={exercise.goal}
                                             onChange={e => updateWorkoutInputListName(e, i)}
-                                            placeholder="Goal"
+                                            placeholder="sets x reps x weight"
                                             autoComplete="off"
                                             maxLength="30"
                                             className="edit-day-form-input"
                                         />
 
-
+                                        <strong className="edit-day-form-label">Actual: </strong>
                                         <input
                                             type="text"
                                             name="exercise-actual"
@@ -177,6 +194,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                                             className="edit-day-form-input"
                                         />
 
+                                        <strong className="edit-day-form-label">Notes: </strong>
                                         <textarea
                                             name="exercise-notes"
                                             value={exercise.notes}
@@ -200,7 +218,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                                 </div>
                             }
                         <button className="edit-day-form-submit" type="submit">Submit</button>
-                        <button className="edit-day-form-delete-day" onClick={handleDeleteDay}>Delete Day</button>
+                        <button className="edit-day-form-delete-day" onClick={toggleDelete}>Delete Day</button>
                     </form>
                 </div>
             </div>

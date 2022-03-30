@@ -21,12 +21,13 @@ const SplitDashboard = () => {
     const userId = useSelector(state => state.session.user.id)
 
     useEffect(() => {
-        window.scroll(0, 240);
 
         (async() => {
-            await dispatch(getAllExercises())
-            await dispatch(getAllDays(userId))
-            await dispatch(getAllSplits(userId))
+            await Promise.all([
+                dispatch(getAllExercises()),
+                dispatch(getAllDays(userId)),
+                dispatch(getAllSplits(userId))
+            ])
         })();
     }, [dispatch])
 

@@ -20,7 +20,7 @@
 }
 
 .greeting {
-    font-size:  clamp(24px, 3.73vw, 60px);  /* 56px */
+    font-size:  clamp(24px, 3.73vw, 60px);
     line-height: 150%;
     text-align: center;
     width: 90%;

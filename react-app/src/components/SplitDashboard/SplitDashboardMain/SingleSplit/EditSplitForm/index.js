@@ -1,14 +1,16 @@
+// React/Redux imports
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Component imports
 import EditSplitSingleDay from "./EditSplitSingleDay";
+import ConfirmDelete from "../../ConfirmDelete";
 
 // Store Imports
-import { deleteOneSplit, getAllSplits, editOneSplit } from "../../../../../store/split";
+import { deleteOneSplit, editOneSplit } from "../../../../../store/split";
+import { getAllDays } from "../../../../../store/day";
 
 import './EditSplitForm.css'
-import { getAllDays } from "../../../../../store/day";
 
 
 const EditSplitForm =
@@ -28,6 +30,7 @@ const EditSplitForm =
 
     if (currentSplit) unassignedDays = [...unassignedDays, ...currentSplit.days]
 
+    // Prepopulate state variables with current info
     const currentSunday = currentSplit?.days.find(day => day.assigned_day === 'sunday')
     const currentMonday = currentSplit?.days.find(day => day.assigned_day === 'monday')
     const currentTuesday = currentSplit?.days.find(day => day.assigned_day === 'tuesday')
@@ -36,6 +39,7 @@ const EditSplitForm =
     const currentFriday = currentSplit?.days.find(day => day.assigned_day === 'friday')
     const currentSaturday = currentSplit?.days.find(day => day.assigned_day === 'saturday')
 
+    // Form state variables
     const [name, setName] = useState(currentSplit?.name)
     const [sunday, setSunday] = useState(currentSunday ? currentSunday.id : "")
     const [monday, setMonday] = useState(currentMonday ? currentMonday.id : "")
@@ -55,6 +59,7 @@ const EditSplitForm =
                                         friday: currentFriday ? `${currentFriday.id}` : "",
                                         saturday: currentSaturday ? `${currentSaturday.id}` : "" })
 
+    // Handles select dropdown changes, including keeping track of already-selected days
     const handleDayChange = (e, day) => {
         if (day === 'sunday') {
             setSunday(e.target.value)
@@ -113,7 +118,7 @@ const EditSplitForm =
         } else {
             setErrors([])
 
-            // Send confirmation message
+            // Send successful edit confirmation message
             setShowEditMessage(true)
             setTimeout(() => {
                 setShowEditMessage(false)
@@ -131,7 +136,7 @@ const EditSplitForm =
 
         const data = await dispatch(deleteOneSplit(userId, currentSplit.id))
 
-        // Confirmation message
+        // Successful delete confirmation message
         setShowDeleteMessage(true)
         setTimeout(() => {
             setShowDeleteMessage(false)
@@ -143,8 +148,19 @@ const EditSplitForm =
         await dispatch(getAllDays(userId))
     }
 
+    // Shows delete confirmation popup
+
+    const [showDelete, setShowDelete] = useState(false)
+
+    const toggleDelete = (e) => {
+        e.preventDefault();
+
+        setShowDelete(!showDelete)
+    }
+
     return (
-        <div className="edit-split-form-container">
+        <div className="edit-split-form-container main-content-container">
+            {showDelete ? <ConfirmDelete typeOfDelete={"split"} handleDeleteSplit={handleDeleteSplit} toggleDelete={toggleDelete} /> : <></>}
             <form onSubmit={handleSubmit}>
                 <div className="single-split-header">
                     <label className="edit-split-name-label" htmlFor="name">*Name:
@@ -160,7 +176,7 @@ const EditSplitForm =
                     <div className="single-split-edit-button" onClick={toggleEdit}>
                         Edit
                     </div>
-                    <button className="edit-split-form-delete-split" onClick={handleDeleteSplit}>Delete Split</button>
+                    <button className="edit-split-form-delete-split" onClick={toggleDelete}>Delete Split</button>
                 </div>
                 <div className="add-split-error-container">
                     {errors.map((error, ind) => (

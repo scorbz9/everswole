@@ -4,22 +4,17 @@
     position: absolute;
     z-index: 100;
     width: 1200px;
+    max-height: 600px;
     left: 0;
     right: 0;
     margin: auto;
-    margin-top: 340px;
     padding: 20px 30px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     white-space: nowrap;
-}
-
-.single-day-exercise-number {
-    display: flex;
-    align-items: center;
-    width: 100px;
+    overflow-y: scroll;
 }
 
 .edit-day-form-header {
@@ -32,7 +27,7 @@
     padding: 5px;
     border: none;
     margin: 0 10px 0 5px;
-    width: 100px;
+    width: 130px;
 }
 
 .edit-day-form-input-name {
@@ -44,13 +39,16 @@
 
 .edit-day-form-name-label {
     margin-right: 15px;
+    font-size: 45px;
+
 }
 
 .edit-day-form-label {
-    width: 100px;
+    /* min-width: 100px; */
     display: flex;
-    align-items: center;
     margin-right: 10px;
+    margin-top: 6px;
+    font-weight: bold;
 }
 
 .edit-day-form-add-workout {
@@ -106,7 +104,8 @@
 .edit-day-form-notes {
     resize: none;
     padding-top: 9px;
-    width: 130px
+    min-width: 420px;
+    height: 70px;
 }
 
 .edit-day-form-exercise-name {
@@ -115,6 +114,8 @@
 
 .edit-day-form-delete-workout {
     margin-left: 5px;
+    align-self: center;
+    cursor: pointer;
 }
 
 .edit-day-form-delete-day {
@@ -134,4 +135,14 @@
 .edit-day-form-delete-day:hover {
     background: #894597;
     border: 2px solid #894597;
+}
+
+.single-day-edit-exercise-container {
+    display: flex;
+    font-size: 16px;
+    margin: 40px 0;
+    width: 55%;
+    height: 70px;
+    justify-content: space-between;
+    align-items: flex-start;
 }

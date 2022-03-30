@@ -1,0 +1,73 @@
+.overlay-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    min-width: 100vw;
+    height: 100vh;
+    background-color:rgba(0,0,0,.75)
+}
+
+.confirm-delete-container {
+    position: absolute;
+    background-color: #555454;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: max-content;
+    height: max-content;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    z-index: 1000;
+    animation-name: fadeInOpacity;
+    animation-timing-function: ease-in;
+    animation-duration: 0.2s;
+}
+
+.confirm-delete-text {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.confirm-delete-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 10px 0;
+}
+
+.confirm-delete-button {
+    padding: 5px 20px;
+    border-radius: 20px;
+    border: 2px solid #b95ccc;
+    color: white;
+    background-color: #b95ccc;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    margin-right: 10px;
+}
+
+.confirm-delete-button:hover {
+    background: #894597;
+    border: 2px solid #894597;
+}
+
+.confirm-delete-cancel {
+    color: white;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    letter-spacing: 1.5px;
+    width: 127px;
+    padding: 0;
+}
+
+.confirm-delete-cancel:hover {
+    text-decoration: underline;
+}

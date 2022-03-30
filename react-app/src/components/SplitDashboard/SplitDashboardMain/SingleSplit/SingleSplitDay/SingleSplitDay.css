@@ -37,3 +37,8 @@
 .single-split-edit-day-button:hover {
     background-color: #b40303;
 }
+
+.single-split-day-exercise-notes {
+    margin-top: 20px !important;
+    overflow-wrap: break-word;
+}
