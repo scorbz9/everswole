@@ -1,3 +1,4 @@
+// React imports
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -30,6 +31,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
         }
     })
 
+    // Form state variables
     const [name, setName] = useState("")
     const [workoutInputList, setWorkoutInputList] = useState([])
     const [errors, setErrors] = useState([])
@@ -88,7 +90,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
         } else {
             setErrors([])
 
-            // Send confirmation message
+            // Send successful edit confirmation message
             setShowEditMessage(true)
             setTimeout(() => {
                 setShowEditMessage(false)
@@ -98,12 +100,13 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
         }
     }
 
+
     const handleDeleteDay = async e => {
         e.preventDefault();
 
         const data = await dispatch(deleteOneDay(userId, currentDay.id))
 
-        // Confirmation message
+        // Successful delete confirmation message
         setShowDeleteMessage(true)
         setTimeout(() => {
             setShowDeleteMessage(false)
@@ -111,6 +114,8 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
 
         setShowMain("Home")
     }
+
+    // Shows delete confirmation popup
 
     const [showDelete, setShowDelete] = useState(false)
 
@@ -171,7 +176,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
                                             type="text"
                                             value={exercise.goal}
                                             onChange={e => updateWorkoutInputListName(e, i)}
-                                            placeholder="Goal"
+                                            placeholder="sets x reps x weight"
                                             autoComplete="off"
                                             maxLength="30"
                                             className="edit-day-form-input"

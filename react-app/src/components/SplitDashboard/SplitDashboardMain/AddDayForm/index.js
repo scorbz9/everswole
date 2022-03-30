@@ -1,3 +1,4 @@
+// React imports
 import React , { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -35,7 +36,6 @@ const AddDayForm = ({ setShowMain, setShowAddMessage }) => {
         list[index].goal = value
 
         setWorkoutInputList(list);
-
     }
 
     const handleRemoveWorkoutInput = index => {
