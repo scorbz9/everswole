@@ -1,5 +1,5 @@
 import React from 'react';
-import weightsPic from '../../img/everswole_weights.jpg'
+import weightsPic from '../../img/everswole_unsplash_pic_1_resize.jpg'
 import './SplashAbout.css'
 
 const SplashAbout = () => {

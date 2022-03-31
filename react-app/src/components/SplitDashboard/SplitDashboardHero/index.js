@@ -1,8 +1,8 @@
 import React from 'react'
 
 import plates from '../../img/everswole_reverse.jpg'
-import plates2 from '../../img/everswole_plates.jpg'
-import plates3 from '../../img/everswole_plates_2.jpg'
+import plates2 from '../../img/everswole_unsplash_pic_2_resize.jpg'
+import plates3 from '../../img/everswole_unsplash_pic_6_resize.jpg'
 
 import './SplitDashboardHero.css'
 

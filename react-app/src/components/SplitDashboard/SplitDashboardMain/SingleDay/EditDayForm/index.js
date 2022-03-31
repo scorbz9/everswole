@@ -116,7 +116,6 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
     }
 
     // Shows delete confirmation popup
-
     const [showDelete, setShowDelete] = useState(false)
 
     const toggleDelete = (e) => {
