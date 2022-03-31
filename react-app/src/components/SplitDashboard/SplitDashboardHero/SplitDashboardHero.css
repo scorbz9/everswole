@@ -10,13 +10,13 @@
     width: 50%;
     animation-name: blurIn;
     animation-timing-function: ease-in;
-    animation-duration: 1.5s;
+    animation-duration: .5s;
     filter: blur(2px)
 }
 
 @keyframes blurIn {
     0% {
-        filter: blur(15px)
+        filter: blur(8px)
     }
 
     100% {
