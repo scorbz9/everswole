@@ -57,3 +57,12 @@
     color: red;
     margin-bottom: 10px;
 }
+
+.react-calendar {
+    width: 257px !important;
+
+}
+
+.react-calendar__viewContainer {
+    height: 200px !important;
+}

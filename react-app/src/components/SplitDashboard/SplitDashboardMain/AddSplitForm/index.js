@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import Calendar from 'react-calendar';
 import { useDispatch, useSelector } from "react-redux";
 
 // State imports
 import { addOneSplit } from "../../../../store/split";
 import { getAllDays } from "../../../../store/day";
 
+import 'react-calendar/dist/Calendar.css';
 import './AddSplitForm.css'
 
 const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
@@ -15,6 +17,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
     const userId = useSelector(state => state.session.user.id)
 
     const [name, setName] = useState("")
+    const [startDate, setStartDate] = useState(new Date())
     const [sunday, setSunday] = useState("")
     const [monday, setMonday] = useState("")
     const [tuesday, setTuesday] = useState("")
@@ -63,6 +66,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
 
         const payload = {
             name,
+            startDate,
             days: [
                 { sunday: sunday },
                 { monday: monday },
@@ -93,13 +97,13 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
             await dispatch(getAllDays(userId))
         }
     }
-
+    console.log(startDate)
     return (
 
         <div className="add-split-form-container main-content-container">
             <h2 className="add-split-form-header">Organize your week's workouts</h2>
             <form onSubmit={handleSubmit}>
-                <label className="add-split-name-label" htmlFor="name"> *Name:
+                {/* <label className="add-split-name-label" htmlFor="name"> *Name:
                 </label>
                     <input
                         name="name"
@@ -108,7 +112,10 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         onChange={e => setName(e.target.value)}
                         placeholder="Name"
                         className="add-split-form-name"
-                    />
+                    /> */}
+                <div className="add-split-form-calendar-container">
+                    <Calendar onChange={setStartDate} value={startDate} />
+                </div>
                 <div className="add-split-error-container">
                     {errors.map((error, ind) => (
                         <div key={ind} className="add-day-form-error">{error}</div>
