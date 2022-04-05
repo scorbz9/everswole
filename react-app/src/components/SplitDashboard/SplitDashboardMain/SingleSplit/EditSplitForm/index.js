@@ -15,6 +15,9 @@ import { getAllDays } from "../../../../../store/day";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar } from '@fortawesome/free-solid-svg-icons'
 
+// Util imports
+import { parseDate } from "../../../../utils";
+
 import './EditSplitForm.css'
 
 
@@ -22,8 +25,6 @@ const EditSplitForm =
     ({ currentSplit,
     toggleEdit,
     setShowMain,
-    start,
-    end,
     setShowEditMessage,
     setShowDeleteMessage }) => {
 
@@ -190,16 +191,7 @@ const EditSplitForm =
                             <Calendar returnValue={'start'} minDetail={"year"} onChange={setStartDate} value={startDate} />
                         </div> : <></>}
                     </div>
-                    {/* <label className="edit-split-name-label" htmlFor="name">*Name:
-                    </label>
-                        <input
-                            name="name"
-                            type="text"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                            className="add-split-form-name"
-                        /> */}
-                    <div className="single-split-edit-date-range">{start} - {end}</div>
+                    {/* <div className="single-split-edit-date-range">{start} - {end}</div> */}
                     <div className="single-split-edit-button" onClick={toggleEdit}>
                         Edit
                     </div>

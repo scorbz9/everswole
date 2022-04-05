@@ -116,7 +116,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
 
     return (
         <div className="add-split-form-container main-content-container">
-            <h2 className="add-split-form-header">Organize your week's workouts</h2>
+            {/* <h2 className="add-split-form-header">Organize your week's workouts</h2> */}
             <form onSubmit={handleSubmit}>
                 <div className="add-split-form-date-section">
                     <label className="add-split-name-label" htmlFor="add-split-form-calendar-toggle">*Select a start date: </label>

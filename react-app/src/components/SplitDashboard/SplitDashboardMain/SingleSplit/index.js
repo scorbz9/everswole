@@ -1,9 +1,11 @@
+// React/Redux imports
 import React, { useState } from "react";
-
 import { useSelector } from "react-redux";
 
+// Util imports
 import { parseDate } from "../../../utils";
 
+// Component imports
 import EditSplitForm from "./EditSplitForm";
 import SingleSplitDay from "./SingleSplitDay";
 
@@ -64,10 +66,6 @@ const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteM
                 currentSplit={currentSplit}
                 toggleEdit={toggleEdit}
                 setShowMain={setShowMain}
-                // startDate={startDate}
-                // setStartDate={setStartDate}
-                start={start}
-                end={end}
                 setShowEditMessage={setShowEditMessage}
                 setShowDeleteMessage={setShowDeleteMessage}
             />

@@ -34,7 +34,7 @@
     margin-top: 12px;
     margin-right: 16px;
     margin-left: 10px;
-    font-size: 28px;
+    font-size: 40px;
     font-weight: bold;
 }
 
@@ -90,7 +90,7 @@
     display: inline;
     position: relative;
     bottom: 1px;
-    font-size: 25px;
+    font-size: 40px;
 }
 
 .add-split-form-day-container {
