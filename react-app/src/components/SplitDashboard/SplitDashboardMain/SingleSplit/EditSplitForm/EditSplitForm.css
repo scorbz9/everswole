@@ -79,3 +79,8 @@
     letter-spacing: 1.5px;
     margin-left: 20px;
 }
+
+.edit-split-form-calendar {
+    top: 15px !important;
+    left: 350px !important;
+}

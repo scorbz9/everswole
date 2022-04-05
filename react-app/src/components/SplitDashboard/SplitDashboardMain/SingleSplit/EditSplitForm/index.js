@@ -189,7 +189,7 @@ const EditSplitForm =
                         </button>
                         {showCalendar ?
                         <div className="add-split-form-calendar-container">
-                            <Calendar returnValue={'start'} minDetail={"year"} onChange={setStartDate} value={startDate} />
+                            <Calendar className="edit-split-form-calendar" returnValue={'start'} minDetail={"year"} onChange={setStartDate} value={startDate} />
                         </div> : <></>}
                     </div>
                     {/* <div className="single-split-edit-date-range">{start} - {end}</div> */}

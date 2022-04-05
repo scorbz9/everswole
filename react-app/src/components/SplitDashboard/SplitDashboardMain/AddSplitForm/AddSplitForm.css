@@ -65,7 +65,8 @@
 .react-calendar {
     width: 257px !important;
     position: absolute;
-    top: 0;
+    top: 5px;
+    left: 428px;
     margin-top: 45px;
     margin-left: 273px;
 }
@@ -79,7 +80,7 @@
     margin-left: 15px;
     cursor: pointer;
     position: relative;
-    bottom: 4px;
+    bottom: 7px;
 }
 
 #add-split-form-calendar-toggle:hover {
