@@ -37,16 +37,24 @@ const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteM
 
         return month + "/" + day + "/" + year;
     }
-    let temp = new Date()
-    let temp2 = new Date()
+    // let temp = new Date()
+    // let temp2 = new Date()
 
-    let startDate = new Date(temp2.setDate(temp2.getDate() - temp2.getDay()))
-    let temp3 = new Date(temp.setDate(temp2.getDate() - temp.getDay()))
-    let endDate = new Date(temp3.setDate(temp3.getDate() + 6))
+    // let startDate = new Date(temp2.setDate(temp2.getDate() - temp2.getDay()))
+    // let temp3 = new Date(temp.setDate(temp2.getDate() - temp.getDay()))
+    // let endDate = new Date(temp3.setDate(temp3.getDate() + 6))
 
 
-    let start = parseDate(startDate)
-    let end = parseDate(endDate)
+    // let end = parseDate(endDate)
+    // let start = "1"
+    // let end = " 2"
+
+    const startDate = new Date(currentSplit?.start_date);
+    const endDate = new Date(currentSplit?.end_date)
+
+    const start = parseDate(startDate)
+    const end = parseDate(endDate)
+    // console.log(currentSplit?.start_date, startDate)
 
     if (!showEditForm) {
         return (

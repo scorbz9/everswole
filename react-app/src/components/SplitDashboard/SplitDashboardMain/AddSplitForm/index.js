@@ -110,14 +110,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
         setShowCalendar(!showCalendar)
     }
 
-        // const handleDateChange = (e) => {
-        //     e.preventDefault()
-
-        //     setStartDate()
-        // }
-
     return (
-
         <div className="add-split-form-container main-content-container">
             <h2 className="add-split-form-header">Organize your week's workouts</h2>
             <form onSubmit={handleSubmit}>

@@ -28,7 +28,7 @@ def addSplit(user_id):
     data = request.json
     form = SplitForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(data)
+
     if form.validate_on_submit():
 
         # Calculate nearest previous sunday (start date of split)
@@ -46,11 +46,16 @@ def addSplit(user_id):
 
         #     if split_date.date() == current_split_date.date():
         #         return { "errors": ["A split for the current week already exists."] }
-
+        print(type(data["startDate"]), data["startDate"])
+        start = datetime.strptime(data["startDate"], '%Y-%m-%dT%H:%M:%S.000Z')
+        print(start, '111')
+        end_date = start + timedelta(days=6);
+        print(end_date)
         new_split = Split(
             name = data["name"],
             user_id = user_id,
-            start_date = data["startDate"]
+            start_date = data["startDate"],
+            end_date = end_date
         )
 
         db.session.add(new_split)
@@ -80,6 +85,8 @@ def addSplit(user_id):
                 .order_by(desc(Day.created_at)) \
                 .all()
             split.days = days
+
+
 
         return { "splits": [split.to_dict() for split in splits] }
 
