@@ -113,16 +113,6 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
         <div className="add-split-form-container main-content-container">
             <h2 className="add-split-form-header">Organize your week's workouts</h2>
             <form onSubmit={handleSubmit}>
-                {/* <label className="add-split-name-label" htmlFor="name"> *Name:
-                </label>
-                    <input
-                        name="name"
-                        type="text"
-                        value={name}
-                        onChange={e => setName(e.target.value)}
-                        placeholder="Name"
-                        className="add-split-form-name"
-                    /> */}
                 <div className="add-split-form-date-section">
                     <label className="add-split-name-label" htmlFor="add-split-form-calendar-toggle">*Select a start date: </label>
                     <div className="add-split-form-selected-day">
@@ -145,6 +135,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                     <AddSplitFormDay
                         day={dayOne}
                         dayIndex={"0"}
+                        dayPosition={"dayOne"}
                         handleDayChange={handleDayChange}
                         startDate={startDate}
                         unassignedDays={unassignedDays}
@@ -153,6 +144,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                     <AddSplitFormDay
                         day={dayTwo}
                         dayIndex={"1"}
+                        dayPosition={"dayTwo"}
                         handleDayChange={handleDayChange}
                         startDate={startDate}
                         unassignedDays={unassignedDays}
@@ -161,6 +153,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                     <AddSplitFormDay
                         day={dayThree}
                         dayIndex={"2"}
+                        dayPosition={"dayThree"}
                         handleDayChange={handleDayChange}
                         startDate={startDate}
                         unassignedDays={unassignedDays}
@@ -169,6 +162,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                     <AddSplitFormDay
                         day={dayFour}
                         dayIndex={"3"}
+                        dayPosition={"dayFour"}
                         handleDayChange={handleDayChange}
                         startDate={startDate}
                         unassignedDays={unassignedDays}
@@ -177,6 +171,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                     <AddSplitFormDay
                         day={dayFive}
                         dayIndex={"4"}
+                        dayPosition={"dayFive"}
                         handleDayChange={handleDayChange}
                         startDate={startDate}
                         unassignedDays={unassignedDays}
@@ -185,6 +180,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                     <AddSplitFormDay
                         day={daySix}
                         dayIndex={"5"}
+                        dayPosition={"daySix"}
                         handleDayChange={handleDayChange}
                         startDate={startDate}
                         unassignedDays={unassignedDays}
@@ -193,6 +189,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                     <AddSplitFormDay
                         day={daySeven}
                         dayIndex={"6"}
+                        dayPosition={"daySeven"}
                         handleDayChange={handleDayChange}
                         startDate={startDate}
                         unassignedDays={unassignedDays}

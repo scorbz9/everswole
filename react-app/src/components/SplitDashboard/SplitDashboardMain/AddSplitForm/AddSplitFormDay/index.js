@@ -3,17 +3,19 @@ import React from "react";
 import './AddSplitFormDay.css'
 
 
-const AddSplitFormDay = ({ day, dayIndex, handleDayChange, startDate, unassignedDays, selected }) => {
+const AddSplitFormDay = ({ day, dayIndex, dayPosition, handleDayChange, startDate, unassignedDays, selected }) => {
 
     const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+
 
     return (
         <div className="add-split-form-day add-split-form-dayOne">
             <h4>{weekdays[(startDate.getDay() + Number(dayIndex)) % 7]}</h4>
             <select
                 value={day}
-                onChange={e => handleDayChange(e, 'dayOne')}
-                name="dayOne"
+                onChange={e => handleDayChange(e, dayPosition)}
+                name={dayPosition}
                 className="add-split-form-day-select"
             >
                 <option value="">Rest Day</option>
