@@ -23,9 +23,7 @@
 }
 
 .single-split-date-range {
-    /* margin-top: 10px; */
-    margin-left: 50px;
-    font-size: 20px;
+    font-size: 40px;
     display: flex;
     align-items: center;
     background-color: #262626;
