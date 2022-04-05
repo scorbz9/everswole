@@ -106,6 +106,7 @@ const EditSplitForm =
 
         const payload = {
             name,
+            startDate,
             days: [
                 { dayOne: dayOne },
                 { dayTwo: dayTwo },

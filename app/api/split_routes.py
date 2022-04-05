@@ -31,26 +31,9 @@ def addSplit(user_id):
 
     if form.validate_on_submit():
 
-        # Calculate nearest previous sunday (start date of split)
-        # current_date = datetime.today()
+        start_date = datetime.strptime(data["startDate"], '%Y-%m-%dT%H:%M:%S.%fZ')
+        end_date = start_date + timedelta(days=6);
 
-        # if current_date.weekday() == 6:
-        #     split_date = current_date
-        # else:
-        #     split_date = current_date - timedelta(days=current_date.weekday() + 1)
-
-        # splits_to_check = Split.query.filter(Split.user_id == user_id).all()
-
-        # for split in splits_to_check:
-        #     current_split_date = split.start_date
-
-        #     if split_date.date() == current_split_date.date():
-        #         return { "errors": ["A split for the current week already exists."] }
-        print(type(data["startDate"]), data["startDate"])
-        start = datetime.strptime(data["startDate"], '%Y-%m-%dT%H:%M:%S.%fZ')
-        print(start, '111')
-        end_date = start + timedelta(days=6);
-        print(end_date)
         new_split = Split(
             name = data["name"],
             user_id = user_id,
@@ -100,7 +83,7 @@ def editSplit(user_id, split_id):
 
     if form.validate_on_submit():
 
-        # Update days that ASSIGNED
+        # Update days that were ASSIGNED
         for day in range(len(data['days'])):
             current_day_id = list(data['days'][day].values())[0]
             current_day_name = list(data['days'][day].keys())[0]
@@ -130,7 +113,11 @@ def editSplit(user_id, split_id):
             .filter(Split.id == split_id) \
             .one()
 
-        split_to_update.name = data['name']
+        start_date = datetime.strptime(data["startDate"], '%Y-%m-%dT%H:%M:%S.%fZ')
+        end_date = start_date + timedelta(days=6);
+
+        split_to_update.start_date = start_date
+        split_to_update.end_date = end_date
 
         db.session.commit()
 
