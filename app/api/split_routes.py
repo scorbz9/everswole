@@ -47,7 +47,7 @@ def addSplit(user_id):
         #     if split_date.date() == current_split_date.date():
         #         return { "errors": ["A split for the current week already exists."] }
         print(type(data["startDate"]), data["startDate"])
-        start = datetime.strptime(data["startDate"], '%Y-%m-%dT%H:%M:%S.000Z')
+        start = datetime.strptime(data["startDate"], '%Y-%m-%dT%H:%M:%S.%fZ')
         print(start, '111')
         end_date = start + timedelta(days=6);
         print(end_date)

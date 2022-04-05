@@ -78,6 +78,12 @@
     border-radius: 4px;
     margin-left: 15px;
     cursor: pointer;
+    position: relative;
+    bottom: 2px;
+}
+
+#add-split-form-calendar-toggle:hover {
+    background-color: #b40303;
 }
 
 .add-split-form-selected-day {

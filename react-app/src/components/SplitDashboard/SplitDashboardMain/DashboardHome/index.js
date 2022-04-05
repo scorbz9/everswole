@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
+import { parseDate } from "../../../utils";
+
 import SingleSplitDay from "../SingleSplit/SingleSplitDay";
 import EditSplitForm from "../SingleSplit/EditSplitForm";
 
@@ -10,8 +12,13 @@ const DashboardHome = ({ setShowMain, setShowEditMessage, setShowDeleteMessage }
     const splits = useSelector(state => state.splitState.entries)
     const days = useSelector(state => state.dayState.entries)
 
-    // Load most recently created split
-    const currentSplit = splits[0]
+
+    // Load split for current date range
+    const currentSplit = splits?.find(split => {
+        console.log(new Date(split.start_date), new Date(split.start_date).getTime(), new Date().getTime(), new Date(split.end_date).getTime())
+        console.log(new Date(split.start_date).getTime() <= new Date().getTime() && new Date(split.end_date).getTime() >= new Date().getTime())
+        return new Date(split.start_date).getTime() <= new Date().getTime() && new Date(split.end_date).getTime() >= new Date().getTime()
+    })
 
     const currentSplitDays = days.filter(day => day.split_id === currentSplit?.id)
 
@@ -29,32 +36,16 @@ const DashboardHome = ({ setShowMain, setShowEditMessage, setShowDeleteMessage }
         setShowEditForm(!showEditForm)
     }
 
-    // Parse datetime obj for header display
-    const parseDate = datetime => {
-        let month = datetime.getMonth() + 1
-        let day = datetime.getDate()
-        let year = datetime.getFullYear()
+    const startDate = new Date(currentSplit?.start_date);
+    const endDate = new Date(currentSplit?.end_date)
 
-        return month + "/" + day + "/" + year;
-    }
-
-    let temp = new Date()
-    let temp2 = new Date()
-
-    let startDate = new Date(temp2.setDate(temp2.getDate() - temp2.getDay()))
-    let temp3 = new Date(temp.setDate(temp2.getDate() - temp.getDay()))
-    let endDate = new Date(temp3.setDate(temp3.getDate() + 6))
-
-
-    let start = parseDate(startDate)
-    let end = parseDate(endDate)
+    const start = parseDate(startDate)
+    const end = parseDate(endDate)
 
     if (!currentSplit) {
         return (
             <div className="no-split-container main-content-container">
-
-                <div className="no-split-warning">There are no splits! <span onClick={() => setShowMain("AddSplitForm")} className="create-link">Create one now.</span></div>
-
+                <div className="no-split-warning">There is no current split! <span onClick={() => setShowMain("AddSplitForm")} className="create-link">Create one now.</span></div>
             </div>
         )
     }
