@@ -19,7 +19,7 @@ const SplitDropdown = ({showSplitDropdown, setShowSplitDropdown, showMain, setSh
                     {splits.map((split, index) => {
                         return (
                             <div className="sidebar-day-dropdown-element" key={index} onClick={() => toggleSplitInfo(index)}>
-                                {split.name}
+                                {split.start_date.slice(0, 16)}
                             </div>
                         )
                     })}
