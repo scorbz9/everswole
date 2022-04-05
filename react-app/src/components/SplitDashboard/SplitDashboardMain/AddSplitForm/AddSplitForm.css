@@ -79,7 +79,7 @@
     margin-left: 15px;
     cursor: pointer;
     position: relative;
-    bottom: 2px;
+    bottom: 4px;
 }
 
 #add-split-form-calendar-toggle:hover {
@@ -91,4 +91,8 @@
     position: relative;
     bottom: 1px;
     font-size: 25px;
+}
+
+.add-split-form-day-container {
+    overflow-x: scroll;
 }

@@ -47,13 +47,15 @@ const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteM
                         Edit
                     </div>
                 </div>
-                <SingleSplitDay day={dayOne} startDate={startDate} dayIndex={"0"} setShowMain={setShowMain} />
-                <SingleSplitDay day={dayTwo} startDate={startDate} dayIndex={"1"} setShowMain={setShowMain} />
-                <SingleSplitDay day={dayThree} startDate={startDate} dayIndex={"2"} setShowMain={setShowMain} />
-                <SingleSplitDay day={dayFour} startDate={startDate} dayIndex={"3"} setShowMain={setShowMain} />
-                <SingleSplitDay day={dayFive} startDate={startDate} dayIndex={"4"} setShowMain={setShowMain} />
-                <SingleSplitDay day={daySix} startDate={startDate} dayIndex={"5"} setShowMain={setShowMain} />
-                <SingleSplitDay day={daySeven} startDate={startDate} dayIndex={"6"} setShowMain={setShowMain} />
+                <div className="single-split-days-container">
+                    <SingleSplitDay day={dayOne} startDate={startDate} dayIndex={"0"} setShowMain={setShowMain} />
+                    <SingleSplitDay day={dayTwo} startDate={startDate} dayIndex={"1"} setShowMain={setShowMain} />
+                    <SingleSplitDay day={dayThree} startDate={startDate} dayIndex={"2"} setShowMain={setShowMain} />
+                    <SingleSplitDay day={dayFour} startDate={startDate} dayIndex={"3"} setShowMain={setShowMain} />
+                    <SingleSplitDay day={dayFive} startDate={startDate} dayIndex={"4"} setShowMain={setShowMain} />
+                    <SingleSplitDay day={daySix} startDate={startDate} dayIndex={"5"} setShowMain={setShowMain} />
+                    <SingleSplitDay day={daySeven} startDate={startDate} dayIndex={"6"} setShowMain={setShowMain} />
+                </div>
             </div>
         )
     } else {
@@ -62,6 +64,8 @@ const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteM
                 currentSplit={currentSplit}
                 toggleEdit={toggleEdit}
                 setShowMain={setShowMain}
+                // startDate={startDate}
+                // setStartDate={setStartDate}
                 start={start}
                 end={end}
                 setShowEditMessage={setShowEditMessage}

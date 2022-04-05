@@ -1,3 +1,4 @@
+// React/Redux imports
 import React, { useState } from "react";
 import Calendar from 'react-calendar';
 import { useDispatch, useSelector } from "react-redux";
@@ -6,12 +7,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { addOneSplit } from "../../../../store/split";
 import { getAllDays } from "../../../../store/day";
 
+// Font awesome imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar } from '@fortawesome/free-solid-svg-icons'
 
+// Component imports
+import AddSplitFormDay from "./AddSplitFormDay";
+
 import 'react-calendar/dist/Calendar.css';
 import './AddSplitForm.css'
-import AddSplitFormDay from "./AddSplitFormDay";
 
 const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
     const dispatch = useDispatch()
@@ -22,7 +26,6 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
 
     const [name, setName] = useState("")
     const [startDate, setStartDate] = useState(new Date())
-    const [showCalendar, setShowCalendar] = useState(false)
     const [dayOne, setDayOne] = useState("")
     const [dayTwo, setDayTwo] = useState("")
     const [dayThree, setDayThree] = useState("")
@@ -103,6 +106,8 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
         }
     }
 
+    const [showCalendar, setShowCalendar] = useState(false)
+
     const toggleCalendar = (e) => {
         e.preventDefault()
 
@@ -116,7 +121,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                 <div className="add-split-form-date-section">
                     <label className="add-split-name-label" htmlFor="add-split-form-calendar-toggle">*Select a start date: </label>
                     <div className="add-split-form-selected-day">
-                        {startDate.toDateString()}
+                        {startDate?.toDateString()}
                     </div>
                     <button id="add-split-form-calendar-toggle" onClick={e => toggleCalendar(e)}>
                         <FontAwesomeIcon icon={faCalendar} />

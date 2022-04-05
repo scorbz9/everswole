@@ -1,16 +1,18 @@
 import React from "react";
 
+import { weekdays } from "../../../../../utils";
+
 import './EditSplitSingleDay.css'
 
-const EditSplitSingleDay = ({ day, dayOfWeek, handleDayChange, unassignedDays, selected }) => {
+const EditSplitSingleDay = ({ day, dayIndex, dayPosition, startDate, handleDayChange, unassignedDays, selected }) => {
 
     return (
         <div className="add-split-form-day">
-            <h4>{dayOfWeek}</h4>
+            <h4>{weekdays[(startDate?.getDay() + Number(dayIndex)) % 7]}</h4>
             <select
                 value={day}
-                onChange={e => handleDayChange(e, dayOfWeek.toLowerCase())}
-                name={day}
+                onChange={e => handleDayChange(e, dayPosition)}
+                name={dayPosition}
                 className="add-split-form-day-select"
             >
                 <option value="">Rest Day</option>

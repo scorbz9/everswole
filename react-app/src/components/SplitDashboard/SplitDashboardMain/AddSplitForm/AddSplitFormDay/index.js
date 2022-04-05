@@ -9,7 +9,7 @@ const AddSplitFormDay = ({ day, dayIndex, dayPosition, handleDayChange, startDat
 
     return (
         <div className="add-split-form-day add-split-form-dayOne">
-            <h4>{weekdays[(startDate.getDay() + Number(dayIndex)) % 7]}</h4>
+            <h4>{weekdays[(startDate?.getDay() + Number(dayIndex)) % 7]}</h4>
             <select
                 value={day}
                 onChange={e => handleDayChange(e, dayPosition)}

@@ -9,8 +9,6 @@
     margin: auto;
     padding: 20px 10px;
     border-radius: 8px;
-    overflow-x: scroll;
-    overflow-y: hidden;
     display: block;
     white-space: nowrap;
 }
@@ -51,7 +49,7 @@
 }
 
 .single-split-edit-button {
-    margin: 12px 0px 0px 40px;
+    margin: 40px 20px 0px 40px;
     height: 36px;
     border-radius: 20px;
     background-color: #8b0000;
@@ -63,4 +61,11 @@
     font-size: 13px;
     font-weight: bold;
     letter-spacing: 1.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.single-split-days-container {
+    overflow-x: scroll;
 }

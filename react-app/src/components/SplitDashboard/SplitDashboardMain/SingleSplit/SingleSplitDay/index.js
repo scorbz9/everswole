@@ -15,7 +15,7 @@ const SingleSplitDay = ({ day, startDate, dayIndex, setShowMain }) => {
 
     return (
         <div className="single-split-day-container">
-                    <h3 className="single-split-day-header">{weekdays[(startDate.getDay() + Number(dayIndex)) % 7]}</h3>
+                    <h3 className="single-split-day-header">{weekdays[(startDate?.getDay() + Number(dayIndex)) % 7]}</h3>
                     <div className="single-split-day-info">
                         <h3>{day ? day.name : ""}</h3>
                         {day ? <div className="single-split-edit-day-button" onClick={toggleEditDay}>
