@@ -75,8 +75,13 @@
     background-color: #8b0000;
     border: none;
     color: white;
+    border-radius: 4px;
+    margin-left: 15px;
+    cursor: pointer;
 }
 
 .add-split-form-selected-day {
     display: inline;
+    position: relative;
+    bottom: 1px;
 }

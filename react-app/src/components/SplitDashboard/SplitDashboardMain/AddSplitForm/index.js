@@ -82,6 +82,8 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
             ]
         }
 
+
+        console.log(payload)
         const data = await dispatch(addOneSplit(payload, userId))
 
         if (data.errors) {
@@ -102,11 +104,18 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
         }
     }
 
-    const toggleCalendar = () => {
+    const toggleCalendar = (e) => {
+        e.preventDefault()
+
         setShowCalendar(!showCalendar)
     }
 
-    console.log(startDate)
+        // const handleDateChange = (e) => {
+        //     e.preventDefault()
+
+        //     setStartDate()
+        // }
+
     return (
 
         <div className="add-split-form-container main-content-container">
@@ -122,13 +131,12 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         placeholder="Name"
                         className="add-split-form-name"
                     /> */}
-
                 <div className="add-split-form-date-section">
-                    <label className="add-split-name-label" htmlFor="add-split-form-calendar-toggle">Select a start date: </label>
+                    <label className="add-split-name-label" htmlFor="add-split-form-calendar-toggle">*Select a start date: </label>
                     <div className="add-split-form-selected-day">
                         {startDate.toDateString()}
                     </div>
-                    <button id="add-split-form-calendar-toggle" onClick={toggleCalendar}>
+                    <button id="add-split-form-calendar-toggle" onClick={e => toggleCalendar(e)}>
                         <FontAwesomeIcon icon={faCalendar} />
                     </button>
                     {showCalendar ?
