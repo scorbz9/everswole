@@ -11,6 +11,7 @@ import { faCalendar } from '@fortawesome/free-solid-svg-icons'
 
 import 'react-calendar/dist/Calendar.css';
 import './AddSplitForm.css'
+import AddSplitFormDay from "./AddSplitFormDay";
 
 const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
     const dispatch = useDispatch()
@@ -18,8 +19,6 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
     const days = useSelector(state => state.dayState.entries)
     const unassignedDays = days.filter(day => !day.assigned)
     const userId = useSelector(state => state.session.user.id)
-
-    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     const [name, setName] = useState("")
     const [startDate, setStartDate] = useState(new Date())
@@ -143,129 +142,62 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                     ))}
                 </div>
                 <div className="add-split-form-day-container">
-                    <div className="add-split-form-day add-split-form-dayOne">
-
-                        <h4>{weekdays[startDate.getDay()]}</h4>
-                        <select
-                            value={dayOne}
-                            onChange={e => handleDayChange(e, 'dayOne')}
-                            name="dayOne"
-                            className="add-split-form-day-select"
-                        >
-                            <option value="">Rest Day</option>
-                            {unassignedDays.map((day, i) => {
-
-                                return (
-                                    <option className={Object.values(selected).includes(`${day.id}`) ? "hide-option" : ""} key={i} value={day.id}>
-                                        {day.name}
-                                    </option>
-                                )
-                            })}
-                        </select>
-
-                    </div>
-                    <div className="add-split-form-day add-split-form-dayTwo">
-                        <h4>{weekdays[(startDate.getDay() + 1) % 7]}</h4>
-                        <select
-                            value={dayTwo}
-                            onChange={e =>  handleDayChange(e, 'dayTwo')}
-                            className="add-split-form-day-select"
-                        >
-                            <option value="">Rest Day</option>
-                            {unassignedDays.map((day, i) => {
-                                return (
-                                    <option className={Object.values(selected).includes(`${day.id}`) ? "hide-option" : ""} key={i} value={day.id}>
-                                        {day.name}
-                                    </option>
-                                )
-                            })}
-                        </select>
-                    </div>
-                    <div className="add-split-form-day add-split-form-dayThree">
-                        <h4>{weekdays[(startDate.getDay() + 2) % 7]}</h4>
-                        <select
-                            value={dayThree}
-                            onChange={e => handleDayChange(e, 'dayThree')}
-                            className="add-split-form-day-select"
-                        >
-                            <option value="">Rest Day</option>
-                            {unassignedDays.map((day, i) => {
-                                return (
-                                    <option className={Object.values(selected).includes(`${day.id}`) ? "hide-option" : ""} key={i} value={day.id}>
-                                        {day.name}
-                                    </option>
-                                )
-                            })}
-                        </select>
-                    </div>
-                    <div className="add-split-form-day add-split-form-dayFour">
-                        <h4>{weekdays[(startDate.getDay() + 3) % 7]}</h4>
-                        <select
-                            value={dayFour}
-                            onChange={e =>  handleDayChange(e, 'dayFour')}
-                            className="add-split-form-day-select"
-                        >
-                            <option value="">Rest Day</option>
-                            {unassignedDays.map((day, i) => {
-                                return (
-                                    <option className={Object.values(selected).includes(`${day.id}`) ? "hide-option" : ""} key={i} value={day.id}>
-                                        {day.name}
-                                    </option>
-                                )
-                            })}
-                        </select>
-                    </div>
-                    <div className="add-split-form-day add-split-form-dayFive">
-                        <h4>{weekdays[(startDate.getDay() + 4) % 7]}</h4>
-                        <select
-                            value={dayFive}
-                            onChange={e =>  handleDayChange(e, 'dayFive')}
-                            className="add-split-form-day-select"
-                        >
-                            <option value="">Rest Day</option>
-                            {unassignedDays.map((day, i) => {
-                                return (
-                                    <option className={Object.values(selected).includes(`${day.id}`) ? "hide-option" : ""} key={i} value={day.id}>
-                                        {day.name}
-                                    </option>
-                                )
-                            })}
-                        </select>
-                    </div>
-                    <div className="add-split-form-day add-split-form-daySix">
-                        <h4>{weekdays[(startDate.getDay() + 5) % 7]}</h4>
-                        <select
-                            value={daySix}
-                            onChange={e =>  handleDayChange(e, 'daySix')}
-                            className="add-split-form-day-select"
-                        >
-                            <option value="">Rest Day</option>
-                            {unassignedDays.map((day, i) => {
-                                return (
-                                    <option className={Object.values(selected).includes(`${day.id}`) ? "hide-option" : ""} key={i} value={day.id}>
-                                        {day.name}
-                                    </option>
-                                )
-                            })}
-                        </select>
-                    </div>
-                    <div className="add-split-form-day add-split-form-daySeven">
-                        <h4>{weekdays[(startDate.getDay() + 6) % 7]}</h4>
-                        <select
-                            value={daySeven}
-                            onChange={e =>  handleDayChange(e, 'daySeven')}
-                            className="add-split-form-day-select"
-                        >
-                            <option value="">Rest Day</option>
-                            {unassignedDays.map((day, i) => {
-                                return (
-                                    <option className={Object.values(selected).includes(`${day.id}`) ? "hide-option" : ""} key={i} value={day.id}>
-                                        {day.name}
-                                    </option>
-                                )
-                            })}
-                        </select>
-                    </div>
+                    <AddSplitFormDay
+                        day={dayOne}
+                        dayIndex={"0"}
+                        handleDayChange={handleDayChange}
+                        startDate={startDate}
+                        unassignedDays={unassignedDays}
+                        selected={selected}
+                    />
+                    <AddSplitFormDay
+                        day={dayTwo}
+                        dayIndex={"1"}
+                        handleDayChange={handleDayChange}
+                        startDate={startDate}
+                        unassignedDays={unassignedDays}
+                        selected={selected}
+                    />
+                    <AddSplitFormDay
+                        day={dayThree}
+                        dayIndex={"2"}
+                        handleDayChange={handleDayChange}
+                        startDate={startDate}
+                        unassignedDays={unassignedDays}
+                        selected={selected}
+                    />
+                    <AddSplitFormDay
+                        day={dayFour}
+                        dayIndex={"3"}
+                        handleDayChange={handleDayChange}
+                        startDate={startDate}
+                        unassignedDays={unassignedDays}
+                        selected={selected}
+                    />
+                    <AddSplitFormDay
+                        day={dayFive}
+                        dayIndex={"4"}
+                        handleDayChange={handleDayChange}
+                        startDate={startDate}
+                        unassignedDays={unassignedDays}
+                        selected={selected}
+                    />
+                    <AddSplitFormDay
+                        day={daySix}
+                        dayIndex={"5"}
+                        handleDayChange={handleDayChange}
+                        startDate={startDate}
+                        unassignedDays={unassignedDays}
+                        selected={selected}
+                    />
+                    <AddSplitFormDay
+                        day={daySeven}
+                        dayIndex={"6"}
+                        handleDayChange={handleDayChange}
+                        startDate={startDate}
+                        unassignedDays={unassignedDays}
+                        selected={selected}
+                    />
                 </div>
                 <button type="submit" className="edit-split-submit-button">Submit</button>
             </form>
