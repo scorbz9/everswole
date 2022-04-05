@@ -28,3 +28,14 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+.single-split-date-range-home {
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    background-color: #262626;
+    padding: 10px;
+    border-radius: 8px;
+    letter-spacing: 1.5px;
+    margin-left: 15px;
+}

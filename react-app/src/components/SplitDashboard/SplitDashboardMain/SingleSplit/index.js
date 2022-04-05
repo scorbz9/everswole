@@ -31,15 +31,6 @@ const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteM
         setShowEditForm(!showEditForm)
     }
 
-    // Parse datetime obj for header display
-    // const parseDate = datetime => {
-    //     let month = datetime.getMonth() + 1
-    //     let day = datetime.getDate()
-    //     let year = datetime.getFullYear()
-
-    //     return month + "/" + day + "/" + year;
-    // }
-
     const startDate = new Date(currentSplit?.start_date);
     const endDate = new Date(currentSplit?.end_date)
 

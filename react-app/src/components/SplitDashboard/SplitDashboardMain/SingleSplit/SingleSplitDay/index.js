@@ -18,7 +18,7 @@ const SingleSplitDay = ({ day, dayOfWeek, setShowMain }) => {
                         <h3>{day ? day.name : ""}</h3>
                         {day ? <div className="single-split-edit-day-button" onClick={toggleEditDay}>
                                 View
-                        </div>: <></>}
+                        </div> : <></>}
                         {day ? day.exercises.map((exercise, i) => {
                             return (
                                 <div key={i} className="single-split-day-exercise-container">

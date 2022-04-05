@@ -19,42 +19,44 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
     const unassignedDays = days.filter(day => !day.assigned)
     const userId = useSelector(state => state.session.user.id)
 
+    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
     const [name, setName] = useState("")
     const [startDate, setStartDate] = useState(new Date())
     const [showCalendar, setShowCalendar] = useState(false)
-    const [sunday, setSunday] = useState("")
-    const [monday, setMonday] = useState("")
-    const [tuesday, setTuesday] = useState("")
-    const [wednesday, setWednesday] = useState("")
-    const [thursday, setThursday] = useState("")
-    const [friday, setFriday] = useState("")
-    const [saturday, setSaturday] = useState("")
+    const [dayOne, setDayOne] = useState("")
+    const [dayTwo, setDayTwo] = useState("")
+    const [dayThree, setDayThree] = useState("")
+    const [dayFour, setDayFour] = useState("")
+    const [dayFive, setDayFive] = useState("")
+    const [daySix, setDaySix] = useState("")
+    const [daySeven, setDaySeven] = useState("")
     const [errors, setErrors] = useState([])
 
     const [selected, setSelected] = useState({
-        sunday: "",
-        monday: "" ,
-        tuesday: "",
-        wednesday: "",
-        thursday: "" ,
-        friday: "" ,
-        saturday: "" })
+        dayOne: "",
+        dayTwo: "" ,
+        dayThree: "",
+        dayFour: "",
+        dayFive: "" ,
+        daySix: "" ,
+        daySeven: "" })
 
     const handleDayChange = (e, day) => {
-            if (day === 'sunday') {
-                setSunday(e.target.value)
-            } else if (day === 'monday') {
-                setMonday(e.target.value)
-            } else if (day === 'tuesday') {
-                setTuesday(e.target.value)
-            } else if (day === 'wednesday') {
-                setWednesday(e.target.value)
-            } else if (day === 'thursday') {
-                setThursday(e.target.value)
-            } else if (day === 'friday') {
-                setFriday(e.target.value)
-            } else if (day === 'saturday') {
-                setSaturday(e.target.value)
+            if (day === 'dayOne') {
+                setDayOne(e.target.value)
+            } else if (day === 'dayTwo') {
+                setDayTwo(e.target.value)
+            } else if (day === 'dayThree') {
+                setDayThree(e.target.value)
+            } else if (day === 'dayFour') {
+                setDayFour(e.target.value)
+            } else if (day === 'dayFive') {
+                setDayFive(e.target.value)
+            } else if (day === 'daySix') {
+                setDaySix(e.target.value)
+            } else if (day === 'daySeven') {
+                setDaySeven(e.target.value)
             } else if (day === "" || day === undefined) {
 
             }
@@ -72,13 +74,13 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
             name,
             startDate,
             days: [
-                { sunday: sunday },
-                { monday: monday },
-                { tuesday: tuesday },
-                { wednesday: wednesday },
-                { thursday: thursday },
-                { friday: friday },
-                { satuday: saturday },
+                { dayOne: dayOne },
+                { dayTwo: dayTwo },
+                { dayThree: dayThree },
+                { dayFour: dayFour },
+                { dayFive: dayFive },
+                { daySix: daySix },
+                { daySeven: daySeven },
             ]
         }
 
@@ -141,13 +143,13 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                     ))}
                 </div>
                 <div className="add-split-form-day-container">
-                    <div className="add-split-form-day add-split-form-sunday">
+                    <div className="add-split-form-day add-split-form-dayOne">
 
-                        <h4>Sunday</h4>
+                        <h4>{weekdays[startDate.getDay()]}</h4>
                         <select
-                            value={sunday}
-                            onChange={e => handleDayChange(e, 'sunday')}
-                            name="sunday"
+                            value={dayOne}
+                            onChange={e => handleDayChange(e, 'dayOne')}
+                            name="dayOne"
                             className="add-split-form-day-select"
                         >
                             <option value="">Rest Day</option>
@@ -162,11 +164,11 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         </select>
 
                     </div>
-                    <div className="add-split-form-day add-split-form-monday">
-                        <h4>Monday</h4>
+                    <div className="add-split-form-day add-split-form-dayTwo">
+                        <h4>{weekdays[(startDate.getDay() + 1) % 7]}</h4>
                         <select
-                            value={monday}
-                            onChange={e =>  handleDayChange(e, 'monday')}
+                            value={dayTwo}
+                            onChange={e =>  handleDayChange(e, 'dayTwo')}
                             className="add-split-form-day-select"
                         >
                             <option value="">Rest Day</option>
@@ -179,11 +181,11 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                             })}
                         </select>
                     </div>
-                    <div className="add-split-form-day add-split-form-tuesday">
-                        <h4>Tuesday</h4>
+                    <div className="add-split-form-day add-split-form-dayThree">
+                        <h4>{weekdays[(startDate.getDay() + 2) % 7]}</h4>
                         <select
-                            value={tuesday}
-                            onChange={e => handleDayChange(e, 'tuesday')}
+                            value={dayThree}
+                            onChange={e => handleDayChange(e, 'dayThree')}
                             className="add-split-form-day-select"
                         >
                             <option value="">Rest Day</option>
@@ -196,11 +198,11 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                             })}
                         </select>
                     </div>
-                    <div className="add-split-form-day add-split-form-wednesday">
-                        <h4>Wednesday</h4>
+                    <div className="add-split-form-day add-split-form-dayFour">
+                        <h4>{weekdays[(startDate.getDay() + 3) % 7]}</h4>
                         <select
-                            value={wednesday}
-                            onChange={e =>  handleDayChange(e, 'wednesday')}
+                            value={dayFour}
+                            onChange={e =>  handleDayChange(e, 'dayFour')}
                             className="add-split-form-day-select"
                         >
                             <option value="">Rest Day</option>
@@ -213,11 +215,11 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                             })}
                         </select>
                     </div>
-                    <div className="add-split-form-day add-split-form-thursday">
-                        <h4>Thursday</h4>
+                    <div className="add-split-form-day add-split-form-dayFive">
+                        <h4>{weekdays[(startDate.getDay() + 4) % 7]}</h4>
                         <select
-                            value={thursday}
-                            onChange={e =>  handleDayChange(e, 'thursday')}
+                            value={dayFive}
+                            onChange={e =>  handleDayChange(e, 'dayFive')}
                             className="add-split-form-day-select"
                         >
                             <option value="">Rest Day</option>
@@ -230,11 +232,11 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                             })}
                         </select>
                     </div>
-                    <div className="add-split-form-day add-split-form-friday">
-                        <h4>Friday</h4>
+                    <div className="add-split-form-day add-split-form-daySix">
+                        <h4>{weekdays[(startDate.getDay() + 5) % 7]}</h4>
                         <select
-                            value={friday}
-                            onChange={e =>  handleDayChange(e, 'friday')}
+                            value={daySix}
+                            onChange={e =>  handleDayChange(e, 'daySix')}
                             className="add-split-form-day-select"
                         >
                             <option value="">Rest Day</option>
@@ -247,11 +249,11 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                             })}
                         </select>
                     </div>
-                    <div className="add-split-form-day add-split-form-saturday">
-                        <h4>Saturday</h4>
+                    <div className="add-split-form-day add-split-form-daySeven">
+                        <h4>{weekdays[(startDate.getDay() + 6) % 7]}</h4>
                         <select
-                            value={saturday}
-                            onChange={e =>  handleDayChange(e, 'saturday')}
+                            value={daySeven}
+                            onChange={e =>  handleDayChange(e, 'daySeven')}
                             className="add-split-form-day-select"
                         >
                             <option value="">Rest Day</option>

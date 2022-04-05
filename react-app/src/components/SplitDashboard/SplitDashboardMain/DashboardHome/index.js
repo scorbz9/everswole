@@ -55,7 +55,7 @@ const DashboardHome = ({ setShowMain, setShowEditMessage, setShowDeleteMessage }
             <div className="single-split-container main-content-container">
                 <div className="single-split-header">
                     <div>Current Split - {currentSplit?.name}</div>
-                    <div className="single-split-date-range">{start} - {end}</div>
+                    <div className="single-split-date-range-home">{start} - {end}</div>
                     <div className="single-split-edit-button" onClick={toggleEdit}>
                         Edit
                     </div>
