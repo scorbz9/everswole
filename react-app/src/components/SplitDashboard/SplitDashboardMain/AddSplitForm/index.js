@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addOneSplit } from "../../../../store/split";
 import { getAllDays } from "../../../../store/day";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCalendar } from '@fortawesome/free-solid-svg-icons'
+
 import 'react-calendar/dist/Calendar.css';
 import './AddSplitForm.css'
 
@@ -18,6 +21,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
 
     const [name, setName] = useState("")
     const [startDate, setStartDate] = useState(new Date())
+    const [showCalendar, setShowCalendar] = useState(false)
     const [sunday, setSunday] = useState("")
     const [monday, setMonday] = useState("")
     const [tuesday, setTuesday] = useState("")
@@ -97,6 +101,11 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
             await dispatch(getAllDays(userId))
         }
     }
+
+    const toggleCalendar = () => {
+        setShowCalendar(!showCalendar)
+    }
+
     console.log(startDate)
     return (
 
@@ -113,8 +122,19 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         placeholder="Name"
                         className="add-split-form-name"
                     /> */}
-                <div className="add-split-form-calendar-container">
-                    <Calendar onChange={setStartDate} value={startDate} />
+
+                <div className="add-split-form-date-section">
+                    <label className="add-split-name-label" htmlFor="add-split-form-calendar-toggle">Select a start date: </label>
+                    <div className="add-split-form-selected-day">
+                        {startDate.toDateString()}
+                    </div>
+                    <button id="add-split-form-calendar-toggle" onClick={toggleCalendar}>
+                        <FontAwesomeIcon icon={faCalendar} />
+                    </button>
+                    {showCalendar ?
+                    <div className="add-split-form-calendar-container">
+                        <Calendar returnValue={'start'} minDetail={"year"} onChange={setStartDate} value={startDate} />
+                    </div> : <></>}
                 </div>
                 <div className="add-split-error-container">
                     {errors.map((error, ind) => (
