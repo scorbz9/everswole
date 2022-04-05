@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import Calendar from 'react-calendar';
 import { useDispatch, useSelector } from "react-redux";
 
 // State imports
 import { addOneSplit } from "../../../../store/split";
 import { getAllDays } from "../../../../store/day";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCalendar } from '@fortawesome/free-solid-svg-icons'
+
+import 'react-calendar/dist/Calendar.css';
 import './AddSplitForm.css'
 
 const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
@@ -15,6 +20,8 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
     const userId = useSelector(state => state.session.user.id)
 
     const [name, setName] = useState("")
+    const [startDate, setStartDate] = useState(new Date())
+    const [showCalendar, setShowCalendar] = useState(false)
     const [sunday, setSunday] = useState("")
     const [monday, setMonday] = useState("")
     const [tuesday, setTuesday] = useState("")
@@ -63,6 +70,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
 
         const payload = {
             name,
+            startDate,
             days: [
                 { sunday: sunday },
                 { monday: monday },
@@ -94,12 +102,17 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
         }
     }
 
+    const toggleCalendar = () => {
+        setShowCalendar(!showCalendar)
+    }
+
+    console.log(startDate)
     return (
 
         <div className="add-split-form-container main-content-container">
             <h2 className="add-split-form-header">Organize your week's workouts</h2>
             <form onSubmit={handleSubmit}>
-                <label className="add-split-name-label" htmlFor="name"> *Name:
+                {/* <label className="add-split-name-label" htmlFor="name"> *Name:
                 </label>
                     <input
                         name="name"
@@ -108,7 +121,21 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         onChange={e => setName(e.target.value)}
                         placeholder="Name"
                         className="add-split-form-name"
-                    />
+                    /> */}
+
+                <div className="add-split-form-date-section">
+                    <label className="add-split-name-label" htmlFor="add-split-form-calendar-toggle">Select a start date: </label>
+                    <div className="add-split-form-selected-day">
+                        {startDate.toDateString()}
+                    </div>
+                    <button id="add-split-form-calendar-toggle" onClick={toggleCalendar}>
+                        <FontAwesomeIcon icon={faCalendar} />
+                    </button>
+                    {showCalendar ?
+                    <div className="add-split-form-calendar-container">
+                        <Calendar returnValue={'start'} minDetail={"year"} onChange={setStartDate} value={startDate} />
+                    </div> : <></>}
+                </div>
                 <div className="add-split-error-container">
                     {errors.map((error, ind) => (
                         <div key={ind} className="add-day-form-error">{error}</div>

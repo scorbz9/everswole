@@ -57,3 +57,26 @@
     color: red;
     margin-bottom: 10px;
 }
+
+.add-split-form-date-section {
+    position: relative;
+}
+
+.react-calendar {
+    width: 257px !important;
+    position: absolute;
+    top: 0;
+    margin-top: 45px;
+    margin-left: 273px;
+}
+
+#add-split-form-calendar-toggle {
+    padding: 10px 20px;
+    background-color: #8b0000;
+    border: none;
+    color: white;
+}
+
+.add-split-form-selected-day {
+    display: inline;
+}
