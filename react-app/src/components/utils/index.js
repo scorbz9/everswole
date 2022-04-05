@@ -6,3 +6,5 @@ export const parseDate = datetime => {
 
     return month + "/" + day + "/" + year;
 }
+
+export const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];

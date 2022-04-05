@@ -17,13 +17,13 @@ const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteM
 
     const currentSplitDays = days.filter(day => day.split_id === currentSplit?.id)
 
-    const sunday = currentSplitDays?.find(day => day.assigned_day === 'sunday')
-    const monday = currentSplitDays?.find(day => day.assigned_day === 'monday')
-    const tuesday = currentSplitDays?.find(day => day.assigned_day === 'tuesday')
-    const wednesday = currentSplitDays?.find(day => day.assigned_day === 'wednesday')
-    const thursday = currentSplitDays?.find(day => day.assigned_day === 'thursday')
-    const friday = currentSplitDays?.find(day => day.assigned_day === 'friday')
-    const saturday = currentSplitDays?.find(day => day.assigned_day === 'saturday')
+    const dayOne = currentSplitDays?.find(day => day.assigned_day === 'dayOne')
+    const dayTwo = currentSplitDays?.find(day => day.assigned_day === 'dayTwo')
+    const dayThree = currentSplitDays?.find(day => day.assigned_day === 'dayThree')
+    const dayFour = currentSplitDays?.find(day => day.assigned_day === 'dayFour')
+    const dayFive = currentSplitDays?.find(day => day.assigned_day === 'dayFive')
+    const daySix = currentSplitDays?.find(day => day.assigned_day === 'daySix')
+    const daySeven = currentSplitDays?.find(day => day.assigned_day === 'daySeven')
 
     const [showEditForm, setShowEditForm] = useState(false)
 
@@ -47,13 +47,13 @@ const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteM
                         Edit
                     </div>
                 </div>
-                <SingleSplitDay day={sunday} dayOfWeek={"Sunday"} setShowMain={setShowMain} />
-                <SingleSplitDay day={monday} dayOfWeek={"Monday"} setShowMain={setShowMain} />
-                <SingleSplitDay day={tuesday} dayOfWeek={"Tuesday"} setShowMain={setShowMain} />
-                <SingleSplitDay day={wednesday} dayOfWeek={"Wednesday"} setShowMain={setShowMain} />
-                <SingleSplitDay day={thursday} dayOfWeek={"Thursday"} setShowMain={setShowMain} />
-                <SingleSplitDay day={friday} dayOfWeek={"Friday"} setShowMain={setShowMain} />
-                <SingleSplitDay day={saturday} dayOfWeek={"Saturday"} setShowMain={setShowMain} />
+                <SingleSplitDay day={dayOne} startDate={startDate} dayIndex={"0"} setShowMain={setShowMain} />
+                <SingleSplitDay day={dayTwo} startDate={startDate} dayIndex={"1"} setShowMain={setShowMain} />
+                <SingleSplitDay day={dayThree} startDate={startDate} dayIndex={"2"} setShowMain={setShowMain} />
+                <SingleSplitDay day={dayFour} startDate={startDate} dayIndex={"3"} setShowMain={setShowMain} />
+                <SingleSplitDay day={dayFive} startDate={startDate} dayIndex={"4"} setShowMain={setShowMain} />
+                <SingleSplitDay day={daySix} startDate={startDate} dayIndex={"5"} setShowMain={setShowMain} />
+                <SingleSplitDay day={daySeven} startDate={startDate} dayIndex={"6"} setShowMain={setShowMain} />
             </div>
         )
     } else {

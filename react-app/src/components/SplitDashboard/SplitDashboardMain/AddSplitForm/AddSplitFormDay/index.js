@@ -1,13 +1,11 @@
 import React from "react";
 
+import { weekdays } from "../../../../utils";
+
 import './AddSplitFormDay.css'
 
 
 const AddSplitFormDay = ({ day, dayIndex, dayPosition, handleDayChange, startDate, unassignedDays, selected }) => {
-
-    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-
 
     return (
         <div className="add-split-form-day add-split-form-dayOne">
