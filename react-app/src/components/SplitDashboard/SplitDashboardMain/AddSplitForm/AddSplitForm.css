@@ -34,7 +34,7 @@
     margin-top: 12px;
     margin-right: 16px;
     margin-left: 10px;
-    font-size: 28px;
+    font-size: 40px;
     font-weight: bold;
 }
 
@@ -65,7 +65,8 @@
 .react-calendar {
     width: 257px !important;
     position: absolute;
-    top: 0;
+    top: 5px;
+    left: 428px;
     margin-top: 45px;
     margin-left: 273px;
 }
@@ -78,10 +79,21 @@
     border-radius: 4px;
     margin-left: 15px;
     cursor: pointer;
+    position: relative;
+    bottom: 7px;
+}
+
+#add-split-form-calendar-toggle:hover {
+    background-color: #b40303;
 }
 
 .add-split-form-selected-day {
     display: inline;
     position: relative;
     bottom: 1px;
+    font-size: 40px;
+}
+
+.add-split-form-day-container {
+    overflow-x: scroll;
 }

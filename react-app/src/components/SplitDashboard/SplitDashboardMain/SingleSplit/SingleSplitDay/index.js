@@ -1,9 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
+import { weekdays } from "../../../../utils";
+
 import './SingleSplitDay.css'
 
-const SingleSplitDay = ({ day, dayOfWeek, setShowMain }) => {
+const SingleSplitDay = ({ day, startDate, dayIndex, setShowMain }) => {
     const days = useSelector(state => state.dayState.entries)
     const currentDay = days.indexOf(day)
 
@@ -13,12 +15,12 @@ const SingleSplitDay = ({ day, dayOfWeek, setShowMain }) => {
 
     return (
         <div className="single-split-day-container">
-                    <h3 className="single-split-day-header">{dayOfWeek}</h3>
+                    <h3 className="single-split-day-header">{weekdays[(startDate?.getDay() + Number(dayIndex)) % 7]}</h3>
                     <div className="single-split-day-info">
                         <h3>{day ? day.name : ""}</h3>
                         {day ? <div className="single-split-edit-day-button" onClick={toggleEditDay}>
                                 View
-                        </div>: <></>}
+                        </div> : <></>}
                         {day ? day.exercises.map((exercise, i) => {
                             return (
                                 <div key={i} className="single-split-day-exercise-container">

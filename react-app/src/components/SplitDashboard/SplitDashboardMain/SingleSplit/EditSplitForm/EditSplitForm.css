@@ -50,7 +50,7 @@
 
 .edit-split-form-delete-split {
     height: 36px;
-    margin: 12px 0 0 20px;
+    margin: 12px 10px 20px 20px;
     padding: 0px 15px;
     border-radius: 20px;
     border: 2px solid #b95ccc;
@@ -59,9 +59,28 @@
     font-weight: bold;
     cursor: pointer;
     letter-spacing: 1.5px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 .edit-split-form-delete-split:hover {
     background: #894597;
     border: 2px solid #894597;
+}
+
+.single-split-edit-date-range {
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    background-color: #262626;
+    padding: 10px;
+    border-radius: 8px;
+    letter-spacing: 1.5px;
+    margin-left: 20px;
+}
+
+.edit-split-form-calendar {
+    top: 15px !important;
+    left: 350px !important;
 }

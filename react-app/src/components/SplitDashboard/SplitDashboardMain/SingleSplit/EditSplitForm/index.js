@@ -1,14 +1,22 @@
 // React/Redux imports
 import React, { useState } from "react";
+import Calendar from 'react-calendar';
 import { useDispatch, useSelector } from "react-redux";
 
 // Component imports
 import EditSplitSingleDay from "./EditSplitSingleDay";
 import ConfirmDelete from "../../ConfirmDelete";
 
-// Store Imports
+// State Imports
 import { deleteOneSplit, editOneSplit } from "../../../../../store/split";
 import { getAllDays } from "../../../../../store/day";
+
+// Font awesome imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCalendar } from '@fortawesome/free-solid-svg-icons'
+
+// Util imports
+import { parseDate } from "../../../../utils";
 
 import './EditSplitForm.css'
 
@@ -17,8 +25,6 @@ const EditSplitForm =
     ({ currentSplit,
     toggleEdit,
     setShowMain,
-    start,
-    end,
     setShowEditMessage,
     setShowDeleteMessage }) => {
 
@@ -31,50 +37,51 @@ const EditSplitForm =
     if (currentSplit) unassignedDays = [...unassignedDays, ...currentSplit.days]
 
     // Prepopulate state variables with current info
-    const currentSunday = currentSplit?.days.find(day => day.assigned_day === 'sunday')
-    const currentMonday = currentSplit?.days.find(day => day.assigned_day === 'monday')
-    const currentTuesday = currentSplit?.days.find(day => day.assigned_day === 'tuesday')
-    const currentWednesday = currentSplit?.days.find(day => day.assigned_day === 'wednesday')
-    const currentThursday = currentSplit?.days.find(day => day.assigned_day === 'thursday')
-    const currentFriday = currentSplit?.days.find(day => day.assigned_day === 'friday')
-    const currentSaturday = currentSplit?.days.find(day => day.assigned_day === 'saturday')
+    const currentDayOne = currentSplit?.days.find(day => day.assigned_day === 'dayOne')
+    const currentDayTwo = currentSplit?.days.find(day => day.assigned_day === 'dayTwo')
+    const currentDayThree = currentSplit?.days.find(day => day.assigned_day === 'dayThree')
+    const currentDayFour = currentSplit?.days.find(day => day.assigned_day === 'dayFour')
+    const currentDayFive = currentSplit?.days.find(day => day.assigned_day === 'dayFive')
+    const currentDaySix = currentSplit?.days.find(day => day.assigned_day === 'daySix')
+    const currentDaySeven = currentSplit?.days.find(day => day.assigned_day === 'daySeven')
 
     // Form state variables
     const [name, setName] = useState(currentSplit?.name)
-    const [sunday, setSunday] = useState(currentSunday ? currentSunday.id : "")
-    const [monday, setMonday] = useState(currentMonday ? currentMonday.id : "")
-    const [tuesday, setTuesday] = useState(currentTuesday ? currentTuesday.id : "")
-    const [wednesday, setWednesday] = useState(currentWednesday ? currentWednesday.id : "")
-    const [thursday, setThursday] = useState(currentThursday ? currentThursday.id : "")
-    const [friday, setFriday] = useState(currentFriday ? currentFriday.id : "")
-    const [saturday, setSaturday] = useState(currentSaturday ? currentSaturday : "")
+    const [startDate, setStartDate] = useState(new Date(currentSplit?.start_date))
+    const [dayOne, setDayOne] = useState(currentDayOne ? currentDayOne.id : "")
+    const [dayTwo, setDayTwo] = useState(currentDayTwo ? currentDayTwo.id : "")
+    const [dayThree, setDayThree] = useState(currentDayThree ? currentDayThree.id : "")
+    const [dayFour, setDayFour] = useState(currentDayFour ? currentDayFour.id : "")
+    const [dayFive, setDayFive] = useState(currentDayFive ? currentDayFive.id : "")
+    const [daySix, setDaySix] = useState(currentDaySix ? currentDaySix.id : "")
+    const [daySeven, setDaySeven] = useState(currentDaySeven ? currentDaySeven : "")
     const [errors, setErrors] = useState([])
 
     const [selected, setSelected] = useState({
-                                        sunday: currentSunday ? `${currentSunday.id}` : "",
-                                        monday: currentMonday ? `${currentMonday.id}` : "",
-                                        tuesday: currentTuesday ? `${currentTuesday.id}` : "",
-                                        wednesday: currentWednesday ? `${currentWednesday.id}` : "",
-                                        thursday: currentThursday ? `${currentThursday.id}` : "",
-                                        friday: currentFriday ? `${currentFriday.id}` : "",
-                                        saturday: currentSaturday ? `${currentSaturday.id}` : "" })
+                                        dayOne: currentDayOne ? `${currentDayOne.id}` : "",
+                                        dayTwo: currentDayTwo ? `${currentDayTwo.id}` : "",
+                                        dayThree: currentDayThree ? `${currentDayThree.id}` : "",
+                                        dayFour: currentDayFour ? `${currentDayFour.id}` : "",
+                                        dayFive: currentDayFive ? `${currentDayFive.id}` : "",
+                                        daySix: currentDaySix ? `${currentDaySix.id}` : "",
+                                        daySeven: currentDaySeven ? `${currentDaySeven.id}` : "" })
 
     // Handles select dropdown changes, including keeping track of already-selected days
     const handleDayChange = (e, day) => {
-        if (day === 'sunday') {
-            setSunday(e.target.value)
-        } else if (day === 'monday') {
-            setMonday(e.target.value)
-        } else if (day === 'tuesday') {
-            setTuesday(e.target.value)
-        } else if (day === 'wednesday') {
-            setWednesday(e.target.value)
-        } else if (day === 'thursday') {
-            setThursday(e.target.value)
-        } else if (day === 'friday') {
-            setFriday(e.target.value)
-        } else if (day === 'saturday') {
-            setSaturday(e.target.value)
+        if (day === 'dayOne') {
+            setDayOne(e.target.value)
+        } else if (day === 'dayTwo') {
+            setDayTwo(e.target.value)
+        } else if (day === 'dayThree') {
+            setDayThree(e.target.value)
+        } else if (day === 'dayFour') {
+            setDayFour(e.target.value)
+        } else if (day === 'dayFive') {
+            setDayFive(e.target.value)
+        } else if (day === 'daySix') {
+            setDaySix(e.target.value)
+        } else if (day === 'daySeven') {
+            setDaySeven(e.target.value)
         } else if (day === "" || day === undefined) {
 
         }
@@ -99,14 +106,15 @@ const EditSplitForm =
 
         const payload = {
             name,
+            startDate,
             days: [
-                { sunday: sunday },
-                { monday: monday },
-                { tuesday: tuesday },
-                { wednesday: wednesday },
-                { thursday: thursday },
-                { friday: friday },
-                { satuday: saturday },
+                { dayOne: dayOne },
+                { dayTwo: dayTwo },
+                { dayThree: dayThree },
+                { dayFour: dayFour },
+                { dayFive: dayFive },
+                { daySix: daySix },
+                { daySeven: daySeven },
             ],
             unassigned
         }
@@ -158,21 +166,33 @@ const EditSplitForm =
         setShowDelete(!showDelete)
     }
 
+    const [showCalendar, setShowCalendar] = useState(false)
+
+    const toggleCalendar = (e) => {
+        e.preventDefault()
+
+        setShowCalendar(!showCalendar)
+    }
+
     return (
         <div className="edit-split-form-container main-content-container">
             {showDelete ? <ConfirmDelete typeOfDelete={"split"} handleDeleteSplit={handleDeleteSplit} toggleDelete={toggleDelete} /> : <></>}
             <form onSubmit={handleSubmit}>
                 <div className="single-split-header">
-                    <label className="edit-split-name-label" htmlFor="name">*Name:
-                    </label>
-                        <input
-                            name="name"
-                            type="text"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                            className="add-split-form-name"
-                        />
-                    <div className="single-split-date-range">{start} - {end}</div>
+                    <div className="add-split-form-date-section">
+                        <label className="add-split-name-label" htmlFor="add-split-form-calendar-toggle">*Edit start date: </label>
+                        <div className="add-split-form-selected-day">
+                            {startDate?.toDateString()}
+                        </div>
+                        <button id="add-split-form-calendar-toggle" onClick={e => toggleCalendar(e)}>
+                            <FontAwesomeIcon icon={faCalendar} />
+                        </button>
+                        {showCalendar ?
+                        <div className="add-split-form-calendar-container">
+                            <Calendar className="edit-split-form-calendar" returnValue={'start'} minDetail={"year"} onChange={setStartDate} value={startDate} />
+                        </div> : <></>}
+                    </div>
+                    {/* <div className="single-split-edit-date-range">{start} - {end}</div> */}
                     <div className="single-split-edit-button" onClick={toggleEdit}>
                         Edit
                     </div>
@@ -183,14 +203,14 @@ const EditSplitForm =
                         <div key={ind} className="add-split-form-error">{error}</div>
                     ))}
                 </div>
-                <div>
-                    <EditSplitSingleDay day={sunday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Sunday"} selected={selected}/>
-                    <EditSplitSingleDay day={monday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Monday"} selected={selected}/>
-                    <EditSplitSingleDay day={tuesday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Tuesday"} selected={selected}/>
-                    <EditSplitSingleDay day={wednesday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Wednesday"} selected={selected}/>
-                    <EditSplitSingleDay day={thursday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Thursday"} selected={selected}/>
-                    <EditSplitSingleDay day={friday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Friday"} selected={selected}/>
-                    <EditSplitSingleDay day={saturday} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayOfWeek={"Saturday"} selected={selected}/>
+                <div className="single-split-days-container"ame>
+                    <EditSplitSingleDay day={dayOne} startDate={startDate} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayIndex={"0"}  dayPosition={"dayOne"} selected={selected}/>
+                    <EditSplitSingleDay day={dayTwo} startDate={startDate} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayIndex={"1"} dayPosition={"dayTwo"} selected={selected}/>
+                    <EditSplitSingleDay day={dayThree} startDate={startDate} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayIndex={"2"} dayPosition={"dayThree"} selected={selected}/>
+                    <EditSplitSingleDay day={dayFour} startDate={startDate} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayIndex={"3"} dayPosition={"dayFour"} selected={selected}/>
+                    <EditSplitSingleDay day={dayFive} startDate={startDate} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayIndex={"4"} dayPosition={"dayFive"} selected={selected}/>
+                    <EditSplitSingleDay day={daySix} startDate={startDate} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayIndex={"5"} dayPosition={"daySix"} selected={selected}/>
+                    <EditSplitSingleDay day={daySeven} startDate={startDate} handleDayChange={handleDayChange} unassignedDays={unassignedDays} dayIndex={"6"} dayPosition={"daySeven"} selected={selected}/>
                 </div>
                 <button className="edit-split-submit-button" type="submit">Submit</button>
             </form>

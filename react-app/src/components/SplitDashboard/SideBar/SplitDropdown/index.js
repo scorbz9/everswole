@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import { parseDate } from '../../../utils';
 
 import './SplitDropdown.css'
 
@@ -17,9 +17,16 @@ const SplitDropdown = ({showSplitDropdown, setShowSplitDropdown, showMain, setSh
             {showSplitDropdown ?
                 <div className="sidebar-day-dropdown-content">
                     {splits.map((split, index) => {
+
+                    const startDate = new Date(split?.start_date);
+                    const endDate = new Date(split?.end_date)
+
+                    const start = parseDate(startDate)
+                    const end = parseDate(endDate)
+
                         return (
-                            <div className="sidebar-day-dropdown-element" key={index} onClick={() => toggleSplitInfo(index)}>
-                                {split.name}
+                            <div className="sidebar-split-dropdown-element" key={index} onClick={() => toggleSplitInfo(index)}>
+                                {start} - {end}
                             </div>
                         )
                     })}

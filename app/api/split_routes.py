@@ -28,29 +28,17 @@ def addSplit(user_id):
     data = request.json
     form = SplitForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(data)
+
     if form.validate_on_submit():
 
-        # Calculate nearest previous sunday (start date of split)
-        # current_date = datetime.today()
-
-        # if current_date.weekday() == 6:
-        #     split_date = current_date
-        # else:
-        #     split_date = current_date - timedelta(days=current_date.weekday() + 1)
-
-        # splits_to_check = Split.query.filter(Split.user_id == user_id).all()
-
-        # for split in splits_to_check:
-        #     current_split_date = split.start_date
-
-        #     if split_date.date() == current_split_date.date():
-        #         return { "errors": ["A split for the current week already exists."] }
+        start_date = datetime.strptime(data["startDate"], '%Y-%m-%dT%H:%M:%S.%fZ')
+        end_date = start_date + timedelta(days=6);
 
         new_split = Split(
             name = data["name"],
             user_id = user_id,
-            start_date = data["startDate"]
+            start_date = data["startDate"],
+            end_date = end_date
         )
 
         db.session.add(new_split)
@@ -81,6 +69,8 @@ def addSplit(user_id):
                 .all()
             split.days = days
 
+
+
         return { "splits": [split.to_dict() for split in splits] }
 
     return { "errors": [validation_errors_to_error_messages(form.errors)]}
@@ -93,7 +83,7 @@ def editSplit(user_id, split_id):
 
     if form.validate_on_submit():
 
-        # Update days that ASSIGNED
+        # Update days that were ASSIGNED
         for day in range(len(data['days'])):
             current_day_id = list(data['days'][day].values())[0]
             current_day_name = list(data['days'][day].keys())[0]
@@ -123,7 +113,11 @@ def editSplit(user_id, split_id):
             .filter(Split.id == split_id) \
             .one()
 
-        split_to_update.name = data['name']
+        start_date = datetime.strptime(data["startDate"], '%Y-%m-%dT%H:%M:%S.%fZ')
+        end_date = start_date + timedelta(days=6);
+
+        split_to_update.start_date = start_date
+        split_to_update.end_date = end_date
 
         db.session.commit()
 

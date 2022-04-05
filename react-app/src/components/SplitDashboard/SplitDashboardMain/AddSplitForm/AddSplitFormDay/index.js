@@ -1,13 +1,14 @@
 import React from "react";
 
-import { weekdays } from "../../../../../utils";
+import { weekdays } from "../../../../utils";
 
-import './EditSplitSingleDay.css'
+import './AddSplitFormDay.css'
 
-const EditSplitSingleDay = ({ day, dayIndex, dayPosition, startDate, handleDayChange, unassignedDays, selected }) => {
+
+const AddSplitFormDay = ({ day, dayIndex, dayPosition, handleDayChange, startDate, unassignedDays, selected }) => {
 
     return (
-        <div className="add-split-form-day">
+        <div className="add-split-form-day add-split-form-dayOne">
             <h4>{weekdays[(startDate?.getDay() + Number(dayIndex)) % 7]}</h4>
             <select
                 value={day}
@@ -16,11 +17,11 @@ const EditSplitSingleDay = ({ day, dayIndex, dayPosition, startDate, handleDayCh
                 className="add-split-form-day-select"
             >
                 <option value="">Rest Day</option>
-                {unassignedDays.map((dayOption, i) => {
+                {unassignedDays.map((day, i) => {
 
                     return (
-                        <option className={Object.values(selected).includes(`${dayOption.id}`) ? "hide-option" : ""} key={i} value={dayOption.id}>
-                            {dayOption.name}
+                        <option className={Object.values(selected).includes(`${day.id}`) ? "hide-option" : ""} key={i} value={day.id}>
+                            {day.name}
                         </option>
                     )
                 })}
@@ -29,4 +30,4 @@ const EditSplitSingleDay = ({ day, dayIndex, dayPosition, startDate, handleDayCh
     )
 }
 
-export default EditSplitSingleDay;
+export default AddSplitFormDay
