@@ -82,8 +82,6 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
             ]
         }
 
-
-        console.log(payload)
         const data = await dispatch(addOneSplit(payload, userId))
 
         if (data.errors) {

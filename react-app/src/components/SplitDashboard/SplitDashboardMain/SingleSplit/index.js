@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import { useSelector } from "react-redux";
 
+import { parseDate } from "../../../utils";
+
 import EditSplitForm from "./EditSplitForm";
 import SingleSplitDay from "./SingleSplitDay";
 
@@ -30,31 +32,19 @@ const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteM
     }
 
     // Parse datetime obj for header display
-    const parseDate = datetime => {
-        let month = datetime.getMonth() + 1
-        let day = datetime.getDate()
-        let year = datetime.getFullYear()
+    // const parseDate = datetime => {
+    //     let month = datetime.getMonth() + 1
+    //     let day = datetime.getDate()
+    //     let year = datetime.getFullYear()
 
-        return month + "/" + day + "/" + year;
-    }
-    // let temp = new Date()
-    // let temp2 = new Date()
-
-    // let startDate = new Date(temp2.setDate(temp2.getDate() - temp2.getDay()))
-    // let temp3 = new Date(temp.setDate(temp2.getDate() - temp.getDay()))
-    // let endDate = new Date(temp3.setDate(temp3.getDate() + 6))
-
-
-    // let end = parseDate(endDate)
-    // let start = "1"
-    // let end = " 2"
+    //     return month + "/" + day + "/" + year;
+    // }
 
     const startDate = new Date(currentSplit?.start_date);
     const endDate = new Date(currentSplit?.end_date)
 
     const start = parseDate(startDate)
     const end = parseDate(endDate)
-    // console.log(currentSplit?.start_date, startDate)
 
     if (!showEditForm) {
         return (
