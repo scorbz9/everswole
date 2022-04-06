@@ -26,6 +26,19 @@
     background-color: #894597;
 }
 
+.sidebar-new-dropdown-add-exercise {
+    background-color: #555454;
+    padding-left: 100px;
+}
+
+.sidebar-new-dropdown-add-exercise:hover {
+    background-color: #696767;
+}
+
+.new-dropdown-exercise-icon {
+    margin: 0 6px 0 7px !important;
+}
+
 .new-dropdown-element {
     display: flex;
     align-items: center;
@@ -42,5 +55,5 @@
 }
 
 .new-dropdown-split-icon {
-    margin-left: 10.5px;
+    margin: 0 8px;
 }

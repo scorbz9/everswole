@@ -26,4 +26,4 @@ const exerciseReducer = (state = initialState, action) => {
     }
 }
 
-export default exerciseReducer
+export default exerciseReducer;

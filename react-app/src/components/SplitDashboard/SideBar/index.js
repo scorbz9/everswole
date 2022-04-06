@@ -7,13 +7,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faCaretDown, faHouse } from '@fortawesome/free-solid-svg-icons'
 
 // Component imports
-import LogoutDropdown from './LogoutDropdown'
+import UserDropdown from './UserDropdown'
 import NewDropdown from './NewDropdown'
 import DayDropdown from './DayDropdown'
 import SplitDropdown from './SplitDropdown'
 import Help from './Help'
 
 import './SideBar.css'
+import AddExerciseForm from './AddExerciseForm'
 
 
 const SideBar = ({ showMain, setShowMain }) => {
@@ -23,13 +24,14 @@ const SideBar = ({ showMain, setShowMain }) => {
     const [showNewDropdown, setShowNewDropdown] = useState(false)
     const [showDayDropdown, setShowDayDropdown] = useState(false)
     const [showSplitDropdown, setShowSplitDropdown] = useState(false)
+    const [showAddExerciseForm, setShowAddExerciseForm] = useState(false)
     const [showHelp, setShowHelp] = useState(false)
 
     const toggleHome = () => {
         setShowMain('Home')
     }
 
-    const toggleLogoutDropdown = () => {
+    const toggleUserDropdown = () => {
         setShowLogout(!showLogout)
     }
 
@@ -49,6 +51,10 @@ const SideBar = ({ showMain, setShowMain }) => {
         setShowHelp(!showHelp)
     }
 
+    const toggleAddExerciseForm = () => {
+        setShowAddExerciseForm(!showAddExerciseForm)
+    }
+
     let toggleStyleDay;
     let toggleStyleSplit;
 
@@ -66,17 +72,17 @@ const SideBar = ({ showMain, setShowMain }) => {
 
     return (
         <div className="sidebar-container">
-            <div className="sidebar-user-info-container" onClick={toggleLogoutDropdown}>
+            <div className="sidebar-user-info-container" onClick={toggleUserDropdown}>
                 <div className="sidebar-user-info-image">❚█══█❚</div>
                 <p className="sidebar-user-info-username">{user.email}</p>
                 <div className="sidebar-user-info-dropdown-toggle"><FontAwesomeIcon icon={faCaretDown} /></div>
             </div>
-            <LogoutDropdown showLogout={showLogout} setShowLogout={setShowLogout}/>
-
+            <UserDropdown showLogout={showLogout} setShowLogout={setShowLogout}/>
+            <AddExerciseForm showAddExerciseForm={showAddExerciseForm} setShowAddExerciseForm={setShowAddExerciseForm}/>
             <div className="sidebar-new-dropdown-container" onClick={toggleNewDropdown}>
                 <FontAwesomeIcon icon={faPlus}/> <p className="new-dropdown-text">New</p> <FontAwesomeIcon icon={faCaretDown} className="new-dropdown-caret"/>
             </div>
-            <NewDropdown showNewDropdown={showNewDropdown} setShowNewDropdown={setShowNewDropdown} showMain={showMain} setShowMain={setShowMain}/>
+            <NewDropdown showNewDropdown={showNewDropdown} setShowNewDropdown={setShowNewDropdown} toggleAddExerciseForm={toggleAddExerciseForm} showMain={showMain} setShowMain={setShowMain} />
 
             <div className="main-switch-buttons-container">
                 <div className="sidebar-home" onClick={toggleHome}>
@@ -95,7 +101,7 @@ const SideBar = ({ showMain, setShowMain }) => {
                 <div className="sidebar-help" onClick={toggleHelp}>
                     How to Use
                 </div>
-                <Help showHelp={showHelp} setShowHelp={setShowHelp} toggleHelp={toggleHelp}/>
+                <Help showHelp={showHelp} setShowHelp={setShowHelp} toggleHelp={toggleHelp} showMain={showMain} setShowMain={setShowMain}/>
             </div>
         </div>
     )
