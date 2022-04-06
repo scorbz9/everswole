@@ -1,6 +1,5 @@
 const LOAD_EXERCISES = 'exercise/LOAD_EXERCISES'
 
-
 const loadExercises = (payload) => ({
     type: LOAD_EXERCISES,
     payload
@@ -19,7 +18,6 @@ export const getAllExercises = () => async dispatch => {
 const initialState = { entries: [] }
 
 const exerciseReducer = (state = initialState, action) => {
-    let newState
     switch (action.type) {
         case LOAD_EXERCISES:
             return {...state, entries: [...action.payload.exercises]}

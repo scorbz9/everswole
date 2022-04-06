@@ -1,5 +1,7 @@
+// React/Redux imports
 import React, { useEffect, useRef } from 'react';
 
+// Font awesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar, faDumbbell } from '@fortawesome/free-solid-svg-icons'
 
@@ -32,7 +34,7 @@ const NewDropdown = ({ showNewDropdown, setShowNewDropdown, showMain, setShowMai
         // Cleanup the event listener
         document.removeEventListener("click", checkIfClickedOutside)
         }
-    }, [showNewDropdown])
+    }, [showNewDropdown, setShowNewDropdown])
 
 
     return (

@@ -29,7 +29,7 @@ const SplitDashboard = () => {
                 dispatch(getAllSplits(userId))
             ])
         })();
-    }, [dispatch])
+    }, [dispatch, userId])
 
     const [showMain, setShowMain] = useState('Home');
 

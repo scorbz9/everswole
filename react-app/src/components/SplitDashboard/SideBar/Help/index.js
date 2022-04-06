@@ -27,7 +27,7 @@ const Help = ({ showHelp, setShowHelp, toggleHelp }) => {
         // Cleanup the event listener
         document.removeEventListener("click", checkIfClickedOutside)
         }
-    }, [showHelp])
+    }, [showHelp, setShowHelp])
 
     return (
         <>

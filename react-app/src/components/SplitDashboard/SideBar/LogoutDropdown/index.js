@@ -1,5 +1,8 @@
+// React/Redux imports
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+
+// State imports
 import { logout } from '../../../../store/session'
 
 import './LogoutDropdown.css'
@@ -27,7 +30,7 @@ const LogoutDropdown = ({ showLogout, setShowLogout }) => {
         // Cleanup the event listener
         document.removeEventListener("click", checkIfClickedOutside)
         }
-    }, [showLogout])
+    }, [showLogout, setShowLogout])
 
 
     return (

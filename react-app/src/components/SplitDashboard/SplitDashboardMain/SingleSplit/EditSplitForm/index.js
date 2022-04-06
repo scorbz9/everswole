@@ -45,7 +45,6 @@ const EditSplitForm =
     const currentDaySeven = currentSplit?.days.find(day => day.assigned_day === 'daySeven')
 
     // Form state variables
-    const [name, setName] = useState(currentSplit?.name)
     const [startDate, setStartDate] = useState(new Date(currentSplit?.start_date))
     const [dayOne, setDayOne] = useState(currentDayOne ? currentDayOne.id : "")
     const [dayTwo, setDayTwo] = useState(currentDayTwo ? currentDayTwo.id : "")
@@ -104,7 +103,6 @@ const EditSplitForm =
         })
 
         const payload = {
-            name,
             startDate,
             days: [
                 { dayOne: dayOne },
@@ -141,7 +139,7 @@ const EditSplitForm =
     const handleDeleteSplit = async (e) => {
         e.preventDefault();
 
-        const data = await dispatch(deleteOneSplit(userId, currentSplit.id))
+        await dispatch(deleteOneSplit(userId, currentSplit.id))
 
         // Successful delete confirmation message
         setShowDeleteMessage(true)

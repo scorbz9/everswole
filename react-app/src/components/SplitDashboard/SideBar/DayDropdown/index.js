@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// React/Redux imports
+import React from "react";
 import { useSelector } from "react-redux";
 
 import './DayDropdown.css'

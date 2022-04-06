@@ -1,6 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+// React/Redux imports
+import React from 'react';
 import { useSelector } from 'react-redux';
 
+// Util imports
 import { parseDate } from '../../../utils';
 
 import './SplitDropdown.css'

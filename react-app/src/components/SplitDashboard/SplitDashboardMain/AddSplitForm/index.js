@@ -24,7 +24,6 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
     const unassignedDays = days.filter(day => !day.assigned)
     const userId = useSelector(state => state.session.user.id)
 
-    const [name, setName] = useState("")
     const [startDate, setStartDate] = useState(new Date())
     const [dayOne, setDayOne] = useState("")
     const [dayTwo, setDayTwo] = useState("")
@@ -73,7 +72,6 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
         e.preventDefault();
 
         const payload = {
-            name,
             startDate,
             days: [
                 { dayOne: dayOne },
