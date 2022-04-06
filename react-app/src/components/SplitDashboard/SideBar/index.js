@@ -67,8 +67,7 @@ const SideBar = ({ showMain, setShowMain }) => {
     return (
         <div className="sidebar-container">
             <div className="sidebar-user-info-container" onClick={toggleLogoutDropdown}>
-                {/* placeholder for profile pic */}
-                <div className="sidebar-user-info-image">🔴</div>
+                <div className="sidebar-user-info-image">❚█══█❚</div>
                 <p className="sidebar-user-info-username">{user.email}</p>
                 <div className="sidebar-user-info-dropdown-toggle"><FontAwesomeIcon icon={faCaretDown} /></div>
             </div>

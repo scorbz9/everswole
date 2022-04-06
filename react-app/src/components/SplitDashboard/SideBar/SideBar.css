@@ -14,10 +14,27 @@
     align-items: center;
     width: 100%;
     cursor: pointer;
+    margin-top: 9px;
 }
 
 .sidebar-user-info-container:hover .sidebar-user-info-username {
     color: white;
+}
+
+.sidebar-user-info-image {
+    height: 30px;
+    width: 30px;
+    background-color: #8b0000;
+    border-radius: 50%;
+    margin-right: 10px;
+    position: relative;
+    left: 4px;
+    top: 1px;
+    font-size: 5px !important;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .sidebar-user-info-username {
