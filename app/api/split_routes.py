@@ -31,8 +31,15 @@ def addSplit(user_id):
 
     if form.validate_on_submit():
 
+        # Construct python datetime obj from startDate data
         start_date = datetime.strptime(data["startDate"], '%Y-%m-%dT%H:%M:%S.%fZ')
+        # Set that datetime object to be first very first milliseconds of start_date
+        start_date = start_date.replace(hour=0, minute=0, second=0, microsecond=0)
+
+        # Calculate end_date using start_date, 6 days in the future
         end_date = start_date + timedelta(days=6);
+        # Set end_date to be very last milliseconds of end_date
+        end_date = end_date.replace(hour=23, minute=59, second=59, microsecond=999999)
 
         new_split = Split(
             name = data["name"],
