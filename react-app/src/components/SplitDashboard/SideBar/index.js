@@ -1,14 +1,19 @@
+// React imports
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+
+// Font awesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faCaretDown, faHouse } from '@fortawesome/free-solid-svg-icons'
 
+// Component imports
 import LogoutDropdown from './LogoutDropdown'
 import NewDropdown from './NewDropdown'
-
-import './SideBar.css'
 import DayDropdown from './DayDropdown'
 import SplitDropdown from './SplitDropdown'
+import Help from './Help'
+
+import './SideBar.css'
 
 
 const SideBar = ({ showMain, setShowMain }) => {
@@ -18,6 +23,7 @@ const SideBar = ({ showMain, setShowMain }) => {
     const [showNewDropdown, setShowNewDropdown] = useState(false)
     const [showDayDropdown, setShowDayDropdown] = useState(false)
     const [showSplitDropdown, setShowSplitDropdown] = useState(false)
+    const [showHelp, setShowHelp] = useState(false)
 
     const toggleHome = () => {
         setShowMain('Home')
@@ -39,8 +45,13 @@ const SideBar = ({ showMain, setShowMain }) => {
         setShowSplitDropdown(!showSplitDropdown)
     }
 
+    const toggleHelp = () => {
+        setShowHelp(!showHelp)
+    }
+
     let toggleStyleDay;
-    let toggleStyleSplit
+    let toggleStyleSplit;
+
     if (showDayDropdown) {
         toggleStyleDay = {
             backgroundColor: "#333333"
@@ -82,6 +93,10 @@ const SideBar = ({ showMain, setShowMain }) => {
                     <FontAwesomeIcon icon={faCaretDown} className="dropdown-caret"/> Splits
                 </div>
                 <SplitDropdown showSplitDropdown={showSplitDropdown} setShowSplitDropdown={setShowSplitDropdown}  showMain={showMain} setShowMain={setShowMain}/>
+                <div className="sidebar-help" onClick={toggleHelp}>
+                    How to Use
+                </div>
+                <Help showHelp={showHelp} setShowHelp={setShowHelp} toggleHelp={toggleHelp}/>
             </div>
         </div>
     )

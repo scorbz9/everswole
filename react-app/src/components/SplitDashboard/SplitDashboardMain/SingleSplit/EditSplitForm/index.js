@@ -1,5 +1,5 @@
 // React/Redux imports
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Calendar from 'react-calendar';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -15,15 +15,14 @@ import { getAllDays } from "../../../../../store/day";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar } from '@fortawesome/free-solid-svg-icons'
 
-// Util imports
-import { parseDate } from "../../../../utils";
-
 import './EditSplitForm.css'
 
 
 const EditSplitForm =
     ({ currentSplit,
     toggleEdit,
+    start,
+    end,
     setShowMain,
     setShowEditMessage,
     setShowDeleteMessage }) => {
@@ -157,7 +156,6 @@ const EditSplitForm =
     }
 
     // Shows delete confirmation popup
-
     const [showDelete, setShowDelete] = useState(false)
 
     const toggleDelete = (e) => {
@@ -166,6 +164,7 @@ const EditSplitForm =
         setShowDelete(!showDelete)
     }
 
+    // Handle calendar
     const [showCalendar, setShowCalendar] = useState(false)
 
     const toggleCalendar = (e) => {
@@ -174,13 +173,34 @@ const EditSplitForm =
         setShowCalendar(!showCalendar)
     }
 
+    // Hide calendar on click off
+    const ref = useRef()
+
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+
+        if (showCalendar && ref.current && !ref.current.contains(e.target)) {
+                setShowCalendar(false)
+            }
+        }
+
+        document.addEventListener("click", checkIfClickedOutside)
+
+        return () => {
+        // Cleanup the event listener
+        document.removeEventListener("click", checkIfClickedOutside)
+        }
+    }, [showCalendar])
+
     return (
         <div className="edit-split-form-container main-content-container">
             {showDelete ? <ConfirmDelete typeOfDelete={"split"} handleDeleteSplit={handleDeleteSplit} toggleDelete={toggleDelete} /> : <></>}
             <form onSubmit={handleSubmit}>
-                <div className="single-split-header">
-                    <div className="add-split-form-date-section">
-                        <label className="add-split-name-label" htmlFor="add-split-form-calendar-toggle">*Edit start date: </label>
+                <div className="edit-split-form-header-container">
+                    <h2 className="edit-split-form-header">Edit this week's workouts</h2>
+                    <div className="single-split-edit-date-range">{start} - {end}</div>
+                </div>
+                        <label className="edit-split-date-label">Select a start date: </label>
                         <div className="add-split-form-selected-day">
                             {startDate?.toDateString()}
                         </div>
@@ -188,16 +208,15 @@ const EditSplitForm =
                             <FontAwesomeIcon icon={faCalendar} />
                         </button>
                         {showCalendar ?
-                        <div className="add-split-form-calendar-container">
+                        <div className="add-split-form-calendar-container" ref={ref}>
                             <Calendar className="edit-split-form-calendar" returnValue={'start'} minDetail={"year"} onChange={setStartDate} value={startDate} />
                         </div> : <></>}
-                    </div>
-                    {/* <div className="single-split-edit-date-range">{start} - {end}</div> */}
+
                     <div className="single-split-edit-button" onClick={toggleEdit}>
                         Edit
                     </div>
                     <button className="edit-split-form-delete-split" onClick={toggleDelete}>Delete Split</button>
-                </div>
+
                 <div className="add-split-error-container">
                     {errors.map((error, ind) => (
                         <div key={ind} className="add-split-form-error">{error}</div>

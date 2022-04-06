@@ -10,8 +10,8 @@ const Footer = () => {
     return (
         <div className="footer-container">
             <div className="footer-about">Developed by Seth Corbett</div>
-            <a href="https://www.linkedin.com/in/seth-corbett-230824231/" ><FontAwesomeIcon icon={faLinkedin} className="footer-linkedin-icon"/></a>
-            <a href="https://github.com/scorbz9/everswole"><FontAwesomeIcon icon={faGithub} className="footer-github-icon"/></a>
+            <a target="_blank" href="https://www.linkedin.com/in/seth-corbett-230824231/" ><FontAwesomeIcon icon={faLinkedin} className="footer-linkedin-icon"/></a>
+            <a target="_blank" href="https://github.com/scorbz9/everswole"><FontAwesomeIcon icon={faGithub} className="footer-github-icon"/></a>
         </div>
     )
 }

@@ -2,7 +2,7 @@
     background-color: black;
     height: 100%;
     width: 240px;
-    position: fixed;
+    /* position: relative; */
     left: 0;
     display: flex;
     flex-direction: column;
@@ -48,7 +48,7 @@
     background: #333333;
     position: absolute;
     margin-top: 43px;
-    width: 90%;
+    width: 216px;
     height: 56px;
     border-radius: 2px;
     z-index: 2;
@@ -148,4 +148,19 @@
 
 .sidebar-split-dropdown-container:hover {
     background-color: #333333;
+}
+
+.sidebar-help {
+    color: rgb(196, 195, 195);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 60px;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.sidebar-help:hover {
+    color: white;
 }
