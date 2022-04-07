@@ -17,7 +17,7 @@ import './SideBar.css'
 import AddExerciseForm from './AddExerciseForm'
 
 
-const SideBar = ({ showMain, setShowMain }) => {
+const SideBar = ({ showMain, setShowMain, setShowAddMessage }) => {
     const user = useSelector(state => state.session.user)
 
     const [showLogout, setShowLogout] = useState(false);
@@ -78,7 +78,7 @@ const SideBar = ({ showMain, setShowMain }) => {
                 <div className="sidebar-user-info-dropdown-toggle"><FontAwesomeIcon icon={faCaretDown} /></div>
             </div>
             <UserDropdown showLogout={showLogout} setShowLogout={setShowLogout}/>
-            <AddExerciseForm showAddExerciseForm={showAddExerciseForm} setShowAddExerciseForm={setShowAddExerciseForm}/>
+            <AddExerciseForm showAddExerciseForm={showAddExerciseForm} setShowAddExerciseForm={setShowAddExerciseForm} setShowAddMessage={setShowAddMessage}/>
             <div className="sidebar-new-dropdown-container" onClick={toggleNewDropdown}>
                 <FontAwesomeIcon icon={faPlus}/> <p className="new-dropdown-text">New</p> <FontAwesomeIcon icon={faCaretDown} className="new-dropdown-caret"/>
             </div>

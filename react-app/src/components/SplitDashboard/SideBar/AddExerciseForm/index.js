@@ -1,20 +1,44 @@
+// React imports
 import React, { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+// State imports
+import { addOneExercise } from "../../../../store/exercise";
 
 import './AddExerciseForm.css'
 
-const AddExerciseForm = ({ showAddExerciseForm, setShowAddExerciseForm }) => {
-    const [name, setName] = useState("")
+const AddExerciseForm = ({ showAddExerciseForm, setShowAddExerciseForm, setShowAddMessage }) => {
+    const dispatch = useDispatch();
+    const userId = useSelector(state => state.session.user.id)
 
-    const handleSubmit = (e) => {
+    const [name, setName] = useState("")
+    const [errors, setErrors] = useState([])
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
 
         const payload = {
             name,
+            userId
         }
 
-        console.log(payload)
-        // const data = await addOneExercise(payload)
+        const data = await dispatch(addOneExercise(payload))
+
+        if (data.errors) {
+            setErrors([...data.errors])
+        } else {
+            setErrors([])
+            setName("")
+
+            // Send confirmation message
+            setShowAddMessage(true)
+            setTimeout(() => {
+                setShowAddMessage(false)
+            }, 3500);
+
+            setShowAddExerciseForm(false)
+        }
     }
 
     const ref = useRef()
@@ -44,13 +68,21 @@ const AddExerciseForm = ({ showAddExerciseForm, setShowAddExerciseForm }) => {
                             <div className="add-exercise-form-header">
                                 Add a new exercise
                             </div>
+                            <div className="add-day-error-container">
+                                {errors.map((error, ind) => (
+                                    <div key={ind} className="add-day-form-error">{error}</div>
+                                ))}
+                            </div>
                             <form onSubmit={handleSubmit} className="add-exercise-form">
                                 <label id="add-exercise-form-name-label" htmlFor="add-exercise-form-name-input">
                                     Exercise Name
                                 <input
                                     type="text"
+                                    onChange={e => setName(e.target.value)}
                                     autoComplete="off"
                                     id="add-exercise-form-name-input"
+                                    value={name}
+                                    maxLength="50"
                                     />
                                 </label>
                                 <button id="add-exercise-form-submit" type="submit">Submit</button>

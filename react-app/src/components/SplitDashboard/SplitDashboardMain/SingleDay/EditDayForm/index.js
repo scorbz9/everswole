@@ -39,7 +39,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
     useEffect(() => {
         setName(currentDay?.name)
         setWorkoutInputList(currentExerciseInfo)
-    }, [currentDay, currentExerciseInfo])
+    }, [currentDay])
 
     const updateWorkoutInputListName = (e, index) => {
         const value = e.target.value

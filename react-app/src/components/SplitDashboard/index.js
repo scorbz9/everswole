@@ -54,7 +54,7 @@ const SplitDashboard = () => {
                     Successfully deleted.
                 </div>
             : <></> }
-            <SideBar showMain={showMain} setShowMain={setShowMain} />
+            <SideBar showMain={showMain} setShowMain={setShowMain} setShowAddMessage={setShowAddMessage} />
             <div className="split-dashboard-right">
                 <SplitDashboardHero />
                 <SplitDashboardMain showMain={showMain}

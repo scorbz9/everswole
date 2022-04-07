@@ -104,6 +104,7 @@ const AddDayForm = ({ setShowMain, setShowAddMessage }) => {
                                         onChange={e => updateWorkoutInputListName(e, index)}
                                         placeholder={`Exercise #${index + 1}`}
                                         className="add-day-form-input"
+                                        maxLength="50"
                                     >
                                         {exercises.map((exercise, i) => {
                                             return (
@@ -118,6 +119,7 @@ const AddDayForm = ({ setShowMain, setShowAddMessage }) => {
                                             onChange={e => updateWorkoutInputListGoal(e, index)}
                                             placeholder="sets x reps x weight"
                                             className="add-day-form-input"
+                                            maxLength="30"
                                         />
                                     { index !== 0 &&
                                         <FontAwesomeIcon onClick={() => handleRemoveWorkoutInput(index)} icon={faXmark} />
