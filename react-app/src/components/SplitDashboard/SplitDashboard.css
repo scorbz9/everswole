@@ -1,10 +1,11 @@
 .split-dashboard-container {
     display: flex;
     height: 100vh;
+    /* position: relative; */
 }
 
 .split-dashboard-right {
-    margin-left: 240px;
+    /* margin-left: 240px; */
     display: flex;
     flex-direction: column;
     background-color: black;

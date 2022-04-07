@@ -42,7 +42,7 @@
     border: 2px solid #894597;
 }
 
-.edit-split-name-label {
+.edit-split-date-label {
     margin-top: 12px;
     margin-right: 12px;
     font-size: 28px;
@@ -70,17 +70,39 @@
 }
 
 .single-split-edit-date-range {
-    font-size: 40px;
-    display: flex;
+    font-size: 20px;
+    display: inline;
     align-items: center;
     background-color: #262626;
     padding: 10px;
     border-radius: 8px;
     letter-spacing: 1.5px;
-    margin-left: 20px;
+    width: max-content;
+    margin-left: 15px;
+    position: relative;
+    bottom: 4px;
 }
 
 .edit-split-form-calendar {
-    top: 15px !important;
-    left: 350px !important;
+    top: 80px !important;
+    left: 190px !important;
+}
+
+/* .edit-split-form-calendar-toggle {
+    display: block;
+} */
+
+.edit-split-form-header {
+    margin: 0px 0px 15px 10px;
+    font-size: 40px;
+    display: inline;
+}
+
+.edit-split-date-label {
+    margin-top: 12px;
+    margin-right: 16px;
+    margin-left: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    display: inline-block;
 }

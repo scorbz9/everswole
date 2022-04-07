@@ -104,7 +104,7 @@ const EditDayForm = ({ setShowMain, currentDay, toggleEdit, setShowEditMessage, 
     const handleDeleteDay = async e => {
         e.preventDefault();
 
-        const data = await dispatch(deleteOneDay(userId, currentDay.id))
+        await dispatch(deleteOneDay(userId, currentDay.id))
 
         // Successful delete confirmation message
         setShowDeleteMessage(true)

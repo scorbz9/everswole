@@ -1,5 +1,5 @@
 // React/Redux imports
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Calendar from 'react-calendar';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -24,7 +24,6 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
     const unassignedDays = days.filter(day => !day.assigned)
     const userId = useSelector(state => state.session.user.id)
 
-    const [name, setName] = useState("")
     const [startDate, setStartDate] = useState(new Date())
     const [dayOne, setDayOne] = useState("")
     const [dayTwo, setDayTwo] = useState("")
@@ -73,7 +72,6 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
         e.preventDefault();
 
         const payload = {
-            name,
             startDate,
             days: [
                 { dayOne: dayOne },
@@ -106,6 +104,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
         }
     }
 
+    // Calendar handlers
     const [showCalendar, setShowCalendar] = useState(false)
 
     const toggleCalendar = (e) => {
@@ -114,12 +113,31 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
         setShowCalendar(!showCalendar)
     }
 
+    // Hide calendar on click off
+    const ref = useRef()
+
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+
+        if (showCalendar && ref.current && !ref.current.contains(e.target)) {
+                setShowCalendar(false)
+            }
+        }
+
+        document.addEventListener("click", checkIfClickedOutside)
+
+        return () => {
+        // Cleanup the event listener
+        document.removeEventListener("click", checkIfClickedOutside)
+        }
+    }, [showCalendar])
+
     return (
         <div className="add-split-form-container main-content-container">
-            {/* <h2 className="add-split-form-header">Organize your week's workouts</h2> */}
+            <h2 className="add-split-form-header">Organize your week's workouts</h2>
             <form onSubmit={handleSubmit}>
                 <div className="add-split-form-date-section">
-                    <label className="add-split-name-label" htmlFor="add-split-form-calendar-toggle">*Select a start date: </label>
+                    <label className="add-split-name-label" htmlFor="add-split-form-calendar-toggle">Select a start date: </label>
                     <div className="add-split-form-selected-day">
                         {startDate?.toDateString()}
                     </div>
@@ -127,7 +145,7 @@ const AddSplitForm = ({ showMain, setShowMain, setShowAddMessage }) => {
                         <FontAwesomeIcon icon={faCalendar} />
                     </button>
                     {showCalendar ?
-                    <div className="add-split-form-calendar-container">
+                    <div className="add-split-form-calendar-container" ref={ref}>
                         <Calendar returnValue={'start'} minDetail={"year"} onChange={setStartDate} value={startDate} />
                     </div> : <></>}
                 </div>

@@ -15,8 +15,6 @@ const DashboardHome = ({ setShowMain, setShowEditMessage, setShowDeleteMessage }
 
     // Load split for current date range
     const currentSplit = splits?.find(split => {
-        console.log(new Date(split.start_date), new Date(split.start_date).getTime(), new Date().getTime(), new Date(split.end_date).getTime())
-        console.log(new Date(split.start_date).getTime() <= new Date().getTime() && new Date(split.end_date).getTime() >= new Date().getTime())
         return new Date(split.start_date).getTime() <= new Date().getTime() && new Date(split.end_date).getTime() >= new Date().getTime()
     })
 

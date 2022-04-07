@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
 
-// Store imports
+// State imports
 import { addOneDay } from "../../../../store/day";
 
 import './AddDayForm.css'
@@ -93,45 +93,47 @@ const AddDayForm = ({ setShowMain, setShowAddMessage }) => {
                         autoComplete="off"
                     />
 
-                {workoutInputList.map((input, index) => {
-                    return (
-                        <div key={index} className="add-day-form-element">
-                            <label htmlFor="workoutName" className="add-day-form-label"> {`Exercise ${index + 1}`}</label>
-                                <select
-                                    name="workoutName"
-                                    value={input.name}
-                                    onChange={e => updateWorkoutInputListName(e, index)}
-                                    placeholder={`Exercise #${index + 1}`}
-                                    className="add-day-form-input"
-                                >
-                                    {exercises.map((exercise, i) => {
-                                        return (
-                                            <option key={i} value={exercise.name}>{exercise.name}</option>
-                                        )
-                                    })}
-                                </select>
-                                <label className="add-day-form-label add-day-form-goal"> Goal</label>
-                                    <input
-                                        type="text"
-                                        value={input.goal}
-                                        onChange={e => updateWorkoutInputListGoal(e, index)}
-                                        placeholder="sets x reps x weight"
+                <div className="add-split-form-exercises-container">
+                    {workoutInputList.map((input, index) => {
+                        return (
+                            <div key={index} className="add-day-form-element">
+                                <label htmlFor="workoutName" className="add-day-form-label"> {`Exercise ${index + 1}`}</label>
+                                    <select
+                                        name="workoutName"
+                                        value={input.name}
+                                        onChange={e => updateWorkoutInputListName(e, index)}
+                                        placeholder={`Exercise #${index + 1}`}
                                         className="add-day-form-input"
-                                    />
-
-                                { index !== 0 &&
-                                    <FontAwesomeIcon onClick={() => handleRemoveWorkoutInput(index)} icon={faXmark} />
-                                }
+                                        maxLength="50"
+                                    >
+                                        {exercises.map((exercise, i) => {
+                                            return (
+                                                <option key={i} value={exercise.name}>{exercise.name}</option>
+                                            )
+                                        })}
+                                    </select>
+                                    <label className="add-day-form-label add-day-form-goal"> Goal</label>
+                                        <input
+                                            type="text"
+                                            value={input.goal}
+                                            onChange={e => updateWorkoutInputListGoal(e, index)}
+                                            placeholder="sets x reps x weight"
+                                            className="add-day-form-input"
+                                            maxLength="30"
+                                        />
+                                    { index !== 0 &&
+                                        <FontAwesomeIcon onClick={() => handleRemoveWorkoutInput(index)} icon={faXmark} />
+                                    }
+                            </div>
+                        )
+                    })}
+                    { workoutInputList.length === 9 ?
+                        <div className="add-day-form-add-workout-message">Maximum number of workouts reached!</div>
+                        : <div onClick={handleAddWorkoutInput} className="add-day-form-add-workout">
+                            <FontAwesomeIcon className="add-workout-plus" icon={faPlus}/> Add an exercise!
                         </div>
-                    )
-                })}
-
-                { workoutInputList.length === 9 ?
-                                <div className="add-day-form-add-workout-message">Maximum number of workouts reached!</div>
-                                : <div onClick={handleAddWorkoutInput} className="add-day-form-add-workout">
-                                    <FontAwesomeIcon className="add-workout-plus" icon={faPlus}/> Add an exercise!
-                                </div>
-                            }
+                    }
+                </div>
                 <button className="add-day-form-submit" type="submit">Submit</button>
             </form>
         </div>

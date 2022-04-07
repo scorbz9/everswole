@@ -65,6 +65,8 @@ const SingleSplit = ({ showMain, setShowMain, setShowEditMessage, setShowDeleteM
             <EditSplitForm
                 currentSplit={currentSplit}
                 toggleEdit={toggleEdit}
+                start={start}
+                end={end}
                 setShowMain={setShowMain}
                 setShowEditMessage={setShowEditMessage}
                 setShowDeleteMessage={setShowDeleteMessage}

@@ -1,15 +1,23 @@
-import React, { useEffect, useRef } from 'react';
+// React/Redux imports
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+
+// State imports
 import { logout } from '../../../../store/session'
 
-import './LogoutDropdown.css'
+import './UserDropdown.css'
 
-const LogoutDropdown = ({ showLogout, setShowLogout }) => {
+const UserDropdown = ({ showLogout, setShowLogout, showMain, setShowMain }) => {
     const dispatch = useDispatch();
 
     const onLogout = async (e) => {
         await dispatch(logout());
     };
+
+    // TODO
+    const toggleExercises = () => {
+
+    }
 
     const ref = useRef()
 
@@ -27,17 +35,18 @@ const LogoutDropdown = ({ showLogout, setShowLogout }) => {
         // Cleanup the event listener
         document.removeEventListener("click", checkIfClickedOutside)
         }
-    }, [showLogout])
+    }, [showLogout, setShowLogout])
 
 
     return (
         <>
             {showLogout ?
                 <div className="sidebar-dropdown" ref={ref}>
-                    <button id="sidebar-dropdown-logout" onClick={onLogout}>Logout</button>
+                    <button id="sidebar-dropdown-logout" className="sidebar-dropdown-element" onClick={toggleExercises}>View my exercises</button>
+                    <button id="sidebar-dropdown-logout" className="sidebar-dropdown-element" onClick={onLogout}>Logout</button>
             </div> : <></>}
         </>
     )
 }
 
-export default LogoutDropdown;
+export default UserDropdown;

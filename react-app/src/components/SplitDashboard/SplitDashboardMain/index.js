@@ -1,5 +1,5 @@
 // React imports
-import React, { useState } from 'react'
+import React from 'react'
 
 // Component imports
 import DashboardHome from './DashboardHome'

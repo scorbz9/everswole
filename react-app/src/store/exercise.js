@@ -1,8 +1,13 @@
 const LOAD_EXERCISES = 'exercise/LOAD_EXERCISES'
-
+const ADD_EXERCISE = 'exercise/ADD_EXERCISE'
 
 const loadExercises = (payload) => ({
     type: LOAD_EXERCISES,
+    payload
+})
+
+const addExercise = payload => ({
+    type: ADD_EXERCISE,
     payload
 })
 
@@ -16,16 +21,37 @@ export const getAllExercises = () => async dispatch => {
     }
 }
 
+export const addOneExercise = (payload) => async dispatch => {
+
+    const response = await fetch ('/api/exercises/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+    });
+
+    const data = await response.json()
+
+    if (data.errors) {
+        return data;
+    } else {
+
+        await dispatch(addExercise(data))
+        return data;
+    }
+}
 const initialState = { entries: [] }
 
 const exerciseReducer = (state = initialState, action) => {
-    let newState
     switch (action.type) {
         case LOAD_EXERCISES:
+            return {...state, entries: [...action.payload.exercises]}
+        case ADD_EXERCISE :
             return {...state, entries: [...action.payload.exercises]}
         default:
             return state;
     }
 }
 
-export default exerciseReducer
+export default exerciseReducer;

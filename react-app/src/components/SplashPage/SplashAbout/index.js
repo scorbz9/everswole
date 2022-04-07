@@ -5,7 +5,7 @@ import './SplashAbout.css'
 const SplashAbout = () => {
     return (
         <div className="splash-about-container">
-            <img className="splash-about-image" src={weightsPic}></img>
+            <img className="splash-about-image" src={weightsPic} alt="a rack of dumbells"></img>
             <div className="splash-about-info-container">
                 <div className="splash-about-info-section">
                     <p className="splash-about-info-header">REMEMBER EVERYTHING</p>
