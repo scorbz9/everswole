@@ -75,13 +75,13 @@ export const editOneExercise = (payload) => async dispatch => {
     }
 }
 
-export const deleteOneExercise = (payload) => async dispatch => {
+export const deleteOneExercise = (exerciseId) => async dispatch => {
     const response = await fetch ('/api/exercises/', {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(exerciseId)
     });
 
     const data = await response.json()

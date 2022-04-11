@@ -2,7 +2,7 @@ import React from "react";
 
 import './ConfirmDelete.css'
 
-const ConfirmDelete = ({ typeOfDelete, handleDeleteDay, handleDeleteSplit, toggleDelete }) => {
+const ConfirmDelete = ({ typeOfDelete, handleDeleteDay, handleDeleteSplit, handleDeleteExercise, toggleDelete }) => {
 
 
 
@@ -14,7 +14,7 @@ const ConfirmDelete = ({ typeOfDelete, handleDeleteDay, handleDeleteSplit, toggl
                     Are you sure you'd like to delete this {typeOfDelete}?
                 </p>
                 <div className="confirm-delete-button-container">
-                    <button className="confirm-delete-button" onClick={typeOfDelete === 'split' ? handleDeleteSplit : handleDeleteDay}>Delete {typeOfDelete[0].toUpperCase() + typeOfDelete.slice(1)}</button>
+                    <button className="confirm-delete-button" onClick={typeOfDelete === 'split' ? handleDeleteSplit : typeOfDelete === "exercise" ? handleDeleteExercise : handleDeleteDay }>Delete {typeOfDelete[0].toUpperCase() + typeOfDelete.slice(1)}</button>
                     <button className="confirm-delete-cancel" onClick={toggleDelete}>Cancel</button>
                 </div>
             </div>

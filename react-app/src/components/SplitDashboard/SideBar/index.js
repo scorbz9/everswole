@@ -18,7 +18,7 @@ import AddExerciseForm from './AddExerciseForm'
 import MyExercises from './MyExercises'
 
 
-const SideBar = ({ showMain, setShowMain, setShowAddMessage }) => {
+const SideBar = ({ showMain, setShowMain, setShowAddMessage, setShowEditMessage, setShowDeleteMessage }) => {
     const user = useSelector(state => state.session.user)
 
     const [showLogout, setShowLogout] = useState(false);
@@ -108,7 +108,7 @@ const SideBar = ({ showMain, setShowMain, setShowAddMessage }) => {
                     How to Use
                 </div>
                 <Help showHelp={showHelp} setShowHelp={setShowHelp} toggleHelp={toggleHelp} showMain={showMain} setShowMain={setShowMain}/>
-                <MyExercises showExercises={showExercises} setShowExercises={setShowExercises} />
+                <MyExercises showExercises={showExercises} setShowExercises={setShowExercises} setShowEditMessage={setShowEditMessage} setShowDeleteMessage={setShowDeleteMessage} />
             </div>
         </div>
     )
