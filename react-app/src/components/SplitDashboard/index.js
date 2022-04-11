@@ -24,7 +24,7 @@ const SplitDashboard = () => {
 
         (async() => {
             await Promise.all([
-                dispatch(getAllExercises()),
+                dispatch(getAllExercises(userId)),
                 dispatch(getAllDays(userId)),
                 dispatch(getAllSplits(userId))
             ])

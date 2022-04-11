@@ -1,5 +1,5 @@
 // React/Redux imports
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // FontAwesome icons
@@ -16,6 +16,7 @@ import './MyExercises.css'
 
 const MyExercises = ({ showExercises, setShowExercises, setShowEditMessage, setShowDeleteMessage }) => {
     const dispatch = useDispatch();
+    const userId = useSelector(state => state.session.user.id)
     const exercises = useSelector(state => state.exerciseState.entries);
 
     const [name, setName] = useState("")
@@ -41,7 +42,7 @@ const MyExercises = ({ showExercises, setShowExercises, setShowEditMessage, setS
         }
 
 
-        const data = await dispatch(editOneExercise(payload));
+        const data = await dispatch(editOneExercise(payload, userId));
 
         if (data.errors) {
             setErrors([...data.errors])
@@ -60,18 +61,28 @@ const MyExercises = ({ showExercises, setShowExercises, setShowEditMessage, setS
     }
 
     // Shows delete confirmation popup
-    const [showDelete, setShowDelete] = useState(false)
+    const [showDelete, setShowDelete] = useState(null)
 
-    const toggleDelete = (e) => {
-        e.preventDefault();
+    const toggleDelete = (exerciseId) => {
 
-        setShowDelete(!showDelete)
+        if (showDelete === exerciseId) {
+            console.log('showDelete === exerciseId')
+            setShowDelete(null)
+        } else {
+            console.log('else')
+            setShowDelete(exerciseId)
+        }
+        console.log(showDelete)
     }
 
     const handleDeleteExercise = async (e, exerciseId) => {
         e.preventDefault();
+        console.log(exerciseId)
+        const payload = {
+            exerciseId
+        }
 
-        await dispatch(deleteOneExercise(exerciseId))
+        await dispatch(deleteOneExercise(payload, userId))
 
         // Successful delete confirmation message
         setShowDeleteMessage(true)
@@ -79,15 +90,33 @@ const MyExercises = ({ showExercises, setShowExercises, setShowEditMessage, setS
             setShowDeleteMessage(false)
         }, 4000)
 
-        setShowDelete(false)
+        setShowDelete(null)
     }
+
+    const ref = useRef()
+
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+
+        if (showExercises && ref.current && !ref.current.contains(e.target)) {
+                setShowExercises(false)
+            }
+        }
+
+        document.addEventListener("click", checkIfClickedOutside)
+
+        return () => {
+        // Cleanup the event listener
+        document.removeEventListener("click", checkIfClickedOutside)
+        }
+    }, [showExercises, setShowExercises])
 
 
     return (
         showExercises ?
         <div className="overlay-wrapper">
-            <div className="my-exercises-container">
-            {showDelete ? <ConfirmDelete typeOfDelete={"exercise"} handleDeleteExercise={handleDeleteExercise} toggleDelete={toggleDelete} /> : <></>}
+            <div className="my-exercises-container" ref={ref}>
+            {showDelete ? <ConfirmDelete typeOfDelete={"exercise"} handleDeleteExercise={handleDeleteExercise} showDelete={showDelete} setShowDelete={setShowDelete} /> : <></>}
                 <div className="my-exercises-inner-container">
                     <div className="my-exercises-info-container">
                         <div className="my-exercises-header">
@@ -119,7 +148,7 @@ const MyExercises = ({ showExercises, setShowExercises, setShowEditMessage, setS
                                     }
                                     <div className="single-exercise-buttons-container">
                                         <FontAwesomeIcon icon={faEdit} onClick={() => toggleEditExercise(exercise.id)} className="single-exercise-button"/>
-                                        <FontAwesomeIcon icon={faXmark} onClick={toggleDelete} className="single-exercise-button"/>
+                                        <FontAwesomeIcon icon={faXmark} onClick={() => setShowDelete(exercise.id)} className="single-exercise-button"/>
                                     </div>
                                 </div>
                             )

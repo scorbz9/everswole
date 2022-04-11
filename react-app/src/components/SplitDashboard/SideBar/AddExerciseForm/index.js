@@ -27,7 +27,7 @@ const AddExerciseForm = ({ showAddExerciseForm, setShowAddExerciseForm, setShowA
             userId
         }
 
-        const data = await dispatch(addOneExercise(payload))
+        const data = await dispatch(addOneExercise(payload, userId))
 
         if (data.errors) {
             setErrors([...data.errors])

@@ -21,7 +21,7 @@
     background-color: rgb(90, 206, 90);
     padding: 10px 5px;
     border-radius: 8px;
-    z-index: 102;
+    z-index: 1002;
     animation-name: fadeInOut;
     animation-timing-function: ease-in-out;
     animation-duration: 4s;

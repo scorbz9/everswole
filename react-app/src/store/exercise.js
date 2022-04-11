@@ -23,8 +23,8 @@ const deleteExercise = payload => ({
     payload
 })
 
-export const getAllExercises = () => async dispatch => {
-    const response = await fetch(`/api/exercises/`)
+export const getAllExercises = (userId) => async dispatch => {
+    const response = await fetch(`/api/${userId}/exercises/`)
     if (response.ok) {
         const data = await response.json()
 
@@ -33,9 +33,9 @@ export const getAllExercises = () => async dispatch => {
     }
 }
 
-export const addOneExercise = (payload) => async dispatch => {
+export const addOneExercise = (payload, userId) => async dispatch => {
 
-    const response = await fetch ('/api/exercises/', {
+    const response = await fetch (`/api/${userId}/exercises/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -54,9 +54,9 @@ export const addOneExercise = (payload) => async dispatch => {
     }
 }
 
-export const editOneExercise = (payload) => async dispatch => {
-    console.log('here???')
-    const response = await fetch ('/api/exercises/', {
+export const editOneExercise = (payload, userId) => async dispatch => {
+
+    const response = await fetch(`/api/${userId}/exercises/`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -76,13 +76,14 @@ export const editOneExercise = (payload) => async dispatch => {
     }
 }
 
-export const deleteOneExercise = (exerciseId) => async dispatch => {
-    const response = await fetch ('/api/exercises/', {
+export const deleteOneExercise = (payload, userId) => async dispatch => {
+
+    const response = await fetch (`/api/${userId}/exercises/`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(exerciseId)
+        body: JSON.stringify(payload)
     });
 
     const data = await response.json()
@@ -106,6 +107,8 @@ const exerciseReducer = (state = initialState, action) => {
         case ADD_EXERCISE:
             return {...state, entries: [...action.payload.exercises]}
         case EDIT_EXERCISE:
+            return {...state, entries: [...action.payload.exercises]}
+        case DELETE_EXERCISE:
             return {...state, entries: [...action.payload.exercises]}
         default:
             return state;
