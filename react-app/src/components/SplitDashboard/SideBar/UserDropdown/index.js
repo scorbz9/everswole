@@ -1,5 +1,5 @@
 // React/Redux imports
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 // State imports
@@ -7,16 +7,15 @@ import { logout } from '../../../../store/session'
 
 import './UserDropdown.css'
 
-const UserDropdown = ({ showLogout, setShowLogout, showMain, setShowMain }) => {
+const UserDropdown = ({ showLogout, setShowLogout, showExercises, setShowExercises }) => {
     const dispatch = useDispatch();
 
     const onLogout = async (e) => {
         await dispatch(logout());
     };
 
-    // TODO
     const toggleExercises = () => {
-
+        setShowExercises(!showExercises)
     }
 
     const ref = useRef()

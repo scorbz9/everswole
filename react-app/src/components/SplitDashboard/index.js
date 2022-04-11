@@ -24,7 +24,7 @@ const SplitDashboard = () => {
 
         (async() => {
             await Promise.all([
-                dispatch(getAllExercises()),
+                dispatch(getAllExercises(userId)),
                 dispatch(getAllDays(userId)),
                 dispatch(getAllSplits(userId))
             ])
@@ -54,7 +54,13 @@ const SplitDashboard = () => {
                     Successfully deleted.
                 </div>
             : <></> }
-            <SideBar showMain={showMain} setShowMain={setShowMain} setShowAddMessage={setShowAddMessage} />
+            <SideBar
+                showMain={showMain}
+                setShowMain={setShowMain}
+                setShowAddMessage={setShowAddMessage}
+                setShowEditMessage={setShowEditMessage}
+                setShowDeleteMessage={setShowDeleteMessage}
+            />
             <div className="split-dashboard-right">
                 <SplitDashboardHero />
                 <SplitDashboardMain showMain={showMain}

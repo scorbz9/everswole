@@ -5,6 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 // State imports
 import { addOneExercise } from "../../../../store/exercise";
 
+// FontAwesome icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+
 import './AddExerciseForm.css'
 
 const AddExerciseForm = ({ showAddExerciseForm, setShowAddExerciseForm, setShowAddMessage }) => {
@@ -23,7 +27,7 @@ const AddExerciseForm = ({ showAddExerciseForm, setShowAddExerciseForm, setShowA
             userId
         }
 
-        const data = await dispatch(addOneExercise(payload))
+        const data = await dispatch(addOneExercise(payload, userId))
 
         if (data.errors) {
             setErrors([...data.errors])
@@ -68,6 +72,7 @@ const AddExerciseForm = ({ showAddExerciseForm, setShowAddExerciseForm, setShowA
                             <div className="add-exercise-form-header">
                                 Add a new exercise
                             </div>
+                            <FontAwesomeIcon icon={faXmark} onClick={() => setShowAddExerciseForm(false)} className="cancel-help"/>
                             <div className="add-day-error-container">
                                 {errors.map((error, ind) => (
                                     <div key={ind} className="add-day-form-error">{error}</div>

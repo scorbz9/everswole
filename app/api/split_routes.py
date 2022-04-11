@@ -42,7 +42,6 @@ def addSplit(user_id):
         end_date = end_date.replace(hour=23, minute=59, second=59, microsecond=999999)
 
         new_split = Split(
-            name = data["name"],
             user_id = user_id,
             start_date = data["startDate"],
             end_date = end_date

@@ -29,7 +29,7 @@ def upgrade():
     )
     op.create_table('splits',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=50), nullable=False),
+    # sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('start_date', sa.DateTime(timezone=True), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
@@ -48,7 +48,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('name')
+    # sa.UniqueConstraint('name')
     )
 
     # ### end Alembic commands ###
