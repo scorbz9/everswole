@@ -2,13 +2,15 @@ from flask import Blueprint, jsonify, session, request
 from app.models import db, Exercise
 from app.forms import ExerciseForm
 from app.api.auth_routes import validation_errors_to_error_messages
-
+from sqlalchemy import asc
 
 exercise_routes = Blueprint('exercise', __name__)
 
 @exercise_routes.route('/', methods=['GET'])
 def getExercises():
-    exercises = Exercise.query.all()
+    exercises = Exercise.query \
+        .order_by(asc(Exercise.created_at)) \
+        .all()
 
     return { 'exercises': [exercise.to_dict() for exercise in exercises] }
 
@@ -28,7 +30,9 @@ def addExercise():
         db.session.add(new_exercise)
         db.session.commit()
 
-        exercises = Exercise.query.all()
+        exercises = Exercise.query \
+        .order_by(asc(Exercise.created_at)) \
+        .all()
 
         return { 'exercises': [exercise.to_dict() for exercise in exercises] }
 
@@ -49,7 +53,9 @@ def editExercise():
 
         db.session.commit()
 
-        exercises = Exercise.query.all()
+        exercises = Exercise.query \
+        .order_by(asc(Exercise.created_at)) \
+        .all()
 
         return { 'exercises': [exercise.to_dict() for exercise in exercises] }
 

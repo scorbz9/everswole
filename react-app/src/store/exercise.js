@@ -103,7 +103,9 @@ const exerciseReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_EXERCISES:
             return {...state, entries: [...action.payload.exercises]}
-        case ADD_EXERCISE :
+        case ADD_EXERCISE:
+            return {...state, entries: [...action.payload.exercises]}
+        case EDIT_EXERCISE:
             return {...state, entries: [...action.payload.exercises]}
         default:
             return state;
