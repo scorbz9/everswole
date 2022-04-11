@@ -134,7 +134,7 @@ const MyExercises = ({ showExercises, setShowExercises, setShowEditMessage, setS
                                     { showEditExercise !== exercise.id ?
                                         <div className="single-exercise-name">{exercise.name}</div>
                                     :
-                                        <form onSubmit={e => handleEditSubmit(e, exercise.id)} className="single-exercise-name">
+                                        <form onSubmit={e => handleEditSubmit(e, exercise.id)} className="single-exercise-form">
                                             <input
                                                 type="text"
                                                 autoComplete="off"
@@ -142,8 +142,9 @@ const MyExercises = ({ showExercises, setShowExercises, setShowEditMessage, setS
                                                 placeholder={`${exercise.name}`}
                                                 value={name}
                                                 onChange={e => setName(e.target.value)}
+                                                className="edit-exercise-name-input"
                                             />
-                                            <button type="submit">Submit</button>
+                                            <button type="submit" className="edit-exercise-submit">Submit</button>
                                         </form>
                                     }
                                     <div className="single-exercise-buttons-container">
