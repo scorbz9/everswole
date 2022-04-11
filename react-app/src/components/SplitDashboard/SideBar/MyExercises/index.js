@@ -41,9 +41,7 @@ const MyExercises = ({ showExercises, setShowExercises, setShowEditMessage, setS
         }
 
 
-        console.log(payload)
-
-        const data = await editOneExercise(payload);
+        const data = await dispatch(editOneExercise(payload));
 
         if (data.errors) {
             setErrors([...data.errors])

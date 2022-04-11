@@ -55,6 +55,7 @@ export const addOneExercise = (payload) => async dispatch => {
 }
 
 export const editOneExercise = (payload) => async dispatch => {
+    console.log('here???')
     const response = await fetch ('/api/exercises/', {
         method: 'PUT',
         headers: {
