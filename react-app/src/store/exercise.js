@@ -1,5 +1,7 @@
 const LOAD_EXERCISES = 'exercise/LOAD_EXERCISES'
 const ADD_EXERCISE = 'exercise/ADD_EXERCISE'
+const EDIT_EXERCISE = 'exercise/EDIT_EXERCISE'
+const DELETE_EXERCISE = 'exercise/DELETE_EXERCISE'
 
 const loadExercises = (payload) => ({
     type: LOAD_EXERCISES,
@@ -8,6 +10,16 @@ const loadExercises = (payload) => ({
 
 const addExercise = payload => ({
     type: ADD_EXERCISE,
+    payload
+})
+
+const editExercise = payload => ({
+    type: EDIT_EXERCISE,
+    payload
+})
+
+const deleteExercise = payload => ({
+    type: DELETE_EXERCISE,
     payload
 })
 
@@ -41,6 +53,49 @@ export const addOneExercise = (payload) => async dispatch => {
         return data;
     }
 }
+
+export const editOneExercise = (payload) => async dispatch => {
+    const response = await fetch ('/api/exercises/', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+    });
+
+    const data = await response.json()
+
+    if (data.errors) {
+
+        return data;
+    } else {
+
+        await dispatch(editExercise(data))
+        return data;
+    }
+}
+
+export const deleteOneExercise = (payload) => async dispatch => {
+    const response = await fetch ('/api/exercises/', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+    });
+
+    const data = await response.json()
+
+    if (data.errors) {
+
+        return data;
+    } else {
+
+        await dispatch(deleteExercise(data))
+        return data;
+    }
+}
+
 const initialState = { entries: [] }
 
 const exerciseReducer = (state = initialState, action) => {

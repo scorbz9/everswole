@@ -15,6 +15,7 @@ import Help from './Help'
 
 import './SideBar.css'
 import AddExerciseForm from './AddExerciseForm'
+import MyExercises from './MyExercises'
 
 
 const SideBar = ({ showMain, setShowMain, setShowAddMessage }) => {
@@ -25,6 +26,7 @@ const SideBar = ({ showMain, setShowMain, setShowAddMessage }) => {
     const [showDayDropdown, setShowDayDropdown] = useState(false)
     const [showSplitDropdown, setShowSplitDropdown] = useState(false)
     const [showAddExerciseForm, setShowAddExerciseForm] = useState(false)
+    const [showExercises, setShowExercises] = useState(false)
     const [showHelp, setShowHelp] = useState(false)
 
     const toggleHome = () => {
@@ -55,6 +57,10 @@ const SideBar = ({ showMain, setShowMain, setShowAddMessage }) => {
         setShowAddExerciseForm(!showAddExerciseForm)
     }
 
+    const toggleExercises = () => {
+        setShowExercises(!showExercises)
+    }
+
     let toggleStyleDay;
     let toggleStyleSplit;
 
@@ -77,7 +83,7 @@ const SideBar = ({ showMain, setShowMain, setShowAddMessage }) => {
                 <p className="sidebar-user-info-username">{user.email}</p>
                 <div className="sidebar-user-info-dropdown-toggle"><FontAwesomeIcon icon={faCaretDown} /></div>
             </div>
-            <UserDropdown showLogout={showLogout} setShowLogout={setShowLogout}/>
+            <UserDropdown showLogout={showLogout} setShowLogout={setShowLogout} showExercises={showExercises} setShowExercises={setShowExercises}/>
             <AddExerciseForm showAddExerciseForm={showAddExerciseForm} setShowAddExerciseForm={setShowAddExerciseForm} setShowAddMessage={setShowAddMessage}/>
             <div className="sidebar-new-dropdown-container" onClick={toggleNewDropdown}>
                 <FontAwesomeIcon icon={faPlus}/> <p className="new-dropdown-text">New</p> <FontAwesomeIcon icon={faCaretDown} className="new-dropdown-caret"/>
@@ -102,6 +108,7 @@ const SideBar = ({ showMain, setShowMain, setShowAddMessage }) => {
                     How to Use
                 </div>
                 <Help showHelp={showHelp} setShowHelp={setShowHelp} toggleHelp={toggleHelp} showMain={showMain} setShowMain={setShowMain}/>
+                <MyExercises showExercises={showExercises} setShowExercises={setShowExercises} />
             </div>
         </div>
     )
