@@ -4,8 +4,6 @@ import './ConfirmDelete.css'
 
 const ConfirmDelete = ({ typeOfDelete, handleDeleteDay, handleDeleteSplit, handleDeleteExercise, toggleDelete, showDelete, setShowDelete }) => {
 
-
-
     return (
         <div className="overlay-wrapper">
             <div className="confirm-delete-container">
@@ -14,7 +12,8 @@ const ConfirmDelete = ({ typeOfDelete, handleDeleteDay, handleDeleteSplit, handl
                 </p>
                 <div className="confirm-delete-button-container">
                     <button className="confirm-delete-button"
-                        onClick={typeOfDelete === 'split' ? handleDeleteSplit
+                        onClick={
+                            typeOfDelete === 'split' ? handleDeleteSplit
                             : typeOfDelete === "exercise" ? e => handleDeleteExercise(e, showDelete)
                             : handleDeleteDay }
                     >

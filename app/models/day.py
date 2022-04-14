@@ -27,6 +27,7 @@ class Day(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     assigned = db.Column(db.Boolean, default=False)
     assigned_day = db.Column(db.DateTime(timezone=True))
+    template = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     users = db.relationship("User", back_populates="days")
