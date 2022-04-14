@@ -34,7 +34,8 @@ def addOneDay(user_id):
 
         new_day = Day(
             name = data['name'],
-            user_id = data['userId']
+            user_id = data['userId'],
+            template = True
         )
 
         db.session.add(new_day)

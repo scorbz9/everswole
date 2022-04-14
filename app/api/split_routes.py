@@ -50,6 +50,7 @@ def addSplit(user_id):
         db.session.add(new_split)
         db.session.commit()
 
+        # Iterate through assigned days
         for day in range(len(data['days'])):
             current_day_id = list(data['days'][day].values())[0]
             current_day_name = list(data['days'][day].keys())[0]
